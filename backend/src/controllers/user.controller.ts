@@ -6,7 +6,7 @@ export class UserController {
         let username = req.body.username;
         let password = req.body.password;
 
-        User.findOne({ 'username': username, 'password': password }, (err, user) => {
+        User.findOne({ 'username': username, 'password': password, $or: [{'type': 'user'},{'type': 'org'}] }, (err, user) => {
             if (err) console.log(err);
             else res.json(user)
         })
