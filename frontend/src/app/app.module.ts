@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { OrgComponent } from './org/org.component';
 import { MenuComponent } from './menu/menu.component';
+import { RegisterComponent } from './register/register.component';
+import { IndexComponent } from './index/index.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { MenuComponent } from './menu/menu.component';
     LoginComponent,
     UserComponent,
     OrgComponent,
-    MenuComponent
+    MenuComponent,
+    RegisterComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,

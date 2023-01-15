@@ -1,0 +1,100 @@
+<h2>Registruj se</h2>
+<table>
+    <tr>
+        <td>Ime:</td>
+        <td>
+            <input type="text" name="firstname" [(ngModel)]="firstname">
+        </td>        
+    </tr>
+    <tr>
+        <td>Prezime:</td>
+        <td>
+            <input type="text" name="lastname" [(ngModel)]="lastname">
+        </td>        
+    </tr>
+    <tr>
+        <td>Korisničko ime:</td>
+        <td>
+            <input type="text" name="username" [(ngModel)]="username">
+        </td>        
+    </tr>
+    <tr>
+        <td>Lozinka:</td>
+        <td>
+            <input type="text" name="password" [(ngModel)]="password">
+        </td>        
+    </tr>
+    <tr>
+        <td>Potvrda lozinke:</td>
+        <td>
+            <input type="text" name="confirmPassword" [(ngModel)]="confirmPassword">
+        </td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td>
+            <input type="text" name="email" [(ngModel)]="email">
+        </td>
+    </tr>
+    <tr>
+        <td>Telefon:</td>
+        <td>
+            <input type="text" name="phone" [(ngModel)]="phone">
+        </td>
+    </tr>
+    <tr>
+        <td>Organizator</td>
+        <td>
+            <input type="checkbox" name="organizer" [(ngModel)]="organizer">
+        </td>
+    </tr>
+    <tr *ngIf="organizer">
+        <td>Ime organizacije:</td>
+        <td>
+            <input type="text" name="organizationName" [(ngModel)]="organizationName">
+        </td>
+    </tr>
+    <tr *ngIf="organizer">
+        <td>Grad:</td>
+        <td>
+            <input type="text" name="city" [(ngModel)]="city">
+        </td>
+    </tr>
+    <tr *ngIf="organizer">
+        <td>Država:</td>
+        <td>
+            <input type="text" name="country" [(ngModel)]="country">
+        </td>
+    </tr>
+    <tr *ngIf="organizer">
+        <td>Poštanski broj:</td>
+        <td>
+            <input type="text" name="postNumber" [(ngModel)]="postNumber">
+        </td>
+    </tr>
+    <tr *ngIf="organizer">
+        <td>Ulica:</td>
+        <td>
+            <input type="text" name="street" [(ngModel)]="street">
+        </td>
+    </tr>
+    <tr *ngIf="organizer">
+        <td>Broj:</td>
+        <td>
+            <input type="text" name="streetNumber" [(ngModel)]="streetNumber">
+        </td>
+    </tr>
+    <tr *ngIf="organizer">
+        <td>Matični broj</td>
+        <td>
+            <input type="text" name="matNumber" [(ngModel)]="matNumber">
+        </td>
+    </tr>
+    <tr>
+        
+        <td colspan="2">
+            <button (click)="register()">Registruj se</button>
+        </td>        
+    </tr>
+</table>
+{{message}}
