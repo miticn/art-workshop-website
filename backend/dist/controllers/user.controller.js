@@ -4,14 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
-const mailService_1 = __importDefault(require("../mailService"));
 const user_1 = __importDefault(require("../models/user"));
 class UserController {
     constructor() {
         this.login = (req, res) => {
             let username = req.body.username;
             let password = req.body.password;
-            new mailService_1.default().send();
+            //new mailService().send();
             user_1.default.findOne({ 'username': username, 'password': password, $or: [{ 'type': 'user' }, { 'type': 'org' }] }, (err, user) => {
                 if (err)
                     console.log(err);
@@ -36,6 +35,25 @@ class UserController {
                     console.log(err);
                 else
                     res.json(user);
+            });
+        };
+        this.register = (req, res) => {
+            let user = new user_1.default({
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                username: req.body.username,
+                password: req.body.password,
+                phone: req.body.phone,
+                email: req.body.email,
+                type: req.body.type
+            });
+            user.save((err, resp) => {
+                if (err) {
+                    console.log(err);
+                    res.status(400).json({ "message": "error" });
+                }
+                else
+                    res.json({ "message": "ok" });
             });
         };
     }

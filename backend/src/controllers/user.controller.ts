@@ -31,4 +31,24 @@ export class UserController {
             else res.json(user)
         })
     }
+
+    register = (req: express.Request, res: express.Response)=>{
+        let user = new User({
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            username: req.body.username,
+            password: req.body.password,
+            phone: req.body.phone,
+            email: req.body.email,
+            type: req.body.type
+        })
+
+        user.save((err, resp)=>{
+            if(err) {
+                console.log(err);
+                res.status(400).json({"message": "error"})
+            }
+            else res.json({"message": "ok"})
+        })
+    }
 }

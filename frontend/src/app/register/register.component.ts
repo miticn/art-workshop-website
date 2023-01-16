@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
   street:string;
   streetNumber:string;
   matNumber:string;
+  profilePicture:string;
   register(){};
 
 }

@@ -12,4 +12,8 @@ userRouter.route('/getUser').post(
     (req, res) => new UserController().getUser(req, res)
 )
 
+userRouter.route('/register').post(
+    (req, res) => new UserController().register(req, res)
+)
+
 export default userRouter;
