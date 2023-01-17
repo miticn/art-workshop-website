@@ -1,16 +1,15 @@
-<h2>Ulogujte se</h2>
 <form>
     <div class="row">
-        <td>
+        <div class="col-sm-5">
             <input class="form-control" type='text' name='username' [(ngModel)]='username' placeholder="Korisničko ime">
-        </td>
-    </div>
-    <div class="row">
-        <td>
+        </div>
+        <div class="col-sm-5">
             <input class="form-control" type='password' name='password' [(ngModel)]='password' placeholder="Lozinka">
-        </td>
+        </div>
+        <div class="col-sm-2">
+            <input class="btn btn-dark" type='submit' value='Ulogujte se' (click)='LogIn()'>
+        </div>
     </div>
-    <input class="btn btn-dark" type='button' value='Ulogujte se' (click)='LogIn()'>
 </form>
 <span class='greska'>{{msg}}</span>
 
