@@ -19,19 +19,22 @@
     <div class="row">
         <div class="col-sm-12">
             <input type="email" class="form-control" name="email" formControlName="email" placeholder="Email">
-            <!--<div *ngIf="registerForm.controls.email.errors?.email">Email nije u dobrom formatu</div>-->
+            <div *ngIf="registerForm.invalid && (registerForm.dirty || registerForm.touched)" class="inputError">
+                <div *ngIf="registerForm.controls.email.errors?.['required']">Email nije unet.</div>
+                <div *ngIf="registerForm.controls.email.errors?.['email']">Email nije u dobrom formatu</div>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12">
             <input type="password" class="form-control" name="password" formControlName="password" placeholder="Lozinka">
-            <!--<div *ngIf="registerForm.controls.password.errors?.minlength">Lozinka mora imati najmanje 6 karaktera</div>-->
+            <div *ngIf="registerForm.controls.password.errors['minlength']">Lozinka mora imati najmanje 8 karaktera</div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12">
             <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword" placeholder="Potvrda lozinke">
-            <!--<div *ngIf="registerForm.controls.confirmPassword.errors?.notSame">Lozinke se ne poklapaju</div>-->
+            <div *ngIf="registerForm.controls.confirmPassword.errors['notSame']">Lozinke se ne poklapaju</div>
         </div>
     </div>
     <div class="form-check">

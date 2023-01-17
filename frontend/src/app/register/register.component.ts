@@ -34,7 +34,8 @@ export class RegisterComponent implements OnInit {
 
   profilePicture:string;
   register(){
-    alert(this.registerForm.valid)
+    alert()
+    alert(JSON.stringify(this.registerForm.controls.email.errors))
   };
 
 }
