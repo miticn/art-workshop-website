@@ -21,9 +21,13 @@ export class LoginComponent implements OnInit {
   msg: string = "";
 
   LogIn(){
-    this.servis.prijavaNaSistem(this.username, this.password).subscribe((user: User)=>{
+    if(this.username == "" || this.password == ""){
+      this.msg = 'Sva polja moraju biti popunjena';
+      return;
+    }
+    this.servis.login(this.username, this.password).subscribe((user: User)=>{
       if(!user){
-        this.msg = 'Bad credentials';
+        this.msg = 'Losi kredencijali';
       }
       else{
         if(user.type == 'user'){

@@ -1,106 +1,67 @@
 <h2>Registruj se</h2>
-<table>
-    <tr>
-        <td>Ime:</td>
-        <td>
-            <input type="text" name="firstname" [(ngModel)]="firstname">
-        </td>        
-    </tr>
-    <tr>
-        <td>Prezime:</td>
-        <td>
-            <input type="text" name="lastname" [(ngModel)]="lastname">
-        </td>        
-    </tr>
-    <tr>
-        <td>Korisničko ime:</td>
-        <td>
-            <input type="text" name="username" [(ngModel)]="username">
-        </td>        
-    </tr>
-    <tr>
-        <td>Lozinka:</td>
-        <td>
-            <input type="text" name="password" [(ngModel)]="password">
-        </td>        
-    </tr>
-    <tr>
-        <td>Potvrda lozinke:</td>
-        <td>
-            <input type="text" name="confirmPassword" [(ngModel)]="confirmPassword">
-        </td>
-    </tr>
-    <tr>
-        <td>Email:</td>
-        <td>
-            <input type="text" name="email" [(ngModel)]="email">
-        </td>
-    </tr>
-    <tr>
-        <td>Telefon:</td>
-        <td>
-            <input type="text" name="phone" [(ngModel)]="phone">
-        </td>
-    </tr>
-    <tr>
-        <td>Organizator</td>
-        <td>
-            <input type="checkbox" name="organizer" [(ngModel)]="organizer">
-        </td>
-    </tr>
-    <tr *ngIf="organizer">
-        <td>Ime organizacije:</td>
-        <td>
-            <input type="text" name="organizationName" [(ngModel)]="organizationName">
-        </td>
-    </tr>
-    <tr *ngIf="organizer">
-        <td>Grad:</td>
-        <td>
-            <input type="text" name="city" [(ngModel)]="city">
-        </td>
-    </tr>
-    <tr *ngIf="organizer">
-        <td>Država:</td>
-        <td>
-            <input type="text" name="country" [(ngModel)]="country">
-        </td>
-    </tr>
-    <tr *ngIf="organizer">
-        <td>Poštanski broj:</td>
-        <td>
-            <input type="text" name="postNumber" [(ngModel)]="postNumber">
-        </td>
-    </tr>
-    <tr *ngIf="organizer">
-        <td>Ulica:</td>
-        <td>
-            <input type="text" name="street" [(ngModel)]="street">
-        </td>
-    </tr>
-    <tr *ngIf="organizer">
-        <td>Broj:</td>
-        <td>
-            <input type="text" name="streetNumber" [(ngModel)]="streetNumber">
-        </td>
-    </tr>
-    <tr *ngIf="organizer">
-        <td>Matični broj</td>
-        <td>
-            <input type="text" name="matNumber" [(ngModel)]="matNumber">
-        </td>
-    </tr>
-    <tr>
-        <td>Profilna slika</td>
-        <td>
-            <input type="file" name="profilePicture" accept="image/jpeg" [(ngModel)]="profilePicture">
-        </td>
-    </tr>
-    <tr>
-        
-        <td colspan="2">
-            <button (click)="register()">Registruj se</button>
-        </td>        
-    </tr>
-</table>
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+    <div class="row">
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="firstname" name="firstname" formControlName="firstname" placeholder="Ime">
+        </div>
+        <div class="col-sm-6">
+            <input type="text" class="form-control col-sm-6" id="lastname" name="lastname" formControlName="lastname" placeholder="Prezime">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="username" formControlName="username" placeholder="Korisničko ime">
+        </div>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="phone" formControlName="phone" placeholder="Telefon">
+        </div>
+    </div>
+    <input type="email" class="form-control" name="email" formControlName="email" placeholder="Email">
+    <input type="password" class="form-control" name="password" formControlName="password" placeholder="Lozinka">
+    <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword" placeholder="Potvrda lozinke">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="organizer" name="organizer" [(ngModel)]="organizer" formControlName="organizer">
+        <label class="form-check-label" for="organizer">
+            Organizator
+        </label>
+    </div>
+    <div class="row" *ngIf="organizer">
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="organizationName" formControlName="organizationName" placeholder="Ime organizacije">
+        </div>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="matNumber" formControlName="matNumber" placeholder="Matični broj organizacije">
+        </div>
+    </div>
+    <div *ngIf="organizer">
+        <div>
+            <input type="text" class="form-control" name="country" formControlName="country" placeholder="Država">
+        </div>
+    </div>
+    <div class="row" *ngIf="organizer">
+        <div class="col-sm-8">
+            <input type="text" class="form-control" name="city" formControlName="city" placeholder="Grad">
+        </div>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="postNumber" formControlName="postNumber" placeholder="Poštanski broj">
+        </div>
+    </div>
+    <div class="row" *ngIf="organizer">
+        <div class="col-sm-8">
+            <input type="text" class="form-control" name="street" formControlName="street" placeholder="Ulica">
+        </div>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="streetNumber" formControlName="streetNumber" placeholder="Broj">
+        </div>
+    </div>
+    <div>
+        <div>Profilna slika</div>
+        <div>
+            <input type="file" class="form-control" name="profilePicture" accept="image/jpeg" [(ngModel)]="profilePicture">
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-dark">Registruj se</button>      
+    </div>
+</form>
 {{message}}

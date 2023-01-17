@@ -11,7 +11,7 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  prijavaNaSistem(username, password) {
+  login(username, password) {
     const data = {
       username: username,
       password: password
@@ -19,7 +19,7 @@ export class UsersService {
     return this.http.post(`${this.uri}/login`, data);
   }
 
-  dohvatiKorisnika(username) {
+  getUser(username) {
     const data = {
       username: username
     }
