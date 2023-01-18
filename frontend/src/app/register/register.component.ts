@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { confirmPasswordValidator } from '../validators/confirmPasswordValidator';
 
 @Component({
   selector: 'app-register',
@@ -28,14 +29,14 @@ export class RegisterComponent implements OnInit {
     postNumber: new FormControl('', [Validators.required, Validators.pattern("[0-9]{5}")]),
     street: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[a-zA-Z]*")]),
     streetNumber: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")])
-  });
+  }, { validators: confirmPasswordValidator });
   message:string;
   organizer:boolean;
 
   profilePicture:string;
   register(){
-    alert()
-    alert(JSON.stringify(this.registerForm.controls.email.errors))
+    alert();
+    alert(JSON.stringify(this.registerForm.errors))
   };
 
 }

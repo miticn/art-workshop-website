@@ -8,3 +8,11 @@ button{
 .inputError{
     color:red;
 }
+
+h2{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+input[type='checkbox']{
+    margin-bottom: 1rem;
+}
