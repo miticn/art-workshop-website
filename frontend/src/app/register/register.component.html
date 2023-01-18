@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-sm-12">
             <input type="email" class="form-control" name="email" formControlName="email" placeholder="Email">
-            <div *ngIf="registerForm.invalid && (registerForm.dirty || registerForm.touched)" class="inputError">
+            <div *ngIf="registerForm.controls.email.invalid && (registerForm.controls.email.dirty || registerForm.controls.email.touched)" class="inputError">
                 <div *ngIf="registerForm.controls.email.errors?.['required']">Email nije unet.</div>
                 <div *ngIf="registerForm.controls.email.errors?.['email']">Email nije u dobrom formatu</div>
             </div>

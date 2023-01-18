@@ -1,4 +1,4 @@
-<form class="d-flex">
+<form *ngIf="!loggedin" class="d-flex">
     <div class="row">
         <div class="col-sm-5">
             <input class="form-control" type='text' name='username' [(ngModel)]='username' placeholder="Korisničko ime">
@@ -12,4 +12,4 @@
     </div>
 </form>
 <span class='greska'>{{msg}}</span>
-
+<button *ngIf="loggedin" class="btn btn-dark" (click)='LogOut()'>Odjavite se</button>

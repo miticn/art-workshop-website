@@ -10,7 +10,7 @@ import { UsersService } from '../users.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private servis: UsersService, private ruter: Router) { }
+  constructor(private service: UsersService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -19,25 +19,32 @@ export class LoginComponent implements OnInit {
   username: string = "";
   password: string = "";
   msg: string = "";
-
+  loggedin: boolean = false;
   LogIn(){
     if(this.username == "" || this.password == ""){
       this.msg = 'Sva polja moraju biti popunjena';
       return;
     }
-    this.servis.login(this.username, this.password).subscribe((user: User)=>{
+    this.service.login(this.username, this.password).subscribe((user: User)=>{
       if(!user){
         this.msg = 'Losi kredencijali';
       }
       else{
+        this.loggedin = true;
         if(user.type == 'user'){
-          this.ruter.navigate(['/user']);
+          this.router.navigate(['/user']);
         }
         else if(user.type == 'org'){
-          this.ruter.navigate(['/org']);
+          this.router.navigate(['/org']);
         }
       }
     })
+  }
+
+  LogOut(){
+    this.loggedin = false;
+    this.service.logout();
+    this.router.navigate(['/']);
   }
 
 }

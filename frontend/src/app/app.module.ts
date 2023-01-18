@@ -11,6 +11,7 @@ import { OrgComponent } from './org/org.component';
 import { MenuComponent } from './menu/menu.component';
 import { RegisterComponent } from './register/register.component';
 import { IndexComponent } from './index/index.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { IndexComponent } from './index/index.component';
     OrgComponent,
     MenuComponent,
     RegisterComponent,
-    IndexComponent
+    IndexComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,

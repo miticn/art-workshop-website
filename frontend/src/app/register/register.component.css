@@ -4,3 +4,7 @@
 button{
     margin-top: 1rem;
 }
+
+.inputError{
+    color:red;
+}
