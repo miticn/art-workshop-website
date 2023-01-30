@@ -16,4 +16,12 @@ userRouter.route('/register').post(
     (req, res) => new UserController().register(req, res)
 )
 
+userRouter.route('/isUsernameFree').post(
+    (req, res) => new UserController().isUsernameFree(req, res)
+)
+
+userRouter.route('/isEmailFree').post(
+    (req, res) => new UserController().isEmailFree(req, res)
+)
+
 export default userRouter;

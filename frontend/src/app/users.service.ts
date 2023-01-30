@@ -25,7 +25,19 @@ export class UsersService {
     }
     return this.http.post(`${this.uri}/getUser`, data);
   }
+  isUsernameFree(username) {
+    const data = {
+      username: username
+    }
+    return this.http.post(`${this.uri}/isUsernameFree`, data);
+  }
 
+  isEmailFree(email) {
+    const data = {
+      email: email
+    }
+    return this.http.post(`${this.uri}/isEmailFree`, data);
+  }
 
   logout() {}
 }

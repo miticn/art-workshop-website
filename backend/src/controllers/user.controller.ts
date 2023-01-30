@@ -32,6 +32,29 @@ export class UserController {
         })
     }
 
+    isUsernameFree = (req: express.Request, res: express.Response) => {
+        let username = req.body.username;
+        User.findOne({ 'username': username }, (err, user) => {
+            if (err) console.log(err);
+            else {
+                if (user) res.json({free: false})
+                else res.json({free: true})
+            }
+        })
+    }
+
+    isEmailFree = (req: express.Request, res: express.Response) => {
+        let email = req.body.email;
+        User.findOne({ 'email': email }, (err, user) => {
+            if (err) console.log(err);
+            else {
+                if (user) res.json({free: false})
+                else res.json({free: true})
+            }
+        })
+    }
+
+
     register = (req: express.Request, res: express.Response)=>{
         let user = new User({
             firstname: req.body.firstname,

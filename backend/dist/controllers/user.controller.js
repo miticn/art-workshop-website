@@ -37,6 +37,32 @@ class UserController {
                     res.json(user);
             });
         };
+        this.isUsernameFree = (req, res) => {
+            let username = req.body.username;
+            user_1.default.findOne({ 'username': username }, (err, user) => {
+                if (err)
+                    console.log(err);
+                else {
+                    if (user)
+                        res.json({ free: false });
+                    else
+                        res.json({ free: true });
+                }
+            });
+        };
+        this.isEmailFree = (req, res) => {
+            let email = req.body.email;
+            user_1.default.findOne({ 'email': email }, (err, user) => {
+                if (err)
+                    console.log(err);
+                else {
+                    if (user)
+                        res.json({ free: false });
+                    else
+                        res.json({ free: true });
+                }
+            });
+        };
         this.register = (req, res) => {
             let user = new user_1.default({
                 firstname: req.body.firstname,
