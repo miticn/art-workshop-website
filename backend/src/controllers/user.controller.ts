@@ -74,4 +74,23 @@ export class UserController {
             else res.json({"message": "ok"})
         })
     }
+
+    uploadProfilePicture = (req: express.Request, res: express.Response) => {
+        console.log("entered uploadProfilePicture");
+        let username = req.body.username;
+
+        const file = req['file'];
+
+        if (!file) {
+            const error = new Error("Please upload file");
+            return res.status(400).send(error.message);
+        }
+        //userModel.collection.updateOne({ 'username': username }, { $set: { 'picture': file.filename } });
+        //res.json({ ok: true });
+        res.json({
+            message: "File uploaded successfully",
+            file: file.filename,
+        });
+        
+    }
 }

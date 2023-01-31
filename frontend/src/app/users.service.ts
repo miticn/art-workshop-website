@@ -39,5 +39,15 @@ export class UsersService {
     return this.http.post(`${this.uri}/isEmailFree`, data);
   }
 
+  uploadProfilePicture(username, profilePicture) {
+      const formData = new FormData();
+      formData.append('file', profilePicture, profilePicture.name);
+      formData.append('username', username);
+      return this.http.post(`${this.uri}/uploadProfilePicture`, formData, {
+        reportProgress: true,
+        observe: 'events'
+      });
+  }
+
   logout() {}
 }

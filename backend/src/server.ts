@@ -5,6 +5,7 @@ import mongoose from 'mongoose'
 import userRouter from './routers/user.router'
 
 const app = express();
+
 app.use(cors());
 app.use(bodyParser.json());
 

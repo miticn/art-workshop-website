@@ -78,7 +78,7 @@
     <div>
         <div>Profilna slika</div>
         <div>
-            <input type="file" class="form-control" name="profilePicture" accept="image/jpeg" [(ngModel)]="profilePicture">
+            <input type="file" class="form-control" formControlName="profilePicture" name="profilePicture" accept="image/jpeg" (change)="onFileChange($event)">
         </div>
     </div>
     <div>

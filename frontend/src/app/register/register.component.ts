@@ -1,3 +1,4 @@
+import { HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../users.service';
@@ -29,12 +30,22 @@ export class RegisterComponent implements OnInit {
     city: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[a-zA-Z\s]*")]),
     postNumber: new FormControl('', [Validators.required, Validators.maxLength(10) , Validators.pattern("[0-9A-Z]*")]),
     street: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[a-zA-Z\s]*")]),
-    streetNumber: new FormControl('', [Validators.required,Validators.maxLength(6), Validators.pattern("[0-9]*[a-zA-Z]?]")])
+    streetNumber: new FormControl('', [Validators.required,Validators.maxLength(6), Validators.pattern("[0-9]*[a-zA-Z]?]")]),
+    profilePicture: new FormControl('', []),
+    profilePicutreFile: new FormControl(null, [Validators.required])
   }, { validators: confirmPasswordValidator });
   message:string;
   organizer:boolean;
 
-  profilePicture:string;
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.registerForm.patchValue({
+        profilePicutreFile: file
+      });
+    }
+  }
+
   register(){
     this.service.isUsernameFree(this.registerForm.value.username).subscribe((res:any) => {
       alert("Username "+res['free']);
@@ -43,6 +54,14 @@ export class RegisterComponent implements OnInit {
       alert("Email "+res['free']);
     });
     alert(JSON.stringify(this.registerForm.errors))
+    this.service.uploadProfilePicture(this.registerForm.value.username, this.registerForm.get('profilePicutreFile').value)
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          alert('Upload progress: ' + Math.round(event.loaded / event.total * 100) + '%');
+        } else if (event.type === HttpEventType.Response) {
+          alert(event);
+        }
+      });
   };
 
 }
