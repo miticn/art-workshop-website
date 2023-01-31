@@ -83,9 +83,10 @@ class UserController {
             });
         };
         this.uploadProfilePicture = (req, res) => {
-            console.log("entered uploadProfilePicture");
             let username = req.body.username;
             const file = req['file'];
+            const filename = file.filename;
+            console.log('Filename: ' + filename + '; Username: ' + username);
             if (!file) {
                 const error = new Error("Please upload file");
                 return res.status(400).send(error.message);

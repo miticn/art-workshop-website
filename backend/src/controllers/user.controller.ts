@@ -76,10 +76,10 @@ export class UserController {
     }
 
     uploadProfilePicture = (req: express.Request, res: express.Response) => {
-        console.log("entered uploadProfilePicture");
         let username = req.body.username;
-
         const file = req['file'];
+        const filename = file.filename;
+        console.log('Filename: '+filename + '; Username: '+username);
 
         if (!file) {
             const error = new Error("Please upload file");

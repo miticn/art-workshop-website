@@ -8,10 +8,8 @@ const storage = multer.diskStorage({
         cb(null, 'uploads/profilePictures');
     },
     filename: (req: any, file: any, cb: any) => {
-        let username = req.body.username;
-        console.log(file.name)
         let randomString = Math.random().toString(36).substring(2, 15);
-        cb(null, username + '_' + Date.now() + '_' + randomString+ '.' + file.mimetype.split('/')[1]);
+        cb(null, Date.now() + '_' + randomString+ '.' + file.mimetype.split('/')[1]);
     }
 });
 

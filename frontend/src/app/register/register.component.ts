@@ -57,9 +57,9 @@ export class RegisterComponent implements OnInit {
     this.service.uploadProfilePicture(this.registerForm.value.username, this.registerForm.get('profilePicutreFile').value)
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
-          alert('Upload progress: ' + Math.round(event.loaded / event.total * 100) + '%');
+          console.log('Upload progress: ' + Math.round(event.loaded / event.total * 100) + '%');
         } else if (event.type === HttpEventType.Response) {
-          alert(event);
+          console.log(event);
         }
       });
   };
