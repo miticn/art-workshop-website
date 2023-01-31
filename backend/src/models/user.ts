@@ -23,6 +23,9 @@ let User = new Schema({
     },
     type: {
         type: String
+    },
+    profilePicture:{
+        type: String
     }
 })
 
