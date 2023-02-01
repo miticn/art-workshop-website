@@ -6,7 +6,6 @@ export class UserController {
     login = (req: express.Request, res: express.Response) => {
         let username = req.body.username;
         let password = req.body.password;
-        //new mailService().send();
         User.findOne({ 'username': username, 'password': password, $or: [{'type': 'user'},{'type': 'org'}] }, (err, user) => {
             if (err) console.log(err);
             else res.json(user)
@@ -71,7 +70,10 @@ export class UserController {
                 console.log(err);
                 res.status(400).json({"message": "error"})
             }
-            else res.json({"message": "ok"})
+            else {
+                res.json({"message": "ok"});
+                new mailService().sendRegisterEmail(user.email, user.firstname);
+            }
         })
     }
 

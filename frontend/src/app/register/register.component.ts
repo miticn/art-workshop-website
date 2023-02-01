@@ -54,6 +54,10 @@ export class RegisterComponent implements OnInit {
       alert("Email "+res['free']);
     });
     alert(JSON.stringify(this.registerForm.errors))
+    this.service.register(this.registerForm.value).subscribe((res:any) => {
+      this.message = res['message'];
+      alert(this.message);
+    });
     this.service.uploadProfilePicture(this.registerForm.value.username, this.registerForm.get('profilePicutreFile').value)
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {

@@ -49,5 +49,18 @@ export class UsersService {
       });
   }
 
+  register(registerForm) {
+    console.log(registerForm);
+    const data = {
+      firstname: registerForm.firstname,
+      lastname: registerForm.lastname,
+      username: registerForm.username,
+      password: registerForm.password,
+      email: registerForm.email,
+      type: registerForm.type
+    }
+    return this.http.post(`${this.uri}/register`, data);
+  }
+
   logout() {}
 }

@@ -26,6 +26,9 @@ let User = new Schema({
     },
     type: {
         type: String
+    },
+    profilePicture: {
+        type: String
     }
 });
 exports.default = mongoose_1.default.model('User', User, 'users');
