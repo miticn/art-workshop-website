@@ -1,6 +1,7 @@
 import * as express from 'express';
 import mailService from '../mailService';
 import User from '../models/user'
+import Token from '../models/token'
 
 export class UserController {
     login = (req: express.Request, res: express.Response) => {
@@ -97,6 +98,15 @@ export class UserController {
     }
     isTokenValid = (req: express.Request, res: express.Response) => {
         let token = req.body.token;
-
+        Token.findOne({ 'token': token} , (err, token) => {
+            if (err) console.log(err);
+            else {
+                if (token) {
+                    if (token.expiry > Date.now()) res.json({valid: true})
+                    else res.json({valid: false})
+                }
+                else res.json({valid: false})
+            }
+        })
     }
 }

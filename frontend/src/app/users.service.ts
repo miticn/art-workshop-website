@@ -62,5 +62,12 @@ export class UsersService {
     return this.http.post(`${this.uri}/register`, data);
   }
 
+  isTokenValid(token) {
+    const data = {
+      token: token
+    }
+    return this.http.post(`${this.uri}/isTokenValid`, data);
+  }
+
   logout() {}
 }

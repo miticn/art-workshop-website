@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const mailService_1 = __importDefault(require("../mailService"));
 const user_1 = __importDefault(require("../models/user"));
+const token_1 = __importDefault(require("../models/token"));
 class UserController {
     constructor() {
         this.login = (req, res) => {
@@ -102,6 +103,20 @@ class UserController {
         };
         this.isTokenValid = (req, res) => {
             let token = req.body.token;
+            token_1.default.findOne({ 'token': token }, (err, token) => {
+                if (err)
+                    console.log(err);
+                else {
+                    if (token) {
+                        if (token.expiry > Date.now())
+                            res.json({ valid: true });
+                        else
+                            res.json({ valid: false });
+                    }
+                    else
+                        res.json({ valid: false });
+                }
+            });
         };
     }
 }
