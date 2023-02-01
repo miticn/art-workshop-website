@@ -100,6 +100,9 @@ class UserController {
                 file: file.filename,
             });
         };
+        this.isTokenValid = (req, res) => {
+            let token = req.body.token;
+        };
     }
 }
 exports.UserController = UserController;

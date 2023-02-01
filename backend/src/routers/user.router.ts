@@ -42,4 +42,8 @@ userRouter.route('/uploadProfilePicture').post(
     (req, res) => new UserController().uploadProfilePicture(req, res)
 )
 
+userRouter.route('/isTokenValid').post(
+    (req, res) => new UserController().isTokenValid(req, res)
+)
+
 export default userRouter;

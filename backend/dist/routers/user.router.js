@@ -25,5 +25,6 @@ userRouter.route('/register').post((req, res) => new user_controller_1.UserContr
 userRouter.route('/isUsernameFree').post((req, res) => new user_controller_1.UserController().isUsernameFree(req, res));
 userRouter.route('/isEmailFree').post((req, res) => new user_controller_1.UserController().isEmailFree(req, res));
 userRouter.route('/uploadProfilePicture').post(exports.upload.single('file'), (req, res) => new user_controller_1.UserController().uploadProfilePicture(req, res));
+userRouter.route('/isTokenValid').post((req, res) => new user_controller_1.UserController().isTokenValid(req, res));
 exports.default = userRouter;
 //# sourceMappingURL=user.router.js.map
