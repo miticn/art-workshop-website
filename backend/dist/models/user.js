@@ -29,6 +29,32 @@ let User = new Schema({
     },
     profilePicture: {
         type: String
+    },
+    verified: {
+        type: Boolean
+    },
+    org: {
+        city: {
+            type: String
+        },
+        country: {
+            type: String
+        },
+        name: {
+            type: String
+        },
+        postNumer: {
+            type: String
+        },
+        regNumber: {
+            type: String
+        },
+        street: {
+            type: String
+        },
+        streetNumber: {
+            type: String
+        }
     }
 });
 exports.default = mongoose_1.default.model('User', User, 'users');
