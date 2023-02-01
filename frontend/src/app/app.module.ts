@@ -12,6 +12,7 @@ import { MenuComponent } from './menu/menu.component';
 import { RegisterComponent } from './register/register.component';
 import { IndexComponent } from './index/index.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     MenuComponent,
     RegisterComponent,
     IndexComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
