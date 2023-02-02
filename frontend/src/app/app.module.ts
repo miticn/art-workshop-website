@@ -14,6 +14,7 @@ import { IndexComponent } from './index/index.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { PasswordResetRequestComponent } from './password-reset-request/password-reset-request.component';
+import { WorkshopsComponent } from './workshops/workshops.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PasswordResetRequestComponent } from './password-reset-request/password
     IndexComponent,
     AdminLoginComponent,
     ResetPasswordComponent,
-    PasswordResetRequestComponent
+    PasswordResetRequestComponent,
+    WorkshopsComponent
   ],
   imports: [
     BrowserModule,

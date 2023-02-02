@@ -37,7 +37,6 @@ class mailService {
         });
     }
     sendResetPasswordEmail(email, name, token) {
-        console.log(this.url);
         let mailOptions = {
             from: this.user,
             to: email,
@@ -49,7 +48,6 @@ class mailService {
                 'S poštovanjem,<br\>' +
                 'Art Workshop Tim'
         };
-        console.log(JSON.stringify(mailOptions));
         this.transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
                 console.log(error);

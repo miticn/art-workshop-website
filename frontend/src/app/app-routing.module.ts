@@ -7,6 +7,7 @@ import { OrgComponent } from './org/org.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { PasswordResetRequestComponent } from './password-reset-request/password-reset-request.component';
 import { UserComponent } from './user/user.component';
+import { WorkshopsComponent } from './workshops/workshops.component';
 
 const routes: Routes = [
   { path: "", component: IndexComponent },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: "org", component: OrgComponent },
   { path: "AdminLogin", component: AdminLoginComponent },
   { path: "resetPassword", component: PasswordResetRequestComponent },
-  { path: "resetPassword/:token", component: ResetPasswordComponent }
+  { path: "resetPassword/:token", component: ResetPasswordComponent },
+  { path: "workshops", component: WorkshopsComponent}
 ];
 
 @NgModule({
