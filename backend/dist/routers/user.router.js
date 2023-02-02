@@ -27,5 +27,6 @@ userRouter.route('/isEmailFree').post((req, res) => new user_controller_1.UserCo
 userRouter.route('/uploadProfilePicture').post(exports.upload.single('file'), (req, res) => new user_controller_1.UserController().uploadProfilePicture(req, res));
 userRouter.route('/isTokenValid').post((req, res) => new user_controller_1.UserController().isTokenValid(req, res));
 userRouter.route('/setNewResetPassword').post((req, res) => new user_controller_1.UserController().setNewResetPassword(req, res));
+userRouter.route('/resetPasswordRequest').post((req, res) => new user_controller_1.UserController().resetPasswordRequest(req, res));
 exports.default = userRouter;
 //# sourceMappingURL=user.router.js.map

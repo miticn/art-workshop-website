@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { IndexComponent } from './index/index.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { PasswordResetRequestComponent } from './password-reset-request/password-reset-request.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     RegisterComponent,
     IndexComponent,
     AdminLoginComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    PasswordResetRequestComponent
   ],
   imports: [
     BrowserModule,

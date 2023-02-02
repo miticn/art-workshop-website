@@ -79,4 +79,11 @@ export class UsersService {
   }
 
   logout() {}
+
+  resetPasswordRequest(email) {
+    const data = {
+      email: email
+    }
+    return this.http.post(`${this.uri}/resetPasswordRequest`, data);
+  }
 }

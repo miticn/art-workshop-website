@@ -147,4 +147,34 @@ export class UserController {
         })
 
     }
+
+    resetPasswordRequest = (req: express.Request, res: express.Response) => {
+        console.log("Entered resetPasswordRequest");
+        let email = req.body.email;
+        User.findOne({ 'email': email}, (err, user) => {
+            if (err) console.log(err);
+            else {
+                if (user) {
+                    let token = new Token({
+                        user_id: user._id,
+                        token: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+                        expiry: Date.now() + 1800000
+                    })
+                    token.save((err, resp)=>{
+                        if(err) {
+                            console.log(err);
+                            res.status(400).json({"message": "error"})
+                        }
+                        else {
+                            res.json({"message": "ok"});
+                            new mailService().sendResetPasswordEmail(email, user.firstname, token.token);
+                        }
+                    });
+                }
+                else res.status(400).json({"message": "No user found"})
+            }
+        });
+        
+
+    }
 }

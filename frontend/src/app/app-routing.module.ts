@@ -5,6 +5,7 @@ import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
 import { OrgComponent } from './org/org.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { PasswordResetRequestComponent } from './password-reset-request/password-reset-request.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: "user", component: UserComponent },
   { path: "org", component: OrgComponent },
   { path: "AdminLogin", component: AdminLoginComponent },
+  { path: "resetPassword", component: PasswordResetRequestComponent },
   { path: "resetPassword/:token", component: ResetPasswordComponent }
 ];
 

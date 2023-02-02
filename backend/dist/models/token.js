@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const Schema = mongoose_1.default.Schema;
 let Token = new Schema({
-    _id: mongoose_1.default.Schema.Types.ObjectId,
     expiry: {
         type: Date
     },
