@@ -1,13 +1,13 @@
 <form *ngIf="!loggedin" class="d-flex">
     <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-4">
             <input class="form-control" type='text' name='username' [(ngModel)]='username' placeholder="Korisničko ime">
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-4">
             <input class="form-control" type='password' name='password' [(ngModel)]='password' placeholder="Lozinka">
             <a [routerLink]="['/resetPassword']">Zaboravili ste lozinku?</a>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-3">
             <input class="btn btn-dark" type='submit' value='Ulogujte se' (click)='LogIn()'>
         </div>
     </div>
