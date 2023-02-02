@@ -103,7 +103,10 @@ export class UserController {
             else {
                 if (token) {
                     if (token.expiry > Date.now()) res.json({valid: true})
-                    else res.json({valid: false})
+                    else {
+                        res.json({valid: false})
+                        token.remove();
+                    }
                 }
                 else res.json({valid: false})
             }
