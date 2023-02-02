@@ -118,6 +118,45 @@ class UserController {
                 }
             });
         };
+        this.setNewResetPassword = (req, res) => {
+            let token = req.body.token;
+            let password = req.body.password;
+            token_1.default.findOne({ 'token': token }, (err, token) => {
+                console.log('found: ' + token);
+                if (err)
+                    console.log(err);
+                else {
+                    if (token) {
+                        if (token.expiry > Date.now()) {
+                            user_1.default.findById(token.user_id, (error, user) => {
+                                if (error) {
+                                    console.log(error);
+                                }
+                                else {
+                                    user.password = password;
+                                    user.save((err, resp) => {
+                                        if (err) {
+                                            console.log(err);
+                                            res.status(400).json({ "message": "error" });
+                                        }
+                                        else {
+                                            token.remove();
+                                            res.json({ "message": "ok" });
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                        else {
+                            console.log("Token expired " + token.expiry + " " + Date.now() + " " + token.token);
+                            token.remove();
+                        }
+                    }
+                    else
+                        console.log("Token not found " + token.token);
+                }
+            });
+        };
     }
 }
 exports.UserController = UserController;

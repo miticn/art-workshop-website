@@ -46,4 +46,8 @@ userRouter.route('/isTokenValid').post(
     (req, res) => new UserController().isTokenValid(req, res)
 )
 
+userRouter.route('/setNewResetPassword').post(
+    (req, res) => new UserController().setNewResetPassword(req, res)
+)
+
 export default userRouter;

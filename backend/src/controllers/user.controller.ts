@@ -109,4 +109,42 @@ export class UserController {
             }
         })
     }
+    setNewResetPassword = (req: express.Request, res: express.Response) => {
+        let token = req.body.token;
+        let password = req.body.password;
+        Token.findOne({ 'token': token} , (err, token) => {
+            console.log('found: '+token);
+            if (err) console.log(err);
+            else {
+                if (token) {
+                    if (token.expiry > Date.now()) {
+                        User.findById(token.user_id, (error, user) => {
+                            if (error) {
+                                console.log(error);
+                            } else {
+                                user.password = password;
+                                user.save((err, resp)=>{
+                                    if(err) {
+                                        console.log(err);
+                                        res.status(400).json({"message": "error"})
+                                    }
+                                    else {
+                                        token.remove();
+                                        res.json({"message": "ok"});
+                                    }
+                                })
+                            }
+                          });
+                    }
+                    else {
+                        console.log("Token expired "+token.expiry+" "+Date.now()+" "+token.token);
+                        token.remove();
+                    }
+                    
+                }
+                else console.log("Token not found "+token.token);
+            }
+        })
+
+    }
 }

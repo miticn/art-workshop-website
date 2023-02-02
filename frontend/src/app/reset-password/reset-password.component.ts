@@ -28,6 +28,8 @@ export class ResetPasswordComponent implements OnInit {
   token:string;
   ressetPassword(){
     //send new password to backend to reset password
+    this.userService.setNewResetPassword(this.token, this.resetPasswordForm.value.password).subscribe((res:any)=>{
+      console.log(res);
+    });
   }
-
 }

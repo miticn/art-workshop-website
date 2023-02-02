@@ -69,5 +69,14 @@ export class UsersService {
     return this.http.post(`${this.uri}/isTokenValid`, data);
   }
 
+  setNewResetPassword(token, password) {
+    alert(token + " " + password)
+    const data = { 
+      token: token,
+      password: password
+    }
+    return this.http.post(`${this.uri}/setNewResetPassword`, data);
+  }
+
   logout() {}
 }
