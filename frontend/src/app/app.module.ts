@@ -15,6 +15,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { PasswordResetRequestComponent } from './password-reset-request/password-reset-request.component';
 import { WorkshopsComponent } from './workshops/workshops.component';
+import { PhotoComponent } from './photo/photo.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { WorkshopsComponent } from './workshops/workshops.component';
     AdminLoginComponent,
     ResetPasswordComponent,
     PasswordResetRequestComponent,
-    WorkshopsComponent
+    WorkshopsComponent,
+    PhotoComponent
   ],
   imports: [
     BrowserModule,

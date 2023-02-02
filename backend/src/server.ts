@@ -8,6 +8,7 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use('/uploads', express.static('uploads'));
 
 mongoose.connect('mongodb://127.0.0.1:27017/art-workshop');
 const connection = mongoose.connection;

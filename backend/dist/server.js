@@ -11,6 +11,7 @@ const user_router_1 = __importDefault(require("./routers/user.router"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
+app.use('/uploads', express_1.default.static('uploads'));
 mongoose_1.default.connect('mongodb://127.0.0.1:27017/art-workshop');
 const connection = mongoose_1.default.connection;
 connection.once('open', () => {
