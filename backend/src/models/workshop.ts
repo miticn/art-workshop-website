@@ -20,4 +20,4 @@ let Workshop = new Schema({
     }
 })
 
-export default mongoose.model('Workshop', Workshop, 'Workshops');
+export default mongoose.model('Workshop', Workshop, 'workshops');

@@ -3,6 +3,7 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import userRouter from './routers/user.router'
+import workshopRouter from './routers/workshop.router';
 
 const app = express();
 
@@ -18,6 +19,7 @@ connection.once('open', () => {
 
 const router = express.Router();
 router.use('/users', userRouter)
+router.use('/workshops', workshopRouter)
 
 app.use('/', router);
 

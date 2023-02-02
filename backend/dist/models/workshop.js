@@ -22,5 +22,5 @@ let Workshop = new Schema({
         type: String
     }
 });
-exports.default = mongoose_1.default.model('Workshop', Workshop, 'Workshops');
+exports.default = mongoose_1.default.model('Workshop', Workshop, 'workshops');
 //# sourceMappingURL=workshop.js.map
