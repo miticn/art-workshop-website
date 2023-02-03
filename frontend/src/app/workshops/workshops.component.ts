@@ -19,4 +19,22 @@ export class WorkshopsComponent implements OnInit {
     });
   }
 
+  sortWorkshopsByDate(){
+    this.workshops.sort((a,b) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+  }
+  sortWorkshopsByName(){
+    this.workshops.sort((a,b) => {
+      return a.name.localeCompare(b.name);
+    });
+  }
+
+  searchPlace : string;
+  searchName : string;
+  sortBy :string;
+  search(){
+
+  }
+
 }

@@ -1,5 +1,5 @@
 import { HttpEventType } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../users.service';
 import { confirmPasswordValidator } from '../validators/confirmPasswordValidator';
@@ -32,17 +32,33 @@ export class RegisterComponent implements OnInit {
     street: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[a-zA-Z\s]*")]),
     streetNumber: new FormControl('', [Validators.required,Validators.maxLength(6), Validators.pattern("[0-9]*[a-zA-Z]?]")]),
     profilePicture: new FormControl('', []),
-    profilePicutreFile: new FormControl(null, [Validators.required])
+    profilePicutreFile: new FormControl(null, [Validators.required]),
+    imageDimensionsX: new FormControl(100, [Validators.max(300), Validators.min(100)]),
+    imageDimensionsY: new FormControl(100, [Validators.max(300), Validators.min(100)]),
+
   }, { validators: confirmPasswordValidator });
   message:string;
   organizer:boolean;
-
+  @ViewChild('canvas', { static: false }) canvas
   onFileChange(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.registerForm.patchValue({
         profilePicutreFile: file
       });
+      const canvas = this.canvas.nativeElement;
+      const context = canvas.getContext('2d');
+      const image = new Image();
+      image.src = URL.createObjectURL(event.target.files[0]);
+      image.onload = () => {
+        canvas.width = image.width;
+        canvas.height = image.height;
+        context.drawImage(image, 0, 0, image.width, image.height);
+        this.registerForm.controls.imageDimensionsX.setValue(image.width);
+        this.registerForm.controls.imageDimensionsY.setValue(image.height);
+        console.log('Image dimensions:', this.registerForm.value.imageDimensionsX, this.registerForm.value.imageDimensionsY);
+        console.log(this.registerForm.controls.imageDimensionsX.errors)
+      };
     }
   }
 

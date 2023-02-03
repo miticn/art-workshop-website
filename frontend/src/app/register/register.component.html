@@ -78,7 +78,14 @@
     <div>
         <div>Profilna slika</div>
         <div>
-            <input type="file" class="form-control" formControlName="profilePicture" name="profilePicture" accept="image/jpeg" (change)="onFileChange($event)">
+            <input type="file" class="form-control" formControlName="profilePicture" name="profilePicture" accept="image/jpeg, image/png" (change)="onFileChange($event)">
+            <canvas #canvas></canvas>
+            <div *ngIf="(registerForm.controls.profilePicture.dirty || registerForm.controls.profilePicture.touched)" class="inputError">
+                <div *ngIf="(registerForm.controls.imageDimensionsX.invalid && registerForm.controls.imageDimensionsX.errors['max'])
+                || (registerForm.controls.imageDimensionsY.invalid && registerForm.controls.imageDimensionsX.errors['max'])">Slika je prevelika.</div>
+                <div *ngIf="(registerForm.controls.imageDimensionsX.invalid && registerForm.controls.imageDimensionsX.errors['min'])
+                || (registerForm.controls.imageDimensionsY.invalid && registerForm.controls.imageDimensionsX.errors['min'])">Slika je permala.</div>
+            </div>
         </div>
     </div>
     <div>

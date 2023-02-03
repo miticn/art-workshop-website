@@ -1,3 +1,14 @@
+<form>
+    <input type="text" class="form-control" placeholder="Naziv" [(ngModel)]="searchPlace" name="searchPlace">
+    <input type="text" class="form-control" placeholder="Lokacija" [(ngModel)]="searchName" name="searcName">
+    <button type="submit" class="btn btn-dark" (click)="search()">Pretraga</button>
+</form>
+
+<select class="form-control" [(ngModel)]="sortBy" name="sortBy">
+    <option value="Name">Ime</option>
+    <option value="Date">Datum</option>
+</select>
+
 <div *ngFor="let workshop of workshops" class="card" style="width: 18rem;">
     <img class="card-img-top" src="{{photoHepler.getWorkshopPhotoUrl(workshop.mainPicture)}}">
     <div class="card-body">
@@ -11,4 +22,4 @@
     <div class="card-body">
         <a href="#" class="btn btn-dark">Detalji</a>
     </div>
-  </div>
+</div>
