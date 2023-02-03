@@ -19,11 +19,18 @@ export class RegisterComponent implements OnInit {
     firstname: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[A-Z][a-zA-Z]*")]),
     lastname: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[A-Z][a-zA-Z]*")]),
     /**/username: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[a-zA-Z0-9]*")]),
-    /**/phone: new FormControl('', [Validators.required, Validators.pattern("[0-9]{9}")]),
+    phone: new FormControl('', [Validators.required, Validators.pattern("^[+]?[0-9]{5,15}$")]),
     /**/email: new FormControl('', [Validators.required, Validators.email]),
-    /**/password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern("[a-zA-Z0-9]*")]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern("^(.*[a-zA-Z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])[a-zA-Z0-9!@#\$%\^&\*]+$")]),
     confirmPassword: new FormControl('', [Validators.required]),
+    profilePicture: new FormControl('', []),
+    profilePicutreFile: new FormControl(null, []),
+    imageDimensionsX: new FormControl(100, [Validators.max(300), Validators.min(100)]),
+    imageDimensionsY: new FormControl(100, [Validators.max(300), Validators.min(100)]),
     organizer: new FormControl(false, []),
+    }, { validators: confirmPasswordValidator });
+
+  orgForm = new FormGroup({
     organizationName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[a-zA-Z0-9\s]*")]),
     matNumber: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
     country: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[a-zA-Z\s]*")]),
@@ -31,16 +38,19 @@ export class RegisterComponent implements OnInit {
     postNumber: new FormControl('', [Validators.required, Validators.maxLength(10) , Validators.pattern("[0-9A-Z]*")]),
     street: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[a-zA-Z\s]*")]),
     streetNumber: new FormControl('', [Validators.required,Validators.maxLength(6), Validators.pattern("[0-9]*[a-zA-Z]?]")]),
-    profilePicture: new FormControl('', []),
-    profilePicutreFile: new FormControl(null, [Validators.required]),
-    imageDimensionsX: new FormControl(100, [Validators.max(300), Validators.min(100)]),
-    imageDimensionsY: new FormControl(100, [Validators.max(300), Validators.min(100)]),
-
-  }, { validators: confirmPasswordValidator });
+  });
   message:string;
   organizer:boolean;
   @ViewChild('canvas', { static: false }) canvas
   onFileChange(event) {
+    console.log(this.registerForm.controls);
+    console.log("Register form validation: ", this.registerForm.valid);
+    
+    if (event.target.files.length == 0){
+      this.registerForm.controls.imageDimensionsX.setValue(100);
+      this.registerForm.controls.imageDimensionsY.setValue(100);
+    }
+
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.registerForm.patchValue({
