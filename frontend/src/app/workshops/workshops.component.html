@@ -1,3 +1,14 @@
-<li *ngFor="let w of workshops">
-    {{w.name}} 
-  </li>
+<div *ngFor="let workshop of workshops" class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{photoHepler.getWorkshopPhotoUrl(workshop.mainPicture)}}">
+    <div class="card-body">
+      <h5 class="card-title">{{workshop.name}}</h5>
+      <p class="card-text">{{workshop.description}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{workshop.date | date:'HH:MM dd.MM.YYYY.'}}</li>
+        <li class="list-group-item">{{workshop.location}}</li>
+    </ul>
+    <div class="card-body">
+        <a href="#" class="btn btn-dark">Detalji</a>
+    </div>
+  </div>
