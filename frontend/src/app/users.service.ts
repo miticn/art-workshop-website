@@ -16,7 +16,15 @@ export class UsersService {
       username: username,
       password: password
     }
-    return this.http.post(`${this.uri}/login`, data);
+    return this.http.post(`${this.uri}/login`, data, { withCredentials: true });
+  }
+
+  loginAdmin(username, password) {
+    const data = {
+      username: username,
+      password: password
+    }
+    return this.http.post(`${this.uri}/loginAdmin`, data, { withCredentials: true });
   }
 
   getUser(username) {
@@ -78,7 +86,9 @@ export class UsersService {
     return this.http.post(`${this.uri}/setNewResetPassword`, data);
   }
 
-  logout() {}
+  logout() {
+    return this.http.post(`${this.uri}/logout`, {}, { withCredentials: true });
+  }
 
   resetPasswordRequest(email) {
     const data = {

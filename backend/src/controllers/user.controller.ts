@@ -2,26 +2,10 @@ import * as express from 'express';
 import mailService from '../mailService';
 import User from '../models/user'
 import Token from '../models/token'
+import { Request, Response } from 'express';
+
 
 export class UserController {
-    login = (req: express.Request, res: express.Response) => {
-        let username = req.body.username;
-        let password = req.body.password;
-        User.findOne({ 'username': username, 'password': password, $or: [{'type': 'user'},{'type': 'org'}] }, (err, user) => {
-            if (err) console.log(err);
-            else res.json(user)
-        })
-    }
-
-    loginAdmin = (req: express.Request, res: express.Response) => {
-        let username = req.body.username;
-        let password = req.body.password;
-
-        User.findOne({ 'username': username, 'password': password, 'type': 'admin'}, (err, user) => {
-            if (err) console.log(err);
-            else res.json(user)
-        })
-    }
 
     getUser = (req: express.Request, res: express.Response) => {
         let username = req.body.username;
@@ -179,5 +163,12 @@ export class UserController {
         });
         
 
+    }
+    
+    logout = (req, res) => {
+        console.log(req.user.username+" logged out");
+        req.logout(function (err) {
+            res.json({"message": "ok"});
+        });
     }
 }

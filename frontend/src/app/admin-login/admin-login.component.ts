@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminLoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: UsersService) { }
 
   ngOnInit(): void {
   }
@@ -15,6 +16,10 @@ export class AdminLoginComponent implements OnInit {
   username: string = "";
   password: string = "";
   loggedin: boolean = false;
-  LogIn(){}
+  LogIn(){
+    this.service.loginAdmin(this.username, this.password).subscribe((res: any) => {
+      alert(res.msg);
+    });
+  }
   
 }

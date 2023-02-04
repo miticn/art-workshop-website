@@ -7,6 +7,7 @@ exports.upload = void 0;
 const express_1 = __importDefault(require("express"));
 const user_controller_1 = require("../controllers/user.controller");
 const userRouter = express_1.default.Router();
+const passport_1 = __importDefault(require("passport"));
 const multer = require('multer');
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -18,8 +19,9 @@ const storage = multer.diskStorage({
     }
 });
 exports.upload = multer({ storage: storage });
-userRouter.route('/login').post((req, res) => new user_controller_1.UserController().login(req, res));
-userRouter.route('/loginAdmin').post((req, res) => new user_controller_1.UserController().loginAdmin(req, res));
+userRouter.route('/login').post(passport_1.default.authenticate('users-local'), (req, res) => { res.json({ success: true }); });
+userRouter.route('/loginAdmin').post(passport_1.default.authenticate('admin-local'), (req, res) => { res.json({ success: true }); });
+userRouter.route('/logout').post((req, res) => { new user_controller_1.UserController().logout(req, res); });
 userRouter.route('/getUser').post((req, res) => new user_controller_1.UserController().getUser(req, res));
 userRouter.route('/register').post((req, res) => new user_controller_1.UserController().register(req, res));
 userRouter.route('/isUsernameFree').post((req, res) => new user_controller_1.UserController().isUsernameFree(req, res));

@@ -25,26 +25,15 @@ export class LoginComponent implements OnInit {
       this.msg = 'Sva polja moraju biti popunjena';
       return;
     }
-    this.service.login(this.username, this.password).subscribe((user: User)=>{
-      if(!user){
-        this.msg = 'Losi kredencijali';
-      }
-      else{
-        this.loggedin = true;
-        if(user.type == 'user'){
-          this.router.navigate(['/user']);
-        }
-        else if(user.type == 'org'){
-          this.router.navigate(['/org']);
-        }
-      }
-    })
+    this.service.login(this.username, this.password).subscribe((resp: any) => {
+      this.loggedin = true;
+    });
   }
 
   LogOut(){
-    this.loggedin = false;
-    this.service.logout();
-    this.router.navigate(['/']);
+    this.service.logout().subscribe((resp: any) => {
+      this.loggedin = false;
+    });
   }
 
 }

@@ -9,26 +9,6 @@ const user_1 = __importDefault(require("../models/user"));
 const token_1 = __importDefault(require("../models/token"));
 class UserController {
     constructor() {
-        this.login = (req, res) => {
-            let username = req.body.username;
-            let password = req.body.password;
-            user_1.default.findOne({ 'username': username, 'password': password, $or: [{ 'type': 'user' }, { 'type': 'org' }] }, (err, user) => {
-                if (err)
-                    console.log(err);
-                else
-                    res.json(user);
-            });
-        };
-        this.loginAdmin = (req, res) => {
-            let username = req.body.username;
-            let password = req.body.password;
-            user_1.default.findOne({ 'username': username, 'password': password, 'type': 'admin' }, (err, user) => {
-                if (err)
-                    console.log(err);
-                else
-                    res.json(user);
-            });
-        };
         this.getUser = (req, res) => {
             let username = req.body.username;
             user_1.default.findOne({ 'username': username }, (err, user) => {
@@ -186,6 +166,12 @@ class UserController {
                     else
                         res.status(400).json({ "message": "No user found" });
                 }
+            });
+        };
+        this.logout = (req, res) => {
+            console.log(req.user.username + " logged out");
+            req.logout(function (err) {
+                res.json({ "message": "ok" });
             });
         };
     }
