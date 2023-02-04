@@ -3,6 +3,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../users.service';
 import { confirmPasswordValidator } from '../validators/confirmPasswordValidator';
+import { emailValidator } from '../validators/emailValidator';
+import { usernameValidator } from '../validators/usernameValidator';
 
 @Component({
   selector: 'app-register',
@@ -16,11 +18,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
   registerForm = new FormGroup({
-    firstname: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[A-Z][a-zA-Z]*")]),
+    firstname: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[A-Z][a-z]*")]),
     lastname: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[A-Z][a-zA-Z]*")]),
-    /**/username: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[a-zA-Z0-9]*")]),
+    username: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[a-zA-Z0-9]*")],[usernameValidator(this.service)]),
     phone: new FormControl('', [Validators.required, Validators.pattern("^[+]?[0-9]{5,15}$")]),
-    /**/email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required, Validators.email], [emailValidator(this.service)]),
     password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern("^(.*[a-zA-Z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])[a-zA-Z0-9!@#\$%\^&\*]+$")]),
     confirmPassword: new FormControl('', [Validators.required]),
     profilePicture: new FormControl('', []),
@@ -28,7 +30,7 @@ export class RegisterComponent implements OnInit {
     imageDimensionsX: new FormControl(100, [Validators.max(300), Validators.min(100)]),
     imageDimensionsY: new FormControl(100, [Validators.max(300), Validators.min(100)]),
     organizer: new FormControl(false, []),
-    }, { validators: confirmPasswordValidator });
+    }, { validators: [confirmPasswordValidator]});
 
   orgForm = new FormGroup({
     organizationName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[a-zA-Z0-9\s]*")]),

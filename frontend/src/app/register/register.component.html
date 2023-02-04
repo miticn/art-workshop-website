@@ -3,18 +3,38 @@
     <div class="row">
         <div class="col-sm-6">
             <input type="text" class="form-control" id="firstname" name="firstname" formControlName="firstname" placeholder="Ime">
+            <div *ngIf="registerForm.controls.firstname.invalid && (registerForm.controls.firstname.dirty || registerForm.controls.firstname.touched)" class="inputError">
+                <div *ngIf="registerForm.controls.firstname.errors?.['required']">Ime nije uneto.</div>
+                <div *ngIf="registerForm.controls.firstname.errors?.['pattern']">Ime mora da počne velikim slovom, a ostala slova moraju biti mala.</div>
+                <div *ngIf="registerForm.controls.firstname.errors?.['maxlength']">Ime ne može biti duže od 16 karaktera.</div>
+                <div *ngIf="registerForm.controls.firstname.errors?.['minlength']">Ime mora da ima barem dva slova.</div>
+            </div>
         </div>
         <div class="col-sm-6">
             <input type="text" class="form-control col-sm-6" id="lastname" name="lastname" formControlName="lastname" placeholder="Prezime">
+            <div *ngIf="registerForm.controls.lastname.invalid && (registerForm.controls.lastname.dirty || registerForm.controls.lastname.touched)" class="inputError">
+                <div *ngIf="registerForm.controls.lastname.errors?.['required']">Prezime nije uneto.</div>
+                <div *ngIf="registerForm.controls.lastname.errors?.['pattern']">Prezime mora da počne velikim slovom, a ostala slova moraju biti mala.</div>
+                <div *ngIf="registerForm.controls.lastname.errors?.['maxlength']">Prezime ne može biti duže od 16 karaktera.</div>
+                <div *ngIf="registerForm.controls.lastname.errors?.['minlength']">Prezime mora da ima barem dva slova.</div>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-6">
             <input type="text" class="form-control" name="username" formControlName="username" placeholder="Korisničko ime">
+            <div *ngIf="registerForm.controls.username.invalid && (registerForm.controls.username.dirty || registerForm.controls.username.touched)" class="inputError">
+                <div *ngIf="registerForm.controls.username.errors?.['required']">Korisničko ime nije uneto.</div>
+                <div *ngIf="registerForm.controls.username.errors?.['usernameTaken']">Korisničko ime je već zauzeto.</div>
+                <div *ngIf="registerForm.controls.username.errors?.['pattern']">Korisničko ime može da se sastoji samo od brojeva i malih i velikih slova.</div>
+                <div *ngIf="registerForm.controls.username.errors?.['minlength']">Korisničko ime mora da ima barem 2 karaktera.</div>
+                <div *ngIf="registerForm.controls.username.errors?.['maxlength']">Korisničko ime može da ima barem najviše 16 karaktera.</div>
+            </div>
+            
         </div>
         <div class="col-sm-6">
             <input type="text" class="form-control" name="phone" formControlName="phone" placeholder="Telefon">
-            <div *ngIf="registerForm.controls.phone.invalid && (registerForm.controls.phone.dirty || registerForm.controls.email.touched)" class="inputError">
+            <div *ngIf="registerForm.controls.phone.invalid && (registerForm.controls.phone.dirty || registerForm.controls.phone.touched)" class="inputError">
                 <div *ngIf="registerForm.controls.phone.errors?.['required']">Telefon nije unet.</div>
                 <div *ngIf="registerForm.controls.phone.errors?.['pattern']">Telefon nije u dobrom formatu</div>
             </div>
@@ -26,6 +46,7 @@
             <div *ngIf="registerForm.controls.email.invalid && (registerForm.controls.email.dirty || registerForm.controls.email.touched)" class="inputError">
                 <div *ngIf="registerForm.controls.email.errors?.['required']">Email nije unet.</div>
                 <div *ngIf="registerForm.controls.email.errors?.['email']">Email nije u dobrom formatu</div>
+                <div *ngIf="registerForm.controls.email.errors?.['emailTaken']">Email je već zauzet.</div>
             </div>
         </div>
     </div>
