@@ -118,6 +118,7 @@
                 || (registerForm.controls.imageDimensionsY.invalid && registerForm.controls.imageDimensionsX.errors['max'])">Slika je prevelika.</div>
                 <div *ngIf="(registerForm.controls.imageDimensionsX.invalid && registerForm.controls.imageDimensionsX.errors['min'])
                 || (registerForm.controls.imageDimensionsY.invalid && registerForm.controls.imageDimensionsX.errors['min'])">Slika je permala.</div>
+                <div *ngIf="registerForm.controls.profilePicture.errors?.['pattern']">Slika mora da bude u jpg ili png formatu.</div>
             </div>
         </div>
     </div>
