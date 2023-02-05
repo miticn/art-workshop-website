@@ -6,13 +6,42 @@ import { Request, Response } from 'express';
 
 
 export class UserController {
+    getSessionUser = (req, res: express.Response) => {
+        if(req.isAuthenticated()) {
+            let user = req.user;
+            if(user)
+                res.json({
+                    firstname: user.firstname,
+                    lastname: user.lastname,
+                    username: user.username,
+                    phone: user.phone,
+                    email: user.email,
+                    type: user.type,
+                    profilePicture: user.profilePicture,
+                    verified: user.verified,
+                    org: user.org
+                    });
+            else res.json({error: "no user"});
+        }
+        else res.json({error: "not authenticated"});
+    }
 
     getUser = (req: express.Request, res: express.Response) => {
         let username = req.body.username;
 
         User.findOne({ 'username': username }, (err, user) => {
             if (err) console.log(err);
-            else res.json(user)
+            else res.json({
+                firstname: user.firstname,
+                lastname: user.lastname,
+                username: user.username,
+                phone: user.phone,
+                email: user.email,
+                type: user.type,
+                profilePicture: user.profilePicture,
+                verified: user.verified,
+                org: user.org
+                });
         })
     }
 

@@ -31,20 +31,25 @@ export class UsersService {
     const data = {
       username: username
     }
-    return this.http.post(`${this.uri}/getUser`, data);
+    return this.http.post(`${this.uri}/getUser`, data, { withCredentials: true });
   }
+
+  getSessionUser() {
+    return this.http.post(`${this.uri}/getSessionUser`, {}, { withCredentials: true });
+  }
+
   isUsernameFree(username) {
     const data = {
       username: username
     }
-    return this.http.post(`${this.uri}/isUsernameFree`, data);
+    return this.http.post(`${this.uri}/isUsernameFree`, data, { withCredentials: true });
   }
 
   isEmailFree(email) {
     const data = {
       email: email
     }
-    return this.http.post(`${this.uri}/isEmailFree`, data);
+    return this.http.post(`${this.uri}/isEmailFree`, data, { withCredentials: true });
   }
 
   uploadProfilePicture(username, profilePicture) {
@@ -53,7 +58,8 @@ export class UsersService {
       formData.append('username', username);
       return this.http.post(`${this.uri}/uploadProfilePicture`, formData, {
         reportProgress: true,
-        observe: 'events'
+        observe: 'events',
+        withCredentials: true
       });
   }
 
@@ -67,14 +73,14 @@ export class UsersService {
       email: registerForm.email,
       type: registerForm.type
     }
-    return this.http.post(`${this.uri}/register`, data);
+    return this.http.post(`${this.uri}/register`, data, { withCredentials: true });
   }
 
   isTokenValid(token) {
     const data = {
       token: token
     }
-    return this.http.post(`${this.uri}/isTokenValid`, data);
+    return this.http.post(`${this.uri}/isTokenValid`, data, { withCredentials: true });
   }
 
   setNewResetPassword(token, password) {
@@ -83,7 +89,7 @@ export class UsersService {
       token: token,
       password: password
     }
-    return this.http.post(`${this.uri}/setNewResetPassword`, data);
+    return this.http.post(`${this.uri}/setNewResetPassword`, data, { withCredentials: true });
   }
 
   logout() {
@@ -94,6 +100,6 @@ export class UsersService {
     const data = {
       email: email
     }
-    return this.http.post(`${this.uri}/resetPasswordRequest`, data);
+    return this.http.post(`${this.uri}/resetPasswordRequest`, data, { withCredentials: true });
   }
 }

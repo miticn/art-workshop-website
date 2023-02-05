@@ -32,6 +32,10 @@ userRouter.route('/getUser').post(
     (req, res) => new UserController().getUser(req, res)
 )
 
+userRouter.route('/getSessionUser').post(
+    (req, res) => new UserController().getSessionUser(req, res)
+)
+
 userRouter.route('/register').post(
     (req, res) => new UserController().register(req, res)
 )

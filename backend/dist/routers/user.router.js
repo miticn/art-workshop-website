@@ -23,6 +23,7 @@ userRouter.route('/login').post(passport_1.default.authenticate('users-local'), 
 userRouter.route('/loginAdmin').post(passport_1.default.authenticate('admin-local'), (req, res) => { res.json({ success: true }); });
 userRouter.route('/logout').post((req, res) => { new user_controller_1.UserController().logout(req, res); });
 userRouter.route('/getUser').post((req, res) => new user_controller_1.UserController().getUser(req, res));
+userRouter.route('/getSessionUser').post((req, res) => new user_controller_1.UserController().getSessionUser(req, res));
 userRouter.route('/register').post((req, res) => new user_controller_1.UserController().register(req, res));
 userRouter.route('/isUsernameFree').post((req, res) => new user_controller_1.UserController().isUsernameFree(req, res));
 userRouter.route('/isEmailFree').post((req, res) => new user_controller_1.UserController().isEmailFree(req, res));

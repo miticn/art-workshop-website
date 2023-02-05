@@ -9,13 +9,44 @@ const user_1 = __importDefault(require("../models/user"));
 const token_1 = __importDefault(require("../models/token"));
 class UserController {
     constructor() {
+        this.getSessionUser = (req, res) => {
+            if (req.isAuthenticated()) {
+                let user = req.user;
+                if (user)
+                    res.json({
+                        firstname: user.firstname,
+                        lastname: user.lastname,
+                        username: user.username,
+                        phone: user.phone,
+                        email: user.email,
+                        type: user.type,
+                        profilePicture: user.profilePicture,
+                        verified: user.verified,
+                        org: user.org
+                    });
+                else
+                    res.json({ error: "no user" });
+            }
+            else
+                res.json({ error: "not authenticated" });
+        };
         this.getUser = (req, res) => {
             let username = req.body.username;
             user_1.default.findOne({ 'username': username }, (err, user) => {
                 if (err)
                     console.log(err);
                 else
-                    res.json(user);
+                    res.json({
+                        firstname: user.firstname,
+                        lastname: user.lastname,
+                        username: user.username,
+                        phone: user.phone,
+                        email: user.email,
+                        type: user.type,
+                        profilePicture: user.profilePicture,
+                        verified: user.verified,
+                        org: user.org
+                    });
             });
         };
         this.isUsernameFree = (req, res) => {

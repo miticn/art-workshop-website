@@ -11,11 +11,25 @@ import { UsersService } from '../users.service';
 export class LoginComponent implements OnInit {
 
   constructor(private service: UsersService, private router: Router) { }
-
-  ngOnInit(): void {
+  refresh(): void {
+    this.service.getSessionUser().subscribe((resp: any) => {
+      console.log(resp);
+      if(resp['error']){
+        this.loggedin = false;
+      }
+      else{
+        this.user = resp.user;
+        console.log(this.user)
+        this.loggedin = true;
+      }
+    });
   }
 
+  ngOnInit(): void {
+    this.refresh();
+  }
 
+  user: User = null;
   username: string = "";
   password: string = "";
   msg: string = "";
@@ -26,7 +40,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.service.login(this.username, this.password).subscribe((resp: any) => {
-      this.loggedin = true;
+      this.refresh();
     });
   }
 
