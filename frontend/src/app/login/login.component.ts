@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
+import { PhotoHelper } from '../photoHelper';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -10,15 +11,25 @@ import { UsersService } from '../users.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private service: UsersService, private router: Router) { }
+  constructor(private service: UsersService, private router: Router, public photoHepler: PhotoHelper) { }
   refresh(): void {
     this.service.getSessionUser().subscribe((resp: any) => {
-      console.log(resp);
       if(resp['error']){
         this.loggedin = false;
       }
       else{
-        this.user = resp.user;
+        this.user = {
+          firstname: resp.firstname,
+          lastname: resp.lastname,
+          username: resp.username,
+          phone: resp.phone,
+          email: resp.email,
+          type: resp.type,
+          profilePicture: resp.profilePicture,
+          verified: resp.verified,
+          org: resp.org
+        };
+        console.log("Local user data: ")
         console.log(this.user)
         this.loggedin = true;
       }

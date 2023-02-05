@@ -11,6 +11,18 @@
             <input class="btn btn-dark" type='submit' value='Ulogujte se' (click)='LogIn()'>
         </div>
     </div>
+    <span class='greska'>{{msg}}</span>
 </form>
-<span class='greska'>{{msg}}</span>
-<button *ngIf="loggedin" class="btn btn-dark" (click)='LogOut()'>Odjavite se</button>
+<form *ngIf="loggedin" class="d-flex">
+    <div class="row">
+        <div class="col-sm-4">
+            <img src={{photoHepler.getProfilePhotoUrl(user.profilePicture)}} alt="user" width="50" height="50">
+        </div>
+        <div class="col-sm-4">
+            <span class="text-dark">{{user.firstname}} {{user.lastname}}</span>
+        </div>
+        <div class="col-sm-3">  
+            <button class="btn btn-dark" (click)='LogOut()'>Odjavite se</button>
+        </div>
+    </div>
+</form>
