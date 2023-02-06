@@ -14,10 +14,12 @@
     <span class='greska'>{{msg}}</span>
 </form>
 <form *ngIf="auth.isLoggedIn()" class="d-flex">
-    <div class="row">
-        <div class="col-sm-7 border align-items-center" >
-            <img src={{photoHepler.getProfilePhotoUrl(auth.getUser().profilePicture)}} alt="user" width="50" height="50">
-            <span class="text-dark"> {{auth.getUser().firstname}} {{auth.getUser().lastname}}</span>
+    <div class="row align-items-center">
+        <div class="col-sm-7 border px-0 bg-light border rounded">
+            <a [routerLink]="['/resetPassword']" class="d-flex align-items-center">
+                <img src={{photoHepler.getProfilePhotoUrl(auth.getUser().profilePicture)}} alt="user" width="50" height="50">
+                <span class="text-dark"> {{auth.getUser().firstname}} {{auth.getUser().lastname}}</span>
+            </a>
         </div>
         <div class="col-sm-5">  
             <button class="btn btn-dark" (click)='LogOut()'>Odjavite se</button>

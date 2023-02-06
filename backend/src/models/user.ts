@@ -28,7 +28,7 @@ let User = new Schema({
         type: String
     },
     verified: {
-        type: Boolean
+        type: String
     },
     org:{
         city:{

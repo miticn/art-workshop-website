@@ -76,7 +76,10 @@ export class UserController {
             password: req.body.password,
             phone: req.body.phone,
             email: req.body.email,
-            type: req.body.type
+            type: req.body.type,
+            profilePicture: "",
+            verified: "waiting",
+            org: req.body.org
         })
 
         user.save((err, resp)=>{

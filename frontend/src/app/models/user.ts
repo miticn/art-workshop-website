@@ -6,7 +6,7 @@ export class User{
   email: string;
   type: string;
   profilePicture: string;
-  verified: boolean;
+  verified: string;
   org:{
     city:string;
     country:string;

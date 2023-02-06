@@ -14,6 +14,28 @@ export default class mailService {
     });
 
     sendRegisterEmail(email, name){
+        let mailOptions = { 
+            from: this.user,
+            to: email,
+            subject: 'Art Workshop - Primljen zahtev za registraciju',
+            text:'Poštovani ' + name +',\n'+
+            'Hvala Vam što ste se registrovali na naš sajt za umetničke radionice!\n\n'+
+            'Vaš zahtev za registraciju je primljen i biće obrađen od strane administratora u najkraćem mogućem roku.\n\n'+
+            
+            'S poštovanjem,\n'+
+            'Art Workshop Tim'
+        };
+        this.transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+    }
+
+
+    sendVerifiedAccountEmail(email, name, username){
         let mailOptions = {
             from: this.user,
             to: email,
@@ -21,7 +43,7 @@ export default class mailService {
             text:'Poštovani ' + name +',\n'+
             'Želimo da Vam čestitamo na uspešnoj registraciji na naš sajt za umetničke radionice!\n\n'+
 
-            'Koristeći Vašu registrovanu e-mail adresu '+email+', sada imate pristup našoj širokoj ponudi radionica i aktivnosti koje su dostupne online. Ukoliko imate bilo kakva pitanja ili želite da se upoznate sa našim uslugama, naš tim za podršku je uvek tu za Vas.\n'+
+            'Koristeći Vaše korisničko ime '+username+', sada imate pristup našoj širokoj ponudi radionica i aktivnosti koje su dostupne online. Ukoliko imate bilo kakva pitanja ili želite da se upoznate sa našim uslugama, naš tim za podršku je uvek tu za Vas.\n'+
             'Uživajte u iskustvu kreativnog učenja i rada sa nama!\n\n'+
             
             'S poštovanjem,\n'+
