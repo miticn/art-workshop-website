@@ -1,4 +1,4 @@
-<form *ngIf="!loggedin" class="d-flex">
+<form *ngIf="!auth.isLoggedIn()" class="d-flex">
     <div class="row">
         <div class="col-sm-4">
             <input class="form-control" type='text' name='username' [(ngModel)]='username' placeholder="Korisničko ime">
@@ -13,15 +13,13 @@
     </div>
     <span class='greska'>{{msg}}</span>
 </form>
-<form *ngIf="loggedin" class="d-flex">
+<form *ngIf="auth.isLoggedIn()" class="d-flex">
     <div class="row">
-        <div class="col-sm-4">
-            <img src={{photoHepler.getProfilePhotoUrl(user.profilePicture)}} alt="user" width="50" height="50">
+        <div class="col-sm-7 border align-items-center" >
+            <img src={{photoHepler.getProfilePhotoUrl(auth.getUser().profilePicture)}} alt="user" width="50" height="50">
+            <span class="text-dark"> {{auth.getUser().firstname}} {{auth.getUser().lastname}}</span>
         </div>
-        <div class="col-sm-4">
-            <span class="text-dark">{{user.firstname}} {{user.lastname}}</span>
-        </div>
-        <div class="col-sm-3">  
+        <div class="col-sm-5">  
             <button class="btn btn-dark" (click)='LogOut()'>Odjavite se</button>
         </div>
     </div>

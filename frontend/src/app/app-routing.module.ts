@@ -16,7 +16,14 @@ const routes: Routes = [
   { path: "AdminLogin", component: AdminLoginComponent },
   { path: "resetPassword", component: PasswordResetRequestComponent },
   { path: "resetPassword/:token", component: ResetPasswordComponent },
-  { path: "workshops", component: WorkshopsComponent}
+  { path: "workshops", component: WorkshopsComponent},
+  /*
+  {
+    path: 'protected',
+    canActivate: [AuthGuard],
+    component: ProtectedComponent
+  },
+  */
 ];
 
 @NgModule({
