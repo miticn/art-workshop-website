@@ -27,7 +27,11 @@ export class LoginComponent implements OnInit {
       this.msg = 'Sva polja moraju biti popunjena';
       return;
     }
-    this.auth.login(this.username, this.password)
+    let username = this.username;
+    let password = this.password;
+    this.username = "";
+    this.password = "";
+    this.auth.login(username, password)
   }
 
   LogOut(){

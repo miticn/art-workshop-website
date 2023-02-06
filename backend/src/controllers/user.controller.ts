@@ -112,6 +112,7 @@ export class UserController {
         });
         
     }
+    
     isTokenValid = (req: express.Request, res: express.Response) => {
         let token = req.body.token;
         Token.findOne({ 'token': token} , (err, token) => {
