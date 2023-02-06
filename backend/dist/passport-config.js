@@ -9,26 +9,26 @@ const user_1 = __importDefault(require("./models/user"));
 function initialisePassport(passport) {
     console.log('initialise Passport');
     passport.use('users-local', new localStrategy((username, password, done) => {
-        user_1.default.findOne({ 'username': username, 'password': password, $or: [{ 'type': 'user' }, { 'type': 'org' }] }, (err, user) => {
-            console.log(username + ' loged in');
+        user_1.default.findOne({ 'username': username, 'password': password, 'verified': 'approved', $or: [{ 'type': 'user' }, { 'type': 'org' }] }, (err, user) => {
             if (err) {
                 return done(err);
             }
             if (!user) {
                 return done(null, false);
             }
+            console.log(username + ' loged in');
             return done(null, user);
         });
     }));
     passport.use('admin-local', new localStrategy((username, password, done) => {
-        user_1.default.findOne({ 'username': username, 'password': password, 'type': 'admin' }, (err, user) => {
-            console.log(username + ' loged in');
+        user_1.default.findOne({ 'username': username, 'password': password, 'verified': 'approved', 'type': 'admin' }, (err, user) => {
             if (err) {
                 return done(err);
             }
             if (!user) {
                 return done(null, false);
             }
+            console.log(username + ' loged in');
             return done(null, user);
         });
     }));
