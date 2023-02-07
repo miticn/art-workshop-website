@@ -1,8 +1,8 @@
 let nodemailer = require('nodemailer');
 
 export default class mailService {
-    private user = 'alexis.marquardt@ethereal.email'
-    private pass = 'Mc741KwBumYkRRj2PF'
+    private user = 'beryl.blanda@ethereal.email'
+    private pass = 'JA9Ut5RxkphMgwzECv'
     private url = 'http://localhost:4200/'
     transporter = nodemailer.createTransport({
         host: 'smtp.ethereal.email',

@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
     username: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[a-zA-Z0-9]*")],[usernameValidator(this.service)]),
     phone: new FormControl('', [Validators.required, Validators.pattern("^[+]?[0-9]{5,15}$")]),
     email: new FormControl('', [Validators.required, Validators.email], [emailValidator(this.service)]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern("^(.*[a-zA-Z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])[a-zA-Z0-9!@#\$%\^&\*]+$")]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern("^(?=.*[A-Z])([A-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])[a-zA-Z0-9!@#\$%\^&\*]+$")]),
     confirmPassword: new FormControl('', [Validators.required]),
     profilePicture: new FormControl('', [Validators.pattern("^.+\.(jpg|png|jpeg|JPG|PNG|JPEG)$")]),
     profilePicutreFile: new FormControl(null, []),
@@ -51,6 +51,7 @@ export class RegisterComponent implements OnInit {
     if (event.target.files.length == 0){
       this.registerForm.controls.imageDimensionsX.setValue(100);
       this.registerForm.controls.imageDimensionsY.setValue(100);
+      this.registerForm.controls.profilePicutreFile.setValue(null);
     }
     else if (event.target.files.length > 0 && this.registerForm.controls.profilePicture.valid) {
       const file = event.target.files[0];
@@ -79,18 +80,10 @@ export class RegisterComponent implements OnInit {
 
   register(){
     alert(JSON.stringify(this.registerForm.errors))
-    this.service.register(this.registerForm.value).subscribe((res:any) => {
+    this.service.register(this.registerForm.value, this.registerForm.get('profilePicutreFile').value).subscribe((res:any) => {
       this.message = res['message'];
       alert(this.message);
     });
-    this.service.uploadProfilePicture(this.registerForm.value.username, this.registerForm.get('profilePicutreFile').value)
-      .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          console.log('Upload progress: ' + Math.round(event.loaded / event.total * 100) + '%');
-        } else if (event.type === HttpEventType.Response) {
-          console.log(event);
-        }
-      });
   };
 
 }

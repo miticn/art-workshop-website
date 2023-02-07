@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 let nodemailer = require('nodemailer');
 class mailService {
     constructor() {
-        this.user = 'alexis.marquardt@ethereal.email';
-        this.pass = 'Mc741KwBumYkRRj2PF';
+        this.user = 'beryl.blanda@ethereal.email';
+        this.pass = 'JA9Ut5RxkphMgwzECv';
         this.url = 'http://localhost:4200/';
         this.transporter = nodemailer.createTransport({
             host: 'smtp.ethereal.email',

@@ -42,6 +42,7 @@ userRouter.route('/getSessionUser').post(
 )
 
 userRouter.route('/register').post(
+    upload.single('file'), 
     (req, res) => new UserController().register(req, res)
 )
 

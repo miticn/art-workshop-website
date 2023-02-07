@@ -63,17 +63,26 @@ export class UsersService {
       });
   }
 
-  register(registerForm) {
-    console.log(registerForm);
-    const data = {
-      firstname: registerForm.firstname,
-      lastname: registerForm.lastname,
-      username: registerForm.username,
-      password: registerForm.password,
-      email: registerForm.email,
-      type: registerForm.type
-    }
-    return this.http.post(`${this.uri}/register`, data, { withCredentials: true });
+  register(registerForm, profilePicture) {
+      const formData = new FormData();
+      console.log(registerForm.firstname)
+      formData.set('firstname', registerForm.firstname);
+      formData.set('lastname', registerForm.lastname);
+      formData.set('username', registerForm.username);
+      formData.set('password', registerForm.password);
+      formData.set('email', registerForm.email);
+      if (registerForm.organizer == true) {
+        formData.set('type', 'org');
+      } else {
+        formData.set('type', 'user');
+      }
+      if(profilePicture != null) 
+        formData.append('file', profilePicture, profilePicture.name);
+      return this.http.post(`${this.uri}/register`, formData, {
+        reportProgress: true,
+        observe: 'events',
+        withCredentials: true
+      });
   }
 
   isTokenValid(token) {

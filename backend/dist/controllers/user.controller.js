@@ -84,7 +84,7 @@ class UserController {
                 phone: req.body.phone,
                 email: req.body.email,
                 type: req.body.type,
-                profilePicture: "",
+                profilePicture: "default.png",
                 verified: "waiting",
                 org: req.body.org
             });
@@ -94,7 +94,12 @@ class UserController {
                     res.status(400).json({ "message": "error" });
                 }
                 else {
-                    res.json({ "message": "ok" });
+                    if (req['file'])
+                        this.uploadProfilePicture(req, res);
+                    else {
+                        res.json({ "message": "ok" });
+                    }
+                    console.log("User registered: " + user.username);
                     new mailService_1.default().sendRegisterEmail(user.email, user.firstname);
                 }
             });
@@ -108,11 +113,12 @@ class UserController {
                 const error = new Error("Please upload file");
                 return res.status(400).send(error.message);
             }
-            //userModel.collection.updateOne({ 'username': username }, { $set: { 'picture': file.filename } });
-            //res.json({ ok: true });
-            res.json({
-                message: "File uploaded successfully",
-                file: file.filename,
+            user_1.default.updateOne({ 'username': username }, { $set: { 'profilePicture': file.filename } }, (err, resp) => {
+                if (err)
+                    res.json({ error: err });
+                else {
+                    res.json({ message: "ok" });
+                }
             });
         };
         this.isTokenValid = (req, res) => {

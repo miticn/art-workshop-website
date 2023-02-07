@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { UsersService } from '../users.service';
 })
 export class AdminLoginComponent implements OnInit {
 
-  constructor(private service: UsersService) { }
+  constructor(private service: UsersService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -19,6 +20,7 @@ export class AdminLoginComponent implements OnInit {
   LogIn(){
     this.service.loginAdmin(this.username, this.password).subscribe((res: any) => {
       alert(res.msg);
+      location.reload();
     });
   }
   
