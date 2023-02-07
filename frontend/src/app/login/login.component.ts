@@ -11,7 +11,7 @@ import { UsersService } from '../users.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public auth: AuthService, private service: UsersService, private router: Router, public photoHepler: PhotoHelper) { }
+  constructor(public auth: AuthService, private service: UsersService, private router: Router, public photoHelper: PhotoHelper) { }
   
 
   ngOnInit(): void {

@@ -43,7 +43,7 @@ let User = new Schema({
         name: {
             type: String
         },
-        postNumer: {
+        postNumber: {
             type: String
         },
         regNumber: {

@@ -11,7 +11,7 @@ export class User{
     city:string;
     country:string;
     name:string;
-    postNumer:string;
+    postNumber:string;
     regNumber:string;
     street:string;
     streetNumber:string;

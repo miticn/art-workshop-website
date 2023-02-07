@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin.service';
+import { PhotoHelper } from '../photoHelper';
 
 @Component({
   selector: 'app-admin-waiting-list',
@@ -8,7 +9,7 @@ import { AdminService } from '../admin.service';
 })
 export class AdminWaitingListComponent implements OnInit {
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService, public photoHelper: PhotoHelper) { }
   users = [];
   ngOnInit(): void {
     this.adminService.getWaitingUsers().subscribe((data: any) => {
@@ -17,4 +18,22 @@ export class AdminWaitingListComponent implements OnInit {
     });
   }
 
+  getTypeString(type) : string {
+    switch (type) {
+      case 'admin':
+        return "Admin";
+      case 'user':
+        return "User";
+      case 'org':
+        return "Organizator";
+    }
+    return 'error'
+  }
+
+  getOrgString(org) : string {
+    return `Organizacija: ${org.name}\n`
+          +`Lokacija: ${org.street} ${org.streetNumber}, ${org.city}, ${org.country}\n`
+          +`Poštanski broj: ${org.postNumber}\n`
+          +`Matični broj organizacije: ${org.regNumber}`;
+  }
 }
