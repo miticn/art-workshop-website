@@ -2,6 +2,7 @@ import express from 'express';
 import { UserController } from '../controllers/user.controller';
 const userRouter = express.Router();
 import passport from 'passport';
+import { PassportMiddleware } from '../passport.middleware';
 
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -17,18 +18,22 @@ const storage = multer.diskStorage({
 export var upload = multer({ storage: storage });
 
 userRouter.route('/login').post(
+    PassportMiddleware.checkNotAuthenticated,
     passport.authenticate('users-local'),(req, res)=>{res.json({success: true})}
 )
 
 userRouter.route('/loginAdmin').post(
+    PassportMiddleware.checkNotAuthenticated,
     passport.authenticate('admin-local'),(req, res)=>{res.json({success: true})}
 )
 
 userRouter.route('/logout').post(
+    PassportMiddleware.checkAuthenticated,
     (req, res) => {new UserController().logout(req, res)}
 )
 
 userRouter.route('/getUser').post(
+    PassportMiddleware.checkAuthenticated,
     (req, res) => new UserController().getUser(req, res)
 )
 

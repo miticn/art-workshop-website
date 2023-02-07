@@ -15,6 +15,7 @@ app.use(session({
 }))
 
 import User from './models/user';
+import adminRouter from './routers/admin.router';
 
 mongoose.connect('mongodb://127.0.0.1:27017/art-workshop');
 const connection = mongoose.connection;
@@ -46,6 +47,7 @@ app.use('/uploads', express.static('uploads'));
 const router = express.Router();
 router.use('/users', userRouter)
 router.use('/workshops', workshopRouter)
+router.use('/admin', adminRouter)
 
 app.use('/', router);
 app.listen(4000, () => console.log(`Express server running on port 4000`));

@@ -78,12 +78,6 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    this.service.isUsernameFree(this.registerForm.value.username).subscribe((res:any) => {
-      alert("Username "+res['free']);
-    });
-    this.service.isEmailFree(this.registerForm.value.email).subscribe((res:any) => {
-      alert("Email "+res['free']);
-    });
     alert(JSON.stringify(this.registerForm.errors))
     this.service.register(this.registerForm.value).subscribe((res:any) => {
       this.message = res['message'];

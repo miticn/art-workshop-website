@@ -1,31 +1,37 @@
-function checkAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PassportMiddleware = void 0;
+class PassportMiddleware {
+    static checkAuthenticated(req, res, next) {
+        if (req.isAuthenticated()) {
+            return next();
+        }
+        res.json({ error: 'Not authenticated' });
     }
-    res.json({ error: 'Not authenticated' });
-}
-function checkNotAuthenticated(req, res, next) {
-    if (!req.isAuthenticated()) {
-        return next();
+    static checkNotAuthenticated(req, res, next) {
+        if (!req.isAuthenticated()) {
+            return next();
+        }
+        res.json({ error: 'Authenticated cannot access this route' });
     }
-    res.json({ error: 'Authenticated cannot access this route' });
-}
-function checkAdmin(req, res, next) {
-    if (req.isAuthenticated() && req.user.type === 'admin') {
-        return next();
+    static checkAdmin(req, res, next) {
+        if (req.isAuthenticated() && req.user.type === 'admin') {
+            return next();
+        }
+        res.json({ error: 'Not admin' });
     }
-    res.json({ error: 'Not admin' });
-}
-function checkUser(req, res, next) {
-    if (req.isAuthenticated() && req.user.type === 'user') {
-        return next();
+    static checkUser(req, res, next) {
+        if (req.isAuthenticated() && req.user.type === 'user') {
+            return next();
+        }
+        res.json({ error: 'Not user' });
     }
-    res.json({ error: 'Not user' });
-}
-function checkOrg(req, res, next) {
-    if (req.isAuthenticated() && req.user.type === 'org') {
-        return next();
+    static checkOrg(req, res, next) {
+        if (req.isAuthenticated() && req.user.type === 'org') {
+            return next();
+        }
+        res.json({ error: 'Not org' });
     }
-    res.json({ error: 'Not org' });
 }
+exports.PassportMiddleware = PassportMiddleware;
 //# sourceMappingURL=passport.middleware.js.map
