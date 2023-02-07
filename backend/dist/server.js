@@ -17,6 +17,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
 }));
+const admin_router_1 = __importDefault(require("./routers/admin.router"));
 mongoose_1.default.connect('mongodb://127.0.0.1:27017/art-workshop');
 const connection = mongoose_1.default.connection;
 connection.once('open', () => {
@@ -34,6 +35,7 @@ app.use('/uploads', express_1.default.static('uploads'));
 const router = express_1.default.Router();
 router.use('/users', user_router_1.default);
 router.use('/workshops', workshop_router_1.default);
+router.use('/admin', admin_router_1.default);
 app.use('/', router);
 app.listen(4000, () => console.log(`Express server running on port 4000`));
 //# sourceMappingURL=server.js.map

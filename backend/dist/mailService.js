@@ -77,6 +77,27 @@ class mailService {
             }
         });
     }
+    sendRejectedAccountEmail(email, name, username) {
+        let mailOptions = {
+            from: this.user,
+            to: email,
+            subject: 'Art Workshop - Odbijena registracija',
+            text: 'Poštovani ' + name + ',\n' +
+                'Želimo Vam se zahvaliti na interesu za registraciju u Art Workshop Tim. Nažalost, naš tim za podršku korisnicima je odbio Vašu registraciju.\n\n' +
+                'Razlog za odbijanje registracije nije naveden, ali ukoliko želite da saznate više o tome, molimo Vas da nam se obratite putem emaila ili telefona.\n' +
+                'Hvala Vam na razumijevanju i nadamo se da ćemo uskoro imati priliku da Vam pružimo naše usluge.\n\n' +
+                'S poštovanjem,\n' +
+                'Art Workshop Tim'
+        };
+        this.transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            }
+            else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+    }
 }
 exports.default = mailService;
 //# sourceMappingURL=mailService.js.map

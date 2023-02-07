@@ -8,6 +8,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { PasswordResetRequestComponent } from './password-reset-request/password-reset-request.component';
 import { UserComponent } from './user/user.component';
 import { WorkshopsComponent } from './workshops/workshops.component';
+import { AdminWaitingListComponent } from './admin-waiting-list/admin-waiting-list.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: "", component: IndexComponent },
@@ -17,6 +19,7 @@ const routes: Routes = [
   { path: "resetPassword", component: PasswordResetRequestComponent },
   { path: "resetPassword/:token", component: ResetPasswordComponent },
   { path: "workshops", component: WorkshopsComponent},
+  { path: "waitingList", component: AdminWaitingListComponent}
   /*
   {
     path: 'protected',

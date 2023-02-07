@@ -15,7 +15,7 @@ adminRouter.route('/rejectUser').post(
     (req, res) => new AdminController().rejectUser(req, res)
 )
 
-adminRouter.route('/getWaitingUsers').get(
+adminRouter.route('/getWaitingUsers').post(
     PassportMiddleware.checkAdmin,
     (req, res) => new AdminController().getWaitingUsers(req, res)
 )
