@@ -1,5 +1,5 @@
 <div *ngIf="showModal" [@fadeInOut] class="customModal">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div #modal class="modal-dialog modal-dialog-centered" tabindex="-1" role="dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">{{title}}</h5>

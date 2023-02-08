@@ -79,9 +79,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  private modal:CustomModalComponent;
   register(){
-    this.modal.openModal();
     alert(JSON.stringify(this.registerForm.errors))
     /*this.service.register(this.registerForm.value, this.registerForm.get('profilePicutreFile').value).subscribe((res:any) => {
       this.message = res['message'];

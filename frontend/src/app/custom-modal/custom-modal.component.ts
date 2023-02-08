@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import {trigger, state, style, transition, animate } from '@angular/animations';
 
 
@@ -16,13 +16,14 @@ import {trigger, state, style, transition, animate } from '@angular/animations';
   ],
 })
 export class CustomModalComponent implements OnInit {
-
+  @ViewChild('modal', { static: true }) modal: ElementRef;
   constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
+    this.openModal();
   }
 
-  showModal = true;
+  showModal = false;
   title: string = 'Request Sent';
   message: string = 'Your registration request has been sent.';
 
