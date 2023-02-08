@@ -34,13 +34,13 @@ export class RegisterComponent implements OnInit {
     }, { validators: [confirmPasswordValidator]});
 
   orgForm = new FormGroup({
-    organizationName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[a-zA-Z0-9\s]*")]),
+    organizationName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16)]),
     matNumber: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
-    country: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[a-zA-Z\s]*")]),
-    city: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[a-zA-Z\s]*")]),
+    country: new FormControl('', [Validators.required, Validators.minLength(2), Validators.pattern("[A-Z][a-zA-Z ]*")]),
+    city: new FormControl('', [Validators.required, Validators.pattern("^[A-Z][a-zA-Z ]*$")]),
     postNumber: new FormControl('', [Validators.required, Validators.maxLength(10) , Validators.pattern("[0-9A-Z]*")]),
-    street: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[a-zA-Z\s]*")]),
-    streetNumber: new FormControl('', [Validators.required,Validators.maxLength(6), Validators.pattern("[0-9]*[a-zA-Z]?]")]),
+    street: new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z ]*")]),
+    streetNumber: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*([a-zA-Z]\.? ?)*$")]),
   });
   message:string;
   organizer:boolean;

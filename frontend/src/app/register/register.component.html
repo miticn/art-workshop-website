@@ -81,30 +81,61 @@
         <div class="row">
             <div class="col-sm-6">
                 <input type="text" class="form-control" name="organizationName" formControlName="organizationName" placeholder="Ime organizacije">
+                <div *ngIf="orgForm.controls.organizationName.invalid && (orgForm.controls.organizationName.dirty || orgForm.controls.organizationName.touched)" class="inputError">
+                    <div *ngIf="orgForm.controls.organizationName.errors?.['required']">Ime organizacije nije uneto.</div>
+                    <div *ngIf="orgForm.controls.organizationName.errors?.['minlength']">Ime organizacije mora da ima barem 2 karaktera.</div>
+                    <div *ngIf="orgForm.controls.organizationName.errors?.['maxlength']">Ime organizacije može da ima najviše 16 karaktera.</div>
+                </div>
             </div>
             <div class="col-sm-6">
                 <input type="text" class="form-control" name="matNumber" formControlName="matNumber" placeholder="Matični broj organizacije">
+                <div *ngIf="orgForm.controls.matNumber.invalid && (orgForm.controls.matNumber.dirty || orgForm.controls.matNumber.touched)" class="inputError">
+                    <div *ngIf="orgForm.controls.matNumber.errors?.['required']">Matični broj je obavezan.</div>
+                    <div *ngIf="orgForm.controls.matNumber.errors?.['pattern']">Matični broj može da se sastoji samo od brojeva.</div>
+                </div>
             </div>
         </div>
         <div class="row">
             <div div class="col-sm-12">
                 <input type="text" class="form-control" name="country" formControlName="country" placeholder="Država">
+                <div *ngIf="orgForm.controls.country.invalid && (orgForm.controls.country.dirty || orgForm.controls.country.touched)" class="inputError">
+                    <div *ngIf="orgForm.controls.country.errors?.['required']">Država je obavezna.</div>
+                    <div *ngIf="orgForm.controls.country.errors?.['minlength']">Država mora da ima najmanje 2 karaktera.</div>
+                    <div *ngIf="orgForm.controls.country.errors?.['pattern']">Država mora da počne velikim slovom i može da se sastoji samo od velikih i malih slova i razmaka.</div>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="city" formControlName="city" placeholder="Grad">
+                <div *ngIf="orgForm.controls.city.invalid && (orgForm.controls.city.dirty || orgForm.controls.city.touched)" class="inputError">
+                    <div *ngIf="orgForm.controls.city.errors?.['required']">Grad je obavezan.</div>
+                    <div *ngIf="orgForm.controls.city.errors?.['pattern']">Grad mora da počne velikim slovom i može da se sastoji samo od velikih i malih slova i razmaka.</div>
+                </div>
             </div>
             <div class="col-sm-4">
                 <input type="text" class="form-control" name="postNumber" formControlName="postNumber" placeholder="Poštanski broj">
+                <div *ngIf="orgForm.controls.postNumber.invalid && (orgForm.controls.postNumber.dirty || orgForm.controls.postNumber.touched)" class="inputError">
+                    <div *ngIf="orgForm.controls.postNumber.errors?.['required']">Poštanski broj je obavezan.</div>
+                    <div *ngIf="orgForm.controls.postNumber.errors?.['pattern']">Poštanski može da se sastoji samo od brojeva i velikih slova.</div>
+                    <div *ngIf="orgForm.controls.postNumber.errors?.['maxlength']">Poštanski može da ima najviše 10 karaktera.</div>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="street" formControlName="street" placeholder="Ulica">
+                <div *ngIf="orgForm.controls.street.invalid && (orgForm.controls.street.dirty || orgForm.controls.street.touched)" class="inputError">
+                    <div *ngIf="orgForm.controls.street.errors?.['required']">Ulica je obavezna.</div>
+                    <div *ngIf="orgForm.controls.street.errors?.['pattern']">Ulica može da se sastoji samo od malih i velikih slova i razmaka.</div>
+                </div>
             </div>
             <div class="col-sm-4">
                 <input type="text" class="form-control" name="streetNumber" formControlName="streetNumber" placeholder="Broj">
+                <div *ngIf="orgForm.controls.streetNumber.invalid && (orgForm.controls.streetNumber.dirty || orgForm.controls.streetNumber.touched)" class="inputError">
+                    <div *ngIf="orgForm.controls.streetNumber.errors?.['required']">Broj je obavezan.</div>
+                    <div *ngIf="orgForm.controls.streetNumber.errors?.['pattern']">Broj nije u odgovarajućem formatu.</div>
+                </div>
             </div>
         </div>
     </form>
@@ -126,5 +157,5 @@
         <button class="btn btn-dark w-100" [disabled]="registerForm.invalid" data-toggle="modal" data-target="#registerModal">Registrujte se</button>      
     </div>
 </form>
-  
+<app-custom-modal></app-custom-modal>
 {{message}}
