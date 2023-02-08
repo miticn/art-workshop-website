@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Workshop } from '../models/workshop';
-import { WorkshopsService } from '../workshops.service';
+import { WorkshopsService } from '../services/workshops.service';
 import { PhotoHelper } from '../photoHelper';
 
 @Component({

@@ -1,6 +1,7 @@
 import { HttpEventType } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CustomModalComponent } from '../custom-modal/custom-modal.component';
 import { UsersService } from '../services/users.service';
 import { confirmPasswordValidator } from '../validators/confirmPasswordValidator';
 import { emailValidator } from '../validators/emailValidator';
@@ -13,7 +14,7 @@ import { usernameValidator } from '../validators/usernameValidator';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private service: UsersService) { }
+  constructor(private service: UsersService, private renderer: Renderer2) { }
 
   ngOnInit(): void {
   }
@@ -78,12 +79,16 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  private modal:CustomModalComponent;
   register(){
+    this.modal.openModal();
     alert(JSON.stringify(this.registerForm.errors))
-    this.service.register(this.registerForm.value, this.registerForm.get('profilePicutreFile').value).subscribe((res:any) => {
+    /*this.service.register(this.registerForm.value, this.registerForm.get('profilePicutreFile').value).subscribe((res:any) => {
       this.message = res['message'];
       alert(this.message);
-    });
+      this.modal.openModal();
+      //this.customModal.openModal();
+    });*/
+    
   };
-
 }

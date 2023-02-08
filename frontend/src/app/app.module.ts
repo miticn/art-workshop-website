@@ -16,6 +16,9 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { PasswordResetRequestComponent } from './password-reset-request/password-reset-request.component';
 import { WorkshopsComponent } from './workshops/workshops.component';
 import { AdminWaitingListComponent } from './admin-waiting-list/admin-waiting-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CustomModalComponent } from './custom-modal/custom-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -30,9 +33,11 @@ import { AdminWaitingListComponent } from './admin-waiting-list/admin-waiting-li
     ResetPasswordComponent,
     PasswordResetRequestComponent,
     WorkshopsComponent,
-    AdminWaitingListComponent
+    AdminWaitingListComponent,
+    CustomModalComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
