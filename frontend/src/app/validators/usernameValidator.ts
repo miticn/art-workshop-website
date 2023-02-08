@@ -1,7 +1,7 @@
 import { AbstractControl, ValidationErrors, AsyncValidatorFn } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { UsersService } from '../users.service';
+import { UsersService } from '../services/users.service';
 
 export function usernameValidator(userService: UsersService): AsyncValidatorFn {
     

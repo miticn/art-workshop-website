@@ -1,7 +1,7 @@
 import { HttpEventType } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UsersService } from '../users.service';
+import { UsersService } from '../services/users.service';
 import { confirmPasswordValidator } from '../validators/confirmPasswordValidator';
 import { emailValidator } from '../validators/emailValidator';
 import { usernameValidator } from '../validators/usernameValidator';
