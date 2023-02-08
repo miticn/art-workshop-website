@@ -63,7 +63,7 @@ export class UsersService {
       });
   }
 
-  register(registerForm, profilePicture) {
+  register(registerForm, orgForm, profilePicture) {
       const formData = new FormData();
       console.log(registerForm.firstname)
       formData.set('firstname', registerForm.firstname);
@@ -74,8 +74,19 @@ export class UsersService {
       formData.set('email', registerForm.email);
       if (registerForm.organizer == true) {
         formData.set('type', 'org');
+        let org = {
+          city:orgForm.city,
+          country:orgForm.country,
+          name:orgForm.organizationName,
+          postNumber:orgForm.postNumber,
+          regNumber:orgForm.matNumber,
+          street:orgForm.street,
+          streetNumber:orgForm.streetNumber,
+        }
+        formData.set('org', JSON.stringify(org));
       } else {
         formData.set('type', 'user');
+        formData.set('org', JSON.stringify({}));
       }
       if(profilePicture != null) 
         formData.append('file', profilePicture, profilePicture.name);

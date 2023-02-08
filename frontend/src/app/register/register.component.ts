@@ -81,12 +81,12 @@ export class RegisterComponent implements OnInit {
 
   register(){
     alert(JSON.stringify(this.registerForm.errors))
-    /*this.service.register(this.registerForm.value, this.registerForm.get('profilePicutreFile').value).subscribe((res:any) => {
+    this.service.register(this.registerForm.value, this.orgForm.value, this.registerForm.get('profilePicutreFile').value).subscribe((res:any) => {
       this.message = res['message'];
       alert(this.message);
-      this.modal.openModal();
+      //this.modal.openModal();
       //this.customModal.openModal();
-    });*/
+    });
     
   };
 }

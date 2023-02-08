@@ -79,7 +79,7 @@ export class UserController {
             type: req.body.type,
             profilePicture: "default.png",
             verified: "waiting",
-            org: req.body.org
+            org: JSON.parse(req.body.org)
         })
         user.save((err, resp)=>{
             if(err) {
