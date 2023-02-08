@@ -70,6 +70,7 @@ export class UsersService {
       formData.set('lastname', registerForm.lastname);
       formData.set('username', registerForm.username);
       formData.set('password', registerForm.password);
+      formData.set('phone', registerForm.phone);
       formData.set('email', registerForm.email);
       if (registerForm.organizer == true) {
         formData.set('type', 'org');
