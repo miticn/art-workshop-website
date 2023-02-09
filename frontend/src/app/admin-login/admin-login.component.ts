@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalService } from '../services/modal.service';
 import { UsersService } from '../services/users.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UsersService } from '../services/users.service';
 })
 export class AdminLoginComponent implements OnInit {
 
-  constructor(private service: UsersService, private router: Router) { }
+  constructor(private service: UsersService, private router: Router, private modalService : ModalService) { }
 
   ngOnInit(): void {
   }
@@ -19,8 +20,10 @@ export class AdminLoginComponent implements OnInit {
   loggedin: boolean = false;
   LogIn(){
     this.service.loginAdmin(this.username, this.password).subscribe((res: any) => {
-      alert(res.msg);
       location.reload();
+    }, (err) => {
+      this.modalService.set('Prijava nije uspela.', 'Pogrešno korisničko ime ili lozinka. Molimo pokušajte ponovo.');
+      this.modalService.openModal();
     });
   }
   

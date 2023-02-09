@@ -2,6 +2,7 @@ import { HttpEventType } from '@angular/common/http';
 import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomModalComponent } from '../custom-modal/custom-modal.component';
+import { ModalService } from '../services/modal.service';
 import { UsersService } from '../services/users.service';
 import { confirmPasswordValidator } from '../validators/confirmPasswordValidator';
 import { emailValidator } from '../validators/emailValidator';
@@ -14,7 +15,7 @@ import { usernameValidator } from '../validators/usernameValidator';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private service: UsersService, private renderer: Renderer2) { }
+  constructor(private service: UsersService, private renderer: Renderer2, private modalService: ModalService) { }
 
   ngOnInit(): void {
   }
@@ -80,12 +81,11 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    alert(JSON.stringify(this.registerForm.errors))
     this.service.register(this.registerForm.value, this.orgForm.value, this.registerForm.get('profilePicutreFile').value).subscribe((res:any) => {
-      this.message = res['message'];
-      alert(this.message);
-      //this.modal.openModal();
-      //this.customModal.openModal();
+      this.modalService.set('Poslat zahtev','Zahtev za registraciju je poslat administratoru. Molimo sačekajte odgovor.');
+      this.modalService.openModal();
+      this.registerForm.reset();
+      this.orgForm.reset();
     });
     
   };
