@@ -11,15 +11,12 @@ export class AuthService {
     this.init().then(() => {
       console.log('AuthService initialization finished');
     });
-    delay(1000)
-    console.log('AuthService exiting constructor');
   }
 
   private async init(): Promise<void> {
     await this.refresh();
   }
   
-  private created = false;
   private loggedin = false;
   private user: User;
 
@@ -27,12 +24,10 @@ export class AuthService {
     return this.user;
   }
   public async refresh(): Promise<void> {
-    if(this.created) return;
     return new Promise((resolve, reject) => {
       this.service.getSessionUser().subscribe((resp: any) => {
         if(resp['error']){
           this.loggedin = false;
-          this.created = true;
           this.user = null;
         }
         else{
@@ -50,15 +45,19 @@ export class AuthService {
           console.log("Local user data: ")
           console.log(this.user)
           this.loggedin = true;
-          this.created = true;
         }
         resolve();
       });
     });
   }
-  login(username: string, password: string) {
-    this.service.login(username, password).subscribe((resp: any) => {
-      location.reload();
+  login(username: string, password: string) : Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.service.login(username, password).subscribe((resp: any) => {
+        location.reload();
+        resolve();
+      }, (err) => {
+        reject(err);
+      });
     });
   }
 
@@ -66,16 +65,11 @@ export class AuthService {
     this.service.logout().subscribe((resp: any) => {
       this.loggedin = false;
       this.user = null;
+      location.reload();
     });
   }
 
-  public isLoggedInGuard(): Promise<boolean> {
-    return this.refresh().then(() => {
-      return this.loggedin;
-    });
-  }
   isLoggedIn() {
-    console.log("Logged in: " + this.loggedin)
     return this.loggedin;
   }
 }

@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, Injectable, OnInit, Renderer2, ViewChild } from '@angular/core';
 import {trigger, state, style, transition, animate } from '@angular/animations';
+import { ModalService } from '../services/modal.service';
 
 
 @Component({
@@ -15,17 +16,27 @@ import {trigger, state, style, transition, animate } from '@angular/animations';
     ]),
   ],
 })
+@Injectable({
+  providedIn: 'root'
+})
 export class CustomModalComponent implements OnInit {
   @ViewChild('modal', { static: true }) modal: ElementRef;
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2, private modalService: ModalService) {
+
+  }
 
   ngOnInit(): void {
-    this.openModal();
+    this.modalService.setModal(this);
   }
 
   showModal = false;
   title: string = 'Request Sent';
   message: string = 'Your registration request has been sent.';
+
+  set(title: string, message: string) {
+    this.title = title;
+    this.message = message;
+  }
 
   openModal() {
     this.showModal = true;
