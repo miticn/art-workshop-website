@@ -1,1 +1,7 @@
-<p>user works!</p>
+<h1 *ngIf="!exists">No user exists</h1>
+<div *ngIf="exists">
+    <h1>{{user.firstname}}</h1>
+    <h2>{{user.email}}</h2>
+    <h3>{{user.phone}}</h3>
+
+</div>

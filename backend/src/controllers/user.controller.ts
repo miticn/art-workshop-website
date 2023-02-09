@@ -31,7 +31,7 @@ export class UserController {
 
         User.findOne({ 'username': username }, (err, user) => {
             if (err) console.log(err);
-            else res.json({
+            else if(user) res.json({
                 firstname: user.firstname,
                 lastname: user.lastname,
                 username: user.username,
@@ -42,6 +42,7 @@ export class UserController {
                 verified: user.verified,
                 org: user.org
                 });
+            else res.json({error: "no user"});
         })
     }
 

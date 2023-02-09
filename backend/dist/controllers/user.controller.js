@@ -35,7 +35,7 @@ class UserController {
             user_1.default.findOne({ 'username': username }, (err, user) => {
                 if (err)
                     console.log(err);
-                else
+                else if (user)
                     res.json({
                         firstname: user.firstname,
                         lastname: user.lastname,
@@ -47,6 +47,8 @@ class UserController {
                         verified: user.verified,
                         org: user.org
                     });
+                else
+                    res.json({ error: "no user" });
             });
         };
         this.isUsernameFree = (req, res) => {
