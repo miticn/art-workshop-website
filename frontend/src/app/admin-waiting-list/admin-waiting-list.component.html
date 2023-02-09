@@ -23,8 +23,8 @@
         <td>{{user.email}}</td><!--Email-->
         <td>{{getTypeString(user.type)}}</td><!--Tip-->
         <td>{{user.type=='org'?getOrgString(user.org):'-'}}</td><!--Organizacija-->
-        <td><button>Odobri</button></td>
-        <td><button>Odbij</button></td>
+        <td><button (click)="approveUser(user.username)">Odobri</button></td>
+        <td><button (click)="rejectUser(user.username)">Odbij</button></td>
       </tr>
     </tbody>
   </table>

@@ -18,6 +18,16 @@ export class AdminWaitingListComponent implements OnInit {
     });
   }
 
+  approveUser(username:string) {
+    this.adminService.approveUser(username).subscribe((data: any) => {
+    });
+  }
+
+  rejectUser(username:string) {
+    this.adminService.rejectUser(username).subscribe((data: any) => {
+    });
+  }
+
   getTypeString(type) : string {
     switch (type) {
       case 'admin':
