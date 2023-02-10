@@ -1,29 +1,27 @@
-
-    
-    <form class="mx-auto">
-        <div class="row justify-content-center g-3">
-            <div class="col-sm-2">
-                <input type="text" class="form-control" placeholder="Naziv" [(ngModel)]="searchPlace" name="searchPlace">
-            </div>
-            <div class="col-sm-2">
-                <input type="text" class="form-control" placeholder="Lokacija" [(ngModel)]="searchName" name="searcName">
-            </div>
-            <div class="col-sm-1">
-                <button type="submit" class="btn btn-dark" (click)="search()">Pretraga</button>
-            </div>
-            <div class="col-sm-2">
-                <label>Sortiraj po:</label>
-                <select class="form-control" [(ngModel)]="sortBy" name="sortBy">
-                    <option value="Name">Imenu</option>
-                    <option value="Date">Datumu</option>
-                </select>
-            </div>
-        </div>
-    </form>
-
-    
-
-<div *ngFor="let workshop of workshops" class="card" style="width: 18rem;">
+<form class="d-flex justify-content-center">
+    <div class="d-flex align-items-center">
+      <div class="form-group me-2">
+        <label for="name">Naziv:</label>
+        <input type="text" class="form-control" id="name">
+      </div>
+      <div class="form-group me-2">
+        <label for="location">Lokacija:</label>
+        <input type="text" class="form-control" id="location">
+      </div>
+      <div class="form-group me-2">
+        <label for="sort">Sortiraj:</label>
+        <select class="form-control" id="sort">
+          <option>Ime</option>
+          <option>Datum</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-dark">Search</button>
+    </div>
+  </form>
+  
+  
+<div class="row row-cols-md-2 row-cols-1 justify-content-center">
+<div *ngFor="let workshop of workshops" class="card h-100" style="width: 18rem;">
     <img class="card-img-top" src="{{photoHepler.getWorkshopPhotoUrl(workshop.mainPicture)}}">
     <div class="card-body">
       <h5 class="card-title">{{workshop.name}}</h5>
@@ -34,6 +32,7 @@
         <li class="list-group-item">{{workshop.location}}</li>
     </ul>
     <div class="card-body">
-        <a href="#" class="btn btn-dark">Detalji</a>
+        <a class="btn btn-dark" (click)="details(workshop)">Detalji</a>
     </div>
+</div>
 </div>
