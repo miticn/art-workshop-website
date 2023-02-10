@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { PhotoHelper } from '../photoHelper';
+import { Helper } from '../helper';
 import { UsersService } from '../services/users.service';
 import { ModalService } from '../services/modal.service';
 
@@ -12,7 +12,7 @@ import { ModalService } from '../services/modal.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public auth: AuthService, private service: UsersService, private router: Router, public photoHelper: PhotoHelper,
+  constructor(public auth: AuthService, private service: UsersService, private router: Router, public photoHelper: Helper,
     private modalService: ModalService) { }
   
 

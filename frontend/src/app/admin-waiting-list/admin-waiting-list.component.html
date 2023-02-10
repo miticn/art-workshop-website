@@ -21,8 +21,8 @@
         <td>{{user.username}}</td><!--Korisničko ime-->
         <td>{{user.phone}}</td><!--Telefon-->
         <td>{{user.email}}</td><!--Email-->
-        <td>{{getTypeString(user.type)}}</td><!--Tip-->
-        <td>{{user.type=='org'?getOrgString(user.org):'-'}}</td><!--Organizacija-->
+        <td>{{photoHelper.getTypeString(user.type)}}</td><!--Tip-->
+        <td>{{user.type=='org'?photoHelper.getOrgString(user.org):'-'}}</td><!--Organizacija-->
         <td><button (click)="approveUser(user.username)">Odobri</button></td>
         <td><button (click)="rejectUser(user.username)">Odbij</button></td>
       </tr>

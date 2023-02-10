@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Workshop } from '../models/workshop';
 import { WorkshopsService } from '../services/workshops.service';
-import { PhotoHelper } from '../photoHelper';
+import { Helper } from '../helper';
 
 @Component({
   selector: 'app-workshops',
@@ -10,7 +10,7 @@ import { PhotoHelper } from '../photoHelper';
 })
 export class WorkshopsComponent implements OnInit {
 
-  constructor(private workshopService : WorkshopsService, public photoHepler: PhotoHelper) { }
+  constructor(private workshopService : WorkshopsService, public photoHepler: Helper) { }
   workshops : Workshop[] = [];
   ngOnInit(): void {
     this.workshopService.getAll().subscribe((data:Workshop[]) => {
