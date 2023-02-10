@@ -2,11 +2,11 @@
     <div class="d-flex align-items-center">
       <div class="form-group me-2">
         <label for="name">Naziv:</label>
-        <input type="text" class="form-control" id="name">
+        <input type="text" class="form-control" [(ngModel)]="searchName" [ngModelOptions]="{standalone: true}" id="searchName">
       </div>
       <div class="form-group me-2">
         <label for="location">Lokacija:</label>
-        <input type="text" class="form-control" id="location">
+        <input type="text" class="form-control" id="searchLocation" [(ngModel)]="searchLocation" [ngModelOptions]="{standalone: true}" id="searchLocation">
       </div>
       <div class="form-group me-2">
         <label for="sort">Sortiraj:</label>
@@ -15,7 +15,7 @@
           <option>Datum</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-dark">Search</button>
+      <button type="submit" class="btn btn-dark" (click)="search()">Search</button>
     </div>
   </form>
   

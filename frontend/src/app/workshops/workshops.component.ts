@@ -14,9 +14,10 @@ export class WorkshopsComponent implements OnInit {
 
   constructor(private workshopService : WorkshopsService, public photoHepler: Helper, private modalService: ModalService, private auth: AuthService) { }
   workshops : Workshop[] = [];
+  workshopsAll : Workshop[] = [];
   ngOnInit(): void {
     this.workshopService.getAll().subscribe((data:Workshop[]) => {
-      this.workshops = data;
+      this.workshops = this.workshopsAll = data;
       console.log(this.workshops);
     });
   }
@@ -32,11 +33,17 @@ export class WorkshopsComponent implements OnInit {
     });
   }
 
-  searchPlace : string;
-  searchName : string;
+  searchLocation : string = "";
+  searchName : string = "";
   sortBy :string;
   search(){
-
+    this.workshops = this.workshopsAll;
+    if (this.searchLocation != null && this.searchLocation != ""){
+      this.workshops = this.workshops.filter(w => w.location.toLowerCase().includes(this.searchLocation.toLowerCase()));
+    }
+    if (this.searchName != null && this.searchName != ""){
+      this.workshops = this.workshops.filter(w => w.name.toLowerCase().includes(this.searchName.toLowerCase()));
+    }
   }
 
   details(workshop : Workshop){
