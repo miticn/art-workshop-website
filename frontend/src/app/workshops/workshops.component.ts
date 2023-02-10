@@ -46,6 +46,15 @@ export class WorkshopsComponent implements OnInit {
     }
   }
 
+  sort(){
+    if (this.sortBy == "date"){
+      this.sortWorkshopsByDate();
+    }
+    else if (this.sortBy == "name"){
+      this.sortWorkshopsByName();
+    }
+  }
+
   details(workshop : Workshop){
     if (this.auth.isLoggedIn()){
 
