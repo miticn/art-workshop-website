@@ -18,6 +18,7 @@ import { WorkshopsComponent } from './workshops/workshops.component';
 import { AdminWaitingListComponent } from './admin-waiting-list/admin-waiting-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomModalComponent } from './custom-modal/custom-modal.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { CustomModalComponent } from './custom-modal/custom-modal.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
