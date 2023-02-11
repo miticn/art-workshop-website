@@ -4,4 +4,8 @@ export class Workshop{
     description: string;
     date: Date;
     mainPicture: string;
+    gallery: string[];
+    availableSeats: number;
+    descriptionLong: string;
+    //cordinates: Coordinates;
 }

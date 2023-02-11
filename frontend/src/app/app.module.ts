@@ -19,6 +19,8 @@ import { AdminWaitingListComponent } from './admin-waiting-list/admin-waiting-li
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomModalComponent } from './custom-modal/custom-modal.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { WorkshopComponent } from './workshop/workshop.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 
 @NgModule({
@@ -36,6 +38,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     WorkshopsComponent,
     AdminWaitingListComponent,
     CustomModalComponent,
+    WorkshopComponent,
+    UserEditComponent,
   ],
   imports: [
     BrowserAnimationsModule,
