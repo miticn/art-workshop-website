@@ -46,6 +46,11 @@ userRouter.route('/register').post(
     (req, res) => new UserController().register(req, res)
 )
 
+userRouter.route('/changeUser').post(
+    upload.single('file'), 
+    (req, res) => new UserController().changeUser(req, res)
+)
+
 userRouter.route('/isUsernameFree').post(
     (req, res) => new UserController().isUsernameFree(req, res)
 )

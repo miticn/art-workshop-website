@@ -8,7 +8,6 @@ export class ModalService {
   constructor() {
     
   }
-  
   private modal;
 
   setModal(modal) {
@@ -19,8 +18,8 @@ export class ModalService {
     this.modal.openModal();
   }
 
-  set(title: string, message: string) {
-    this.modal.set(title, message);
+  set(title: string, message: string, func: Function = null) {
+    this.modal.set(title, message, func);
   }
 
 }

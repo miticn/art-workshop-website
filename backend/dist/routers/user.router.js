@@ -26,6 +26,7 @@ userRouter.route('/logout').post(passport_middleware_1.PassportMiddleware.checkA
 userRouter.route('/getUser').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new user_controller_1.UserController().getUser(req, res));
 userRouter.route('/getSessionUser').post((req, res) => new user_controller_1.UserController().getSessionUser(req, res));
 userRouter.route('/register').post(exports.upload.single('file'), (req, res) => new user_controller_1.UserController().register(req, res));
+userRouter.route('/changeUser').post(exports.upload.single('file'), (req, res) => new user_controller_1.UserController().changeUser(req, res));
 userRouter.route('/isUsernameFree').post((req, res) => new user_controller_1.UserController().isUsernameFree(req, res));
 userRouter.route('/isEmailFree').post((req, res) => new user_controller_1.UserController().isEmailFree(req, res));
 userRouter.route('/uploadProfilePicture').post(exports.upload.single('file'), (req, res) => new user_controller_1.UserController().uploadProfilePicture(req, res));

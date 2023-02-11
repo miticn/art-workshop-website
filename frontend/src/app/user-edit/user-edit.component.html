@@ -1,6 +1,6 @@
 <h1 *ngIf="!exists">No user exists</h1>
 <div *ngIf="exists" class="container mt-5">
-    <form [formGroup]="editForm" (ngSubmit)="edit()">
+    <form [formGroup]="editForm">
     <div class="row">
         <div class="col-md-4 text-center">
             <img *ngIf="editForm.value.profilePicture==''" src="{{helper.getProfilePhotoUrl(user.profilePicture)}}" alt="Profile Picture"

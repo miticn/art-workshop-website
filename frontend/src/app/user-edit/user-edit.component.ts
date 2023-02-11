@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Helper } from '../helper';
 import { User } from '../models/user';
+import { ModalService } from '../services/modal.service';
 import { UsersService } from '../services/users.service';
 import { emailValidator } from '../validators/emailValidator';
 import { usernameValidator } from '../validators/usernameValidator';
@@ -68,7 +69,7 @@ export class UserEditComponent implements OnInit {
   });
 
 
-  constructor(private activatedRoute : ActivatedRoute, private userService : UsersService, public helper: Helper) {
+  constructor(private activatedRoute : ActivatedRoute, private userService : UsersService, public helper: Helper, private modalService : ModalService) {
     this.username = this.activatedRoute.snapshot.paramMap.get('username');
    }
   user: User;
@@ -76,7 +77,12 @@ export class UserEditComponent implements OnInit {
   userString: string;
   
   edit(){
-    
+    this.userService.changeUser(this.editForm.value, this.orgForm.value, this.editForm.get('profilePicutreFile').value,this.username).subscribe((res:any) => {
+      this.modalService.set('Promena podataka','Uspesno ste izmenili svoje podatke.',()=>{
+        location.reload();
+      });
+      this.modalService.openModal();
+    });
   }
 
   @ViewChild('canvas', { static: false }) canvas;

@@ -123,4 +123,39 @@ export class UsersService {
     }
     return this.http.post(`${this.uri}/resetPasswordRequest`, data, { withCredentials: true });
   }
+
+  changeUser(editForm, orgForm, profilePicture, usernameOfUserToChange) {
+    const formData = new FormData();
+    console.log(editForm.firstname)
+    formData.set('usernamechange', usernameOfUserToChange);
+    formData.set('firstname', editForm.firstname);
+    formData.set('lastname', editForm.lastname);
+    formData.set('username', editForm.username);
+    formData.set('password', editForm.password);
+    formData.set('phone', editForm.phone);
+    formData.set('email', editForm.email);
+    if (editForm.organizer == true) {
+      formData.set('type', 'org');
+      let org = {
+        city:orgForm.city,
+        country:orgForm.country,
+        name:orgForm.organizationName,
+        postNumber:orgForm.postNumber,
+        regNumber:orgForm.matNumber,
+        street:orgForm.street,
+        streetNumber:orgForm.streetNumber,
+      }
+      formData.set('org', JSON.stringify(org));
+    } else {
+      formData.set('type', 'user');
+      formData.set('org', JSON.stringify({}));
+    }
+    if(profilePicture != null) 
+      formData.append('file', profilePicture, profilePicture.name);
+    return this.http.post(`${this.uri}/changeUser`, formData, {
+      reportProgress: true,
+      observe: 'events',
+      withCredentials: true
+    });
+}
 }

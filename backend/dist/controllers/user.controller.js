@@ -216,6 +216,30 @@ class UserController {
                 res.json({ "message": "ok" });
             });
         };
+        this.changeUser = (req, res) => {
+            let usernamechange = req.body.usernamechange;
+            user_1.default.findOneAndUpdate({ 'username': usernamechange }, {
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                username: req.body.username,
+                phone: req.body.phone,
+                email: req.body.email,
+                org: JSON.parse(req.body.org)
+            }).exec((err, resp) => {
+                if (err) {
+                    console.log(err);
+                    res.status(400).json({ "message": "error" });
+                }
+                else {
+                    if (req['file'])
+                        this.uploadProfilePicture(req, res);
+                    else {
+                        res.json({ "message": "ok" });
+                    }
+                    console.log("User changed profile: " + req.body.username);
+                }
+            });
+        };
     }
 }
 exports.UserController = UserController;

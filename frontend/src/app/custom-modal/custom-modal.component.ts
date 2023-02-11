@@ -33,17 +33,19 @@ export class CustomModalComponent implements OnInit {
   title: string = 'Request Sent';
   message: string = 'Your registration request has been sent.';
 
-  set(title: string, message: string) {
+  set(title: string, message: string, func: Function) {
     this.title = title;
     this.message = message;
+    this.onClickF = func;
   }
-
+  onClickF: Function;
   openModal() {
     this.showModal = true;
   }
 
   closeModal() {
     this.showModal = false;
+    this.onClickF();
   }
 
 }
