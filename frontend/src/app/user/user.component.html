@@ -11,7 +11,7 @@
             />
           </div>
           <div class="col-md-8">
-            <h2>{{user.firstname}} {{user.lastname}}</h2>
+            <h2>{{user.firstname}} {{user.lastname}} <a *ngIf="auth.getUser().username==user.username" [routerLink]="['/user/',auth.getUser().username, 'edit' ]"><button class="btn btn-dark">Edit</button></a></h2>
             <h5 class="text-muted">{{user.username}}</h5>
             <h6 class="text-muted">{{helper.getTypeString(user.type)}}</h6>
             <p class="text-muted">{{user.email}}</p>

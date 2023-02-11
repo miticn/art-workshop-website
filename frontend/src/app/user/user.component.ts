@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '../models/user';
 import { Helper } from '../helper';
 import { UsersService } from '../services/users.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-user',
@@ -11,7 +12,7 @@ import { UsersService } from '../services/users.service';
 })
 export class UserComponent implements OnInit {
 
-  constructor(private activatedRoute : ActivatedRoute, private userService : UsersService, public helper: Helper) { }
+  constructor(private activatedRoute : ActivatedRoute, private userService : UsersService, public helper: Helper, public auth: AuthService) { }
   username: string;
   user: User;
   exists: boolean = true;

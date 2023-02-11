@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Helper } from '../helper';
@@ -68,8 +68,43 @@ export class UserEditComponent implements OnInit {
     
   }
 
-  onFileSelected(event){
-    //this.user.image = event.target.files[0];
+  @ViewChild('canvas', { static: false }) canvas;
+  @ViewChild('viewcanvas', { static: false }) viewcanvas;
+  onFileSelected(event) {
+    //console.log(this.registerForm.controls);
+    //console.log("Register form validation: ", this.registerForm.valid);
+    //alert(this.registerForm.controls.profilePicture.valid)
+    if (event.target.files.length == 0){
+      this.editForm.controls.imageDimensionsX.setValue(100);
+      this.editForm.controls.imageDimensionsY.setValue(100);
+      this.editForm.controls.profilePicutreFile.setValue(null);
+    }
+    else if (event.target.files.length > 0 && this.editForm.controls.profilePicture.valid) {
+      const file = event.target.files[0];
+      this.editForm.patchValue({
+        profilePicutreFile: file
+      });
+      const canvas = this.canvas.nativeElement;
+      const context = canvas.getContext('2d');
+      const viewcanvas = this.viewcanvas.nativeElement;
+      const contextViewCanvas = viewcanvas.getContext('2d');
+      const image = new Image();
+      image.src = URL.createObjectURL(event.target.files[0]);
+      image.onload = () => {
+        canvas.width = image.width;
+        canvas.height = image.height;
+        context.drawImage(image, 0, 0, image.width, image.height);
+        contextViewCanvas.drawImage(image, 0, 0, 200, 200);
+        this.editForm.controls.imageDimensionsX.setValue(image.width);
+        this.editForm.controls.imageDimensionsY.setValue(image.height);
+        console.log('Image dimensions:', this.editForm.value.imageDimensionsX, this.editForm.value.imageDimensionsY);
+        console.log(this.editForm.controls.imageDimensionsX.errors)
+      };
+    }
+    if(!this.editForm.controls.profilePicture.valid){
+      this.editForm.controls.imageDimensionsX.setValue(100);
+      this.editForm.controls.imageDimensionsY.setValue(100);
+    }
   }
 
 }

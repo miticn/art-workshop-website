@@ -3,9 +3,18 @@
     <form [formGroup]="editForm" (ngSubmit)="edit()">
     <div class="row">
         <div class="col-md-4 text-center">
-            <img src="{{helper.getProfilePhotoUrl(user.profilePicture)}}" alt="Profile Picture"
+            <img *ngIf="editForm.value.profilePicture==''" src="{{helper.getProfilePhotoUrl(user.profilePicture)}}" alt="Profile Picture"
                 class="rounded-circle mx-auto d-block" width="200" height="200" />
-            <input type="file" (change)="onFileSelected($event)" />
+            <canvas *ngIf="editForm.value.profilePicture!=''" #viewcanvas class="view-canvas rounded-circle mx-auto d-block" width="200" height="200"></canvas>
+            <canvas #canvas></canvas>
+            <input type="file" class="form-control" formControlName="profilePicture" name="profilePicture" accept="image/jpeg, image/png" (change)="onFileSelected($event)">
+            <div *ngIf="(editForm.controls.profilePicture.dirty || editForm.controls.profilePicture.touched)" class="inputError">
+                <div *ngIf="(editForm.controls.imageDimensionsX.invalid && editForm.controls.imageDimensionsX.errors['max'])
+                || (editForm.controls.imageDimensionsY.invalid && editForm.controls.imageDimensionsX.errors['max'])">Slika je prevelika.</div>
+                <div *ngIf="(editForm.controls.imageDimensionsX.invalid && editForm.controls.imageDimensionsX.errors['min'])
+                || (editForm.controls.imageDimensionsY.invalid && editForm.controls.imageDimensionsX.errors['min'])">Slika je permala.</div>
+                <div *ngIf="editForm.controls.profilePicture.errors?.['pattern']">Slika mora da bude u jpg ili png formatu.</div>
+            </div>
         </div>
         <div class="col-md-8">
             <label for="firstname">Ime</label>
