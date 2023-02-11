@@ -29,7 +29,18 @@ export class UserEditComponent implements OnInit {
           phone: this.user.phone,
           email: this.user.email,
           organizer: this.user.type=="org"
-        });     
+        });
+        if(this.user.type=="org"){
+          this.orgForm.patchValue({
+            organizationName: this.user.org.name,
+            matNumber: this.user.org.regNumber,
+            country: this.user.org.country,
+            city: this.user.org.city,
+            postNumber: this.user.org.postNumber,
+            street: this.user.org.street,
+            streetNumber: this.user.org.streetNumber
+          });
+        }
       }
     });
   }

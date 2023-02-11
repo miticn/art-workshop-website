@@ -59,22 +59,23 @@
             <h6 class="text-muted">{{helper.getTypeString(user.type)}}</h6>
             <hr />
             <div *ngIf="user.type=='org'">
-                <h5 class="text-muted">Organizacija</h5>
-                <label for="orgName">Naziv organizacije</label>
-                <input type="text" class="form-control" formControlName="user.org.name" placeholder="Naziv organizacije" />
-                <label for="orgAddress">Ulica</label>
-                <input type="text" class="form-control" formControlName="user.org.street" placeholder="Ulica" />
-                <label for="orgAddress">Broj</label>
-                <input type="text" class="form-control" formControlName="user.org.streetNumber" placeholder="Broj" />
-                <label for="orgAddress">Poštanski broj</label>
-                <input type="text" class="form-control" formControlName="user.org.postNumber"
-                    placeholder="Poštanski broj" />
-                <label for="orgAddress">Grad</label>
-                <input type="text" class="form-control" formControlName="user.org.city" placeholder="Grad" />
-                <label for="orgAddress">Država</label>
-                <input type="text" class="form-control" formControlName="user.org.country" placeholder="Država" />
-                <label for="orgRegNumber">Matični broj</label>
-                <input type="text" class="form-control" formControlName="user.org.regNumber" placeholder="Matični broj" />
+                <form [formGroup]="orgForm">
+                    <h5 class="text-muted">Organizacija</h5>
+                    <label for="orgName">Naziv organizacije</label>
+                    <input type="text" class="form-control" formControlName="organizationName" placeholder="Naziv organizacije" />
+                    <label for="orgAddress">Ulica</label>
+                    <input type="text" class="form-control" formControlName="street" placeholder="Ulica" />
+                    <label for="orgAddress">Broj</label>
+                    <input type="text" class="form-control" formControlName="streetNumber" placeholder="Broj" />
+                    <label for="orgAddress">Poštanski broj</label>
+                    <input type="text" class="form-control" formControlName="postNumber" placeholder="Poštanski broj" />
+                    <label for="orgAddress">Grad</label>
+                    <input type="text" class="form-control" formControlName="city" placeholder="Grad" />
+                    <label for="orgAddress">Država</label>
+                    <input type="text" class="form-control" formControlName="country" placeholder="Država" />
+                    <label for="orgRegNumber">Matični broj</label>
+                    <input type="text" class="form-control" formControlName="matNumber" placeholder="Matični broj" />
+                </form>
                 <hr />
             </div>
             <button class="btn btn-dark" [disabled]="editForm.invalid || (orgForm.invalid && editForm.value.organizer)" (click)="edit()">Sačuvaj</button>
