@@ -68,7 +68,7 @@
                 <input type="text" class="form-control" formControlName="user.org.regNumber" placeholder="Matični broj" />
                 <hr />
             </div>
-            <button class="btn btn-dark" (click)="edit()">Sačuvaj</button>
+            <button class="btn btn-dark" [disabled]="editForm.invalid || (orgForm.invalid && editForm.value.organizer)" (click)="edit()">Sačuvaj</button>
         </div>
     </div>
     </form>

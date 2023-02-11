@@ -13,6 +13,26 @@ import { usernameValidator } from '../validators/usernameValidator';
   styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
+  username: string = "";
+  ngOnInit(): void {
+    this.userService.getUser(this.username).subscribe((data: User) => {
+      if(data['error'] == "no user"){
+        this.exists = false;
+      }
+      else{
+        this.user = data;
+        this.userString = JSON.stringify(this.user);
+        this.editForm.patchValue({
+          firstname: this.user.firstname,
+          lastname: this.user.lastname,
+          username: this.user.username,
+          phone: this.user.phone,
+          email: this.user.email,
+          organizer: this.user.type=="org"
+        });     
+      }
+    });
+  }
   editForm = new FormGroup({
     firstname: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[A-Z][a-z]*")]),
     lastname: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern("[A-Z][a-zA-Z]*")]),
@@ -37,31 +57,13 @@ export class UserEditComponent implements OnInit {
   });
 
 
-  constructor(private activatedRoute : ActivatedRoute, private userService : UsersService, public helper: Helper) { }
-  username: string;
+  constructor(private activatedRoute : ActivatedRoute, private userService : UsersService, public helper: Helper) {
+    this.username = this.activatedRoute.snapshot.paramMap.get('username');
+   }
   user: User;
   exists: boolean = true;
   userString: string;
-  ngOnInit(): void {
-    this.username = this.activatedRoute.snapshot.paramMap.get('username');
-    this.userService.getUser(this.username).subscribe((data: User) => {
-      if(data['error'] == "no user"){
-        this.exists = false;
-      }
-      else{
-        this.user = data;
-        this.userString = JSON.stringify(this.user);
-        this.editForm.patchValue({
-          firstname: this.user.firstname,
-          lastname: this.user.lastname,
-          username: this.user.username,
-          phone: this.user.phone,
-          email: this.user.email,
-          organizer: this.user.type=="org"
-        });     
-      }
-    });
-  }
+  
   edit(){
     
   }
