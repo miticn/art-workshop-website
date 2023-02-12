@@ -240,6 +240,27 @@ class UserController {
                 }
             });
         };
+        this.changePassword = (req, res) => {
+            let user = req.user;
+            let oldPassword = req.body.oldPassword;
+            let newPassword = req.body.newPassword;
+            if (user.password == oldPassword) {
+                user.password = newPassword;
+                user.save((err, resp) => {
+                    if (err) {
+                        console.log(err);
+                        res.json({ "message": "error" });
+                    }
+                    else {
+                        res.json({ "message": "ok" });
+                        console.log("User changed password: " + user.username);
+                    }
+                });
+            }
+            else {
+                res.json({ "message": "error" });
+            }
+        };
     }
 }
 exports.UserController = UserController;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from '../services/users.service';
+import { confirmPasswordValidator } from '../validators/confirmPasswordValidator';
 
 @Component({
   selector: 'app-reset-password',
@@ -21,9 +22,9 @@ export class ResetPasswordComponent implements OnInit {
   }
   
   resetPasswordForm = new FormGroup({
-    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern("[a-zA-Z0-9]*")]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern("^(?=.*[A-Z])([A-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])[a-zA-Z0-9!@#\$%\^&\*]+$")]),
     confirmPassword: new FormControl('', [Validators.required])
-  });
+  }, { validators: [confirmPasswordValidator]});
   validToken:boolean = false;
   token:string;
   ressetPassword(){

@@ -33,5 +33,6 @@ userRouter.route('/uploadProfilePicture').post(exports.upload.single('file'), (r
 userRouter.route('/isTokenValid').post((req, res) => new user_controller_1.UserController().isTokenValid(req, res));
 userRouter.route('/setNewResetPassword').post((req, res) => new user_controller_1.UserController().setNewResetPassword(req, res));
 userRouter.route('/resetPasswordRequest').post((req, res) => new user_controller_1.UserController().resetPasswordRequest(req, res));
+userRouter.route('/changePassword').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new user_controller_1.UserController().changePassword(req, res));
 exports.default = userRouter;
 //# sourceMappingURL=user.router.js.map

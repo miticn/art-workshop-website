@@ -11,11 +11,13 @@ import { WorkshopsComponent } from './workshops/workshops.component';
 import { AdminWaitingListComponent } from './admin-waiting-list/admin-waiting-list.component';
 import { AuthGuard } from './auth.guard';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   { path: "", component: IndexComponent },
   { path: "user/:username", canActivate: [AuthGuard], component: UserComponent },
   { path: "user/:username/edit", canActivate: [AuthGuard], component: UserEditComponent },
+  { path: "user/:username/cpw", canActivate: [AuthGuard], component: ChangePasswordComponent },
   { path: "org", component: OrgComponent },
   { path: "AdminLogin", component: AdminLoginComponent },
   { path: "resetPassword", component: PasswordResetRequestComponent },

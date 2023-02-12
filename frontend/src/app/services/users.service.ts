@@ -157,5 +157,13 @@ export class UsersService {
       observe: 'events',
       withCredentials: true
     });
-}
+  }
+  
+  changePassword(oldPassword, newPassword) {
+    const data = {
+      oldPassword: oldPassword,
+      newPassword: newPassword
+    }
+    return this.http.post(`${this.uri}/changePassword`, data, { withCredentials: true });
+  }
 }

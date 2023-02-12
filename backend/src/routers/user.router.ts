@@ -76,4 +76,9 @@ userRouter.route('/resetPasswordRequest').post(
     (req, res) => new UserController().resetPasswordRequest(req, res)
 )
 
+userRouter.route('/changePassword').post(
+    PassportMiddleware.checkAuthenticated,
+    (req, res) => new UserController().changePassword(req, res)
+)
+
 export default userRouter;

@@ -21,6 +21,7 @@ import { CustomModalComponent } from './custom-modal/custom-modal.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { WorkshopComponent } from './workshop/workshop.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     CustomModalComponent,
     WorkshopComponent,
     UserEditComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserAnimationsModule,
