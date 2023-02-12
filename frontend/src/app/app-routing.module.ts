@@ -12,6 +12,7 @@ import { AdminWaitingListComponent } from './admin-waiting-list/admin-waiting-li
 import { AuthGuard } from './auth.guard';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { WorkshopComponent } from './workshop/workshop.component';
 
 const routes: Routes = [
   { path: "", component: IndexComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: "resetPassword", component: PasswordResetRequestComponent },
   { path: "resetPassword/:token", component: ResetPasswordComponent },
   { path: "workshops", component: WorkshopsComponent},
+  { path: "workshop", component: WorkshopComponent},
   { path: "waitingList", component: AdminWaitingListComponent}
   /*
   {
