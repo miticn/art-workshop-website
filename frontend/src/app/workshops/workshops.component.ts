@@ -4,6 +4,7 @@ import { WorkshopsService } from '../services/workshops.service';
 import { Helper } from '../helper';
 import { ModalService } from '../services/modal.service';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-workshops',
@@ -12,7 +13,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class WorkshopsComponent implements OnInit {
 
-  constructor(private workshopService : WorkshopsService, public photoHepler: Helper, private modalService: ModalService, private auth: AuthService) { }
+  constructor(private workshopService : WorkshopsService, public photoHepler: Helper, private modalService: ModalService, private auth: AuthService,
+    private router: Router) { }
   workshops : Workshop[] = [];
   workshopsAll : Workshop[] = [];
   ngOnInit(): void {
@@ -57,7 +59,7 @@ export class WorkshopsComponent implements OnInit {
 
   details(workshop : Workshop){
     if (this.auth.isLoggedIn()){
-
+      this.router.navigate(['/workshop', workshop._id]);
     }
     else{
       this.modalService.set('Niste prijavljeni', 'Morate biti prijavljeni da bi ste videli detalje o radionici');

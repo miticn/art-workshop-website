@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: "resetPassword", component: PasswordResetRequestComponent },
   { path: "resetPassword/:token", component: ResetPasswordComponent },
   { path: "workshops", component: WorkshopsComponent},
-  { path: "workshop", component: WorkshopComponent},
+  { path: "workshop/:id", component: WorkshopComponent},
   { path: "waitingList", component: AdminWaitingListComponent}
   /*
   {

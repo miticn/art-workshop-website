@@ -8,4 +8,12 @@ export class WorkshopController {
             else res.json(workshops);
         })
     }
+
+    getById = (req: express.Request, res: express.Response) => {
+        console.log(req.body.id);
+        workshop.findById(req.body.id, (err, workshop) => {
+            if (err) console.log(err);
+            else res.json(workshop);
+        })
+    }
 }

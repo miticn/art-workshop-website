@@ -15,6 +15,15 @@ class WorkshopController {
                     res.json(workshops);
             });
         };
+        this.getById = (req, res) => {
+            console.log(req.body.id);
+            workshop_1.default.findById(req.body.id, (err, workshop) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json(workshop);
+            });
+        };
     }
 }
 exports.WorkshopController = WorkshopController;

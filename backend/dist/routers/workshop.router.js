@@ -7,5 +7,6 @@ const express_1 = __importDefault(require("express"));
 const workshop_controller_1 = require("../controllers/workshop.controller");
 const workshopRouter = express_1.default.Router();
 workshopRouter.route('/getAll').get((req, res) => new workshop_controller_1.WorkshopController().getAll(req, res));
+workshopRouter.route('/getById').post((req, res) => new workshop_controller_1.WorkshopController().getById(req, res));
 exports.default = workshopRouter;
 //# sourceMappingURL=workshop.router.js.map

@@ -12,4 +12,12 @@ export class WorkshopsService {
   getAll(){
     return this.http.get(`${this.uri}/getAll`);
   }
+
+
+  getById(id: string){
+    let body = {
+      id: id
+    }
+    return this.http.post(`${this.uri}/getById`, body);
+  }
 }

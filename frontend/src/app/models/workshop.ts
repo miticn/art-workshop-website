@@ -12,4 +12,5 @@ export class Workshop{
         lng: number;
     };
     location: string;
+    _id: string;
 }
