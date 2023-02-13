@@ -68,8 +68,8 @@
         <form>
           <div class="d-flex align-items-center input-top">
             <label class="comment-label">Komentar:</label>
-            <input type="text" class="comment-input">
-            <button type="submit" class="btn btn-comment-send">Pošalji</button>
+            <input type="text" class="comment-input" [(ngModel)]="commentText" [ngModelOptions]="{standalone: true}">
+            <button type="submit" class="btn btn-comment-send" (click)="comment()">Pošalji</button>
           </div>
           
         </form>

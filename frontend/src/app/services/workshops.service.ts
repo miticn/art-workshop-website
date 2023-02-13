@@ -27,4 +27,12 @@ export class WorkshopsService {
     }
     return this.http.post(`${this.uri}/getWorkshopComments`, body);
   }
+
+  comment(workshopId: string, comment: string){
+    let body = {
+      id: workshopId,
+      text: comment
+    }
+    return this.http.post(`${this.uri}/comment`, body,{withCredentials: true});
+  }
 }

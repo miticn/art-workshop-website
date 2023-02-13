@@ -16,8 +16,17 @@ export class WorkshopController {
         })
     }
 
-    comment = (req: express.Request, res: express.Response) => {
-        
+    comment = (req, res: express.Response) => {
+        let commment = new comments({
+            user: req.user._id,
+            workshop: req.body.id,
+            text: req.body.text,
+            date: new Date()
+        });
+        commment.save((err, comment) => {
+            if (err) console.log(err);
+            else res.json(comment);
+        });
     }
 
     getWorkshopComments = (req: express.Request, res: express.Response) => {

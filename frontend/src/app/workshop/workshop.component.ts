@@ -19,6 +19,7 @@ export class WorkshopComponent implements OnInit {
   workshop : Workshop = new Workshop();
 
   comments : Comment[];
+  commentText : string;
   images = [];
   location : string;
   constructor(private geocoder: MapGeocoder, private activatedRoute : ActivatedRoute, private workshopService: WorkshopsService,
@@ -42,6 +43,15 @@ export class WorkshopComponent implements OnInit {
     this.workshopService.getWorkshopComments(this.id).subscribe((data: any) => {
       this.comments = data;
       console.log(this.comments)
+    });
+  }
+
+  comment(){
+    this.workshopService.comment(this.id, this.commentText).subscribe((data: any) => {
+      this.commentText = '';
+      this.workshopService.getWorkshopComments(this.id).subscribe((data: any) => {
+        this.comments = data;
+      });
     });
   }
 

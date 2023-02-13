@@ -25,6 +25,18 @@ class WorkshopController {
             });
         };
         this.comment = (req, res) => {
+            let commment = new comments_1.default({
+                user: req.user._id,
+                workshop: req.body.id,
+                text: req.body.text,
+                date: new Date()
+            });
+            commment.save((err, comment) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json(comment);
+            });
         };
         this.getWorkshopComments = (req, res) => {
             let workshopId = req.body.id;
