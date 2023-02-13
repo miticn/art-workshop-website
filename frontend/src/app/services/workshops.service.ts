@@ -20,4 +20,11 @@ export class WorkshopsService {
     }
     return this.http.post(`${this.uri}/getById`, body);
   }
+
+  getWorkshopComments(workshopId: string){
+    let body = {
+      id: workshopId
+    }
+    return this.http.post(`${this.uri}/getWorkshopComments`, body);
+  }
 }

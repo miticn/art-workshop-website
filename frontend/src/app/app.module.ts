@@ -22,6 +22,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { WorkshopComponent } from './workshop/workshop.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

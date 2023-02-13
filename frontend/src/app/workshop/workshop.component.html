@@ -51,4 +51,30 @@
             <p>{{workshop.descriptionLong}}</p>
         </div>
     </div>
+
+    <!--Workshop likes and comments-->
+    <div class="d-flex align-items-center topOfComments">
+      <fa-icon [icon]="faHeart"></fa-icon>
+      <span>10</span>
+      <fa-icon [icon]="faComment" flip="horizontal"></fa-icon>
+      <span>10</span>
+    </div>
+    <div class="comment-box col-md-6">
+      <div>
+        <div class="list-unstyled">
+
+          <div *ngFor="let comment of comments" class="mb-2">{{comment['date']}}{{comment['text']}}</div>
+        </div>
+        <form>
+          <div class="d-flex align-items-center input-top">
+            <label class="comment-label">Komentar:</label>
+            <input type="text" class="comment-input">
+            <button type="submit" class="btn btn-comment-send">Pošalji</button>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+    
+    
 </div>

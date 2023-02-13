@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WorkshopController = void 0;
 const workshop_1 = __importDefault(require("../models/workshop"));
+const comments_1 = __importDefault(require("../models/comments"));
 class WorkshopController {
     constructor() {
         this.getAll = (req, res) => {
@@ -16,12 +17,22 @@ class WorkshopController {
             });
         };
         this.getById = (req, res) => {
-            console.log(req.body.id);
             workshop_1.default.findById(req.body.id, (err, workshop) => {
                 if (err)
                     console.log(err);
                 else
                     res.json(workshop);
+            });
+        };
+        this.comment = (req, res) => {
+        };
+        this.getWorkshopComments = (req, res) => {
+            let workshopId = req.body.id;
+            comments_1.default.find({ workshop: workshopId }, (err, comments) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json(comments);
             });
         };
     }
