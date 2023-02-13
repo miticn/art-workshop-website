@@ -20,7 +20,31 @@ let Workshop = new Schema({
     },
     mainPicture: {
         type: String
-    }
+    },
+    gallery: {
+        type: Array
+    },
+    availableSeats: {
+        type: Number
+    },
+    totalSeats: {
+        type: Number
+    },
+    descriptionLong: {
+        type: String
+    },
+    cordinates: {
+        lat: {
+            type: Number
+        },
+        lng: {
+            type: Number
+        },
+    },
+    owner: {
+        type: mongoose_1.default.Schema.Types.ObjectId,
+        ref: 'User'
+    },
 });
 exports.default = mongoose_1.default.model('Workshop', Workshop, 'workshops');
 //# sourceMappingURL=workshop.js.map

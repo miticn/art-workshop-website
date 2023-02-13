@@ -5,6 +5,7 @@ export class Workshop{
     mainPicture: string;
     gallery: string[];
     availableSeats: number;
+    totalSeats: number;
     descriptionLong: string;
     cordinates: {
         lat: number;
