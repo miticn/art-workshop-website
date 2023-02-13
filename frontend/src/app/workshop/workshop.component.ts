@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Workshop } from '../models/workshop';
 import { HttpClient } from '@angular/common/http';
 import { MapGeocoder } from '@angular/google-maps';
@@ -24,8 +24,8 @@ export class WorkshopComponent implements OnInit {
     availableSeats: 15,
     descriptionLong: "This workshop is designed for photography enthusiasts looking to improve their skills and take their work to the next level. Over the course of two days, participants will learn about composition, lighting, and post-processing techniques. The workshop will include hands-on practice and a review of each participant's work.",
     cordinates: {
-      lat: 44.81632843955367,
-      lng: 20.50248481178454
+      lat: 44.81667138969009,
+      lng: 20.459841869699165
     },
     location:""
   }

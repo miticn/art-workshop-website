@@ -25,9 +25,8 @@
         </div>
         <!-- Workshop Map -->
         <div class="col-md-6">
-            <google-map class="map" height="400" width="700">
-                <map-marker latitude="51.678418" longitude="7.809007" label="Test marker" title="Test title">
-                </map-marker>
+            <google-map class="map" height="400" width="700" [center]="workshop.cordinates">
+              <map-marker #markerElem="mapMarker" [position]="workshop.cordinates" ></map-marker>
             </google-map>
         </div> 
     </div>
