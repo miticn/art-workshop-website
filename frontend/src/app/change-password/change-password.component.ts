@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 import { ModalService } from '../services/modal.service';
 import { UsersService } from '../services/users.service';
 import { confirmPasswordValidator } from '../validators/confirmPasswordValidator';
@@ -12,7 +13,8 @@ import { confirmPasswordValidator } from '../validators/confirmPasswordValidator
 })
 export class ChangePasswordComponent implements OnInit {
 
-  constructor(private router: Router, private activatedRoute : ActivatedRoute,private userService: UsersService, private modalService: ModalService) { }
+  constructor(private router: Router, private activatedRoute : ActivatedRoute,private userService: UsersService, private modalService: ModalService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -30,6 +32,7 @@ export class ChangePasswordComponent implements OnInit {
       console.log(res);
       if(res.message == "ok"){
         this.modalService.set("Uspesna promena lozinke","Lozinka je uspesno promenjena !",()=>{
+          this.authService.logout();
           this.router.navigate(['/']);
         });
         this.modalService.openModal();

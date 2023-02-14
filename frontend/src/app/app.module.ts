@@ -24,6 +24,7 @@ import { UserEditComponent } from './user-edit/user-edit.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MessageCommentComponent } from './message-comment/message-comment.component';
+import { Top5Component } from './top5/top5.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { MessageCommentComponent } from './message-comment/message-comment.compo
     UserEditComponent,
     ChangePasswordComponent,
     MessageCommentComponent,
+    Top5Component,
   ],
   imports: [
     BrowserAnimationsModule,
