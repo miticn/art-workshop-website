@@ -25,4 +25,9 @@ workshopRouter.route('/like').post(
     (req, res) => new WorkshopController().like(req, res)
 )
 
+workshopRouter.route('/isLiked').post(
+    PassportMiddleware.checkAuthenticated,
+    (req, res) => new WorkshopController().isLiked(req, res)
+)
+
 export default workshopRouter;

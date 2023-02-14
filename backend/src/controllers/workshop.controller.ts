@@ -1,6 +1,7 @@
 import * as express from 'express';
 import workshop from '../models/workshop';
 import comments from '../models/comments';
+import likes from '../models/likes';
 export class WorkshopController {
     getAll = (req: express.Request, res: express.Response) => {
         workshop.find({}, (err, workshops) => {
@@ -39,9 +40,43 @@ export class WorkshopController {
 
     like = (req, res: express.Response) => {
         let workshopId = req.body.id;
-        workshop.findByIdAndUpdate(workshopId, {$inc: {likes: 1}}, { returnOriginal: false }, (err, workshop) => {
+        let liked = false;
+        likes.findOne({workshop: workshopId, user: req.user._id}, (err, like) => {
             if (err) console.log(err);
-            else res.json(workshop);
+            else {
+                liked = like ? true : false
+                let inc = liked ? -1 : 1;
+                workshop.findByIdAndUpdate(workshopId, { $inc: { likes: inc } }, { returnOriginal: false }, (err, workshop) => {
+                    if (err) console.log(err);
+                    else {
+                        if (!liked) {
+                            let like = new likes({
+                                user: req.user._id,
+                                workshop: workshopId,
+                            });
+                            like.save((err, like) => {
+                                if (err) console.log(err);
+                                else res.json(workshop);
+                            });
+                        } else {
+                            likes.findOneAndDelete({workshop: workshopId, user: req.user._id}, (err, like) => {
+                                if (err) console.log(err);
+                                else res.json(workshop);
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    }
+
+    isLiked = (req, res: express.Response) => {
+        let workshopId = req.body.id;
+        likes.findOne({workshop: workshopId, user: req.user._id}, (err, like) => {
+            if (err) console.log(err);
+            else {
+                res.json({liked: like ? true : false});
+            }
         })
     }
 }

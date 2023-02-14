@@ -19,6 +19,8 @@ export class WorkshopComponent implements OnInit {
   faOutbox = faMessage;
   workshop : Workshop = new Workshop();
 
+  liked : boolean = true;
+
   comments : Comment[] = [];
   users = {};
   getUser(userId){
@@ -40,6 +42,10 @@ export class WorkshopComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
+
+    this.workshopService.isLiked(this.id).subscribe((data: any) => {
+      this.liked = data.liked;
+    });
     this.workshopService.getById(this.id).subscribe((data: any) => {
       console.log(data)
       this.workshop = data;
@@ -87,6 +93,7 @@ export class WorkshopComponent implements OnInit {
   like(){
     this.workshopService.like(this.id).subscribe((data: any) => {
       this.workshop.likes = data.likes;
+      this.liked = !this.liked;
     });
   }
 

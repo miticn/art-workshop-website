@@ -12,5 +12,6 @@ workshopRouter.route('/getById').post((req, res) => new workshop_controller_1.Wo
 workshopRouter.route('/comment').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new workshop_controller_1.WorkshopController().comment(req, res));
 workshopRouter.route('/getWorkshopComments').post((req, res) => new workshop_controller_1.WorkshopController().getWorkshopComments(req, res));
 workshopRouter.route('/like').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new workshop_controller_1.WorkshopController().like(req, res));
+workshopRouter.route('/isLiked').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new workshop_controller_1.WorkshopController().isLiked(req, res));
 exports.default = workshopRouter;
 //# sourceMappingURL=workshop.router.js.map

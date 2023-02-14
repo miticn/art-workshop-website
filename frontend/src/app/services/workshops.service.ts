@@ -42,4 +42,11 @@ export class WorkshopsService {
     }
     return this.http.post(`${this.uri}/like`, body,{withCredentials: true});
   }
+
+  isLiked(workshopId: string){
+    let body = {
+      id: workshopId
+    }
+    return this.http.post(`${this.uri}/isLiked`, body,{withCredentials: true});
+  }
 }
