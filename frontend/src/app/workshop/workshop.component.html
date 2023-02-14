@@ -1,0 +1,83 @@
+<!-- Container -->
+<div class="container">
+    <!-- Workshop Information -->
+    <div class="row">
+        <!-- Workshop Image -->
+        <div class="col-md-6">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li *ngFor="let image of images; let i = index" data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="i" [class.active]="i === 0"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div *ngFor="let image of images; let i = index" class="carousel-item" [class.active]="i === 0">
+                    <img [src]="this.helper.getWorkshopPhotoUrl(image)" class="d-block w-100" alt="Gallery Image">
+                  </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </a>
+              </div>
+        </div>
+        <!-- Workshop Map -->
+        <div class="col-md-6">
+            <google-map class="map" height="400" width="700" [center]="workshop.cordinates">
+              <map-marker #markerElem="mapMarker" [position]="workshop.cordinates" ></map-marker>
+            </google-map>
+        </div> 
+    </div>
+    
+    <!-- Workshop Details -->
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{workshop.name}} 
+              <button *ngIf="workshop.availableSeats>0" class="btn btn-dark">Prijavi me</button>
+              <button *ngIf="workshop.availableSeats<=0" class="btn btn-dark">Obavesti me kad se oslobodi mesto</button>
+              <button *ngIf="false" class="btn btn-dark">Odjavi me</button>
+            </h2>
+            <p>
+                <strong>Mesto održavanja:</strong> {{location}}<br />
+                <strong>Datum i vreme:</strong> {{workshop.date}}<br />
+                <strong>Slobodna mesta:</strong> {{workshop.availableSeats}}<br />
+                <strong>Opis:</strong> {{workshop.description}}
+            </p>
+        </div>
+        
+    </div>
+    <!-- Workshop Description -->
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Opis</h3>
+            <p>{{workshop.descriptionLong}}</p>
+        </div>
+    </div>
+
+    <!--Workshop likes and comments-->
+    <div class="d-flex align-items-center topOfComments">
+      <fa-icon [icon]="faHeart"></fa-icon>
+      <span>10</span>
+      <fa-icon [icon]="faComment" flip="horizontal"></fa-icon>
+      <span>{{comments.length}}</span>
+    </div>
+    <div class="comment-box col-md-6">
+      <div>
+        <div class="list-unstyled">
+          <app-message-comment *ngFor="let comment of comments" [profilePicture]="getUser(comment.user)['profilePicture']" [name]="getUser(comment.user).firstname" [date]="comment['date']" [text]="comment['text']"></app-message-comment>
+        </div>
+        <form>
+          <div class="d-flex align-items-center input-top">
+            <label class="comment-label">Komentar:</label>
+            <input type="text" class="comment-input" [(ngModel)]="commentText" [ngModelOptions]="{standalone: true}">
+            <button type="submit" class="btn btn-comment-send" (click)="comment()">Pošalji</button>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+    
+    
+</div>

@@ -1,0 +1,43 @@
+<form class="d-flex justify-content-center">
+  <div class="d-flex align-items-center">
+    <div class="form-group me-2">
+      <label for="name">Naziv:</label>
+      <input type="text" class="form-control" [(ngModel)]="searchName" [ngModelOptions]="{standalone: true}"
+        id="searchName">
+    </div>
+    <div class="form-group me-2">
+      <label for="location">Lokacija:</label>
+      <input type="text" class="form-control" id="searchLocation" [(ngModel)]="searchLocation"
+        [ngModelOptions]="{standalone: true}" id="searchLocation">
+    </div>
+    <button type="submit" class="btn btn-dark me-5" (click)="search()">Pretraži</button>
+
+    <div class="form-group me-2">
+      <label for="sort">Sortiraj po:</label>
+      <select class="form-control me-2" id="sort" [(ngModel)]="sortBy" [ngModelOptions]="{standalone: true}">
+        <option value="name">Ime</option>
+        <option value="date">Datum</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-dark me-2" (click)="sort()">Sortiraj</button>
+  </div>
+</form>
+
+
+<div class="row row-cols-md-2 row-cols-1 justify-content-center">
+  <div *ngFor="let workshop of workshops" class="card h-100" style="width: 18rem;">
+    <img class="card-img-top" src="{{photoHepler.getWorkshopPhotoUrl(workshop.mainPicture)}}">
+    <div class="card-body">
+      <h5 class="card-title">{{workshop.name}}</h5>
+      <p class="card-text">{{workshop.description}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">{{workshop.date | date:'HH:MM dd.MM.YYYY.'}}</li>
+      <li class="list-group-item">{{workshop.location}}</li>
+      <li class="list-group-item">{{workshop.description}}</li>
+    </ul>
+    <div class="card-body">
+      <a class="btn btn-dark" (click)="details(workshop)">Detalji</a>
+    </div>
+  </div>
+</div>
