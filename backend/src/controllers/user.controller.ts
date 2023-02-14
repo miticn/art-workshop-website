@@ -3,9 +3,31 @@ import mailService from '../mailService';
 import User from '../models/user'
 import Token from '../models/token'
 import { Request, Response } from 'express';
+import { ParsedQs } from 'qs';
+import user from '../models/user';
 
 
 export class UserController {
+    getUserById = (req: express.Request, res: express.Response) => {
+        let id = req.body.id;
+
+        user.findById(id, (err, user) => {
+            if (err) console.log(err);
+            else if(user) res.json({
+                firstname: user.firstname,
+                lastname: user.lastname,
+                username: user.username,
+                phone: user.phone,
+                email: user.email,
+                type: user.type,
+                profilePicture: user.profilePicture,
+                verified: user.verified,
+                org: user.org
+                });
+            else res.json({error: "no user"});
+        });
+    }
+
     getSessionUser = (req, res: express.Response) => {
         if(req.isAuthenticated()) {
             let user = req.user;

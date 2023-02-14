@@ -23,6 +23,7 @@ import { WorkshopComponent } from './workshop/workshop.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MessageCommentComponent } from './message-comment/message-comment.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     WorkshopComponent,
     UserEditComponent,
     ChangePasswordComponent,
+    MessageCommentComponent,
   ],
   imports: [
     BrowserAnimationsModule,

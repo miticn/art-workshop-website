@@ -5,7 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { WorkshopsService } from '../services/workshops.service';
 import { Helper } from '../helper';
 import { faHeart, faComment,faMessage } from '@fortawesome/free-solid-svg-icons';
-
+import { UsersService } from '../services/users.service';
+import { Comment } from '../models/comment';
 
 @Component({
   selector: 'app-workshop',
@@ -18,12 +19,22 @@ export class WorkshopComponent implements OnInit {
   faOutbox = faMessage;
   workshop : Workshop = new Workshop();
 
-  comments : Comment[];
+  comments : Comment[] = [];
+  users = {};
+  getUser(userId){
+    if(this.users[userId]){
+      return this.users[userId]
+    }
+    return {
+      name: 'Loading...',
+      profilePicture: 'default.png'
+    };
+  }
   commentText : string;
   images = [];
   location : string;
   constructor(private geocoder: MapGeocoder, private activatedRoute : ActivatedRoute, private workshopService: WorkshopsService,
-    public helper : Helper) { }
+    public helper : Helper, private userService: UsersService) { }
 
   id: string;
 
@@ -43,6 +54,11 @@ export class WorkshopComponent implements OnInit {
     this.workshopService.getWorkshopComments(this.id).subscribe((data: any) => {
       this.comments = data;
       console.log(this.comments)
+      this.comments.forEach(comment => {
+        this.userService.getUserById(comment.user).subscribe((data: any) => {
+          this.users[comment.user] = data;
+        });
+      });
     });
   }
 

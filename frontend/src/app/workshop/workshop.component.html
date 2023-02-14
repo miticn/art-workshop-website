@@ -34,7 +34,11 @@
     <!-- Workshop Details -->
     <div class="row">
         <div class="col-md-12">
-            <h2>{{workshop.name}}</h2>
+            <h2>{{workshop.name}} 
+              <button *ngIf="workshop.availableSeats>0" class="btn btn-dark">Prijavi me</button>
+              <button *ngIf="workshop.availableSeats<=0" class="btn btn-dark">Obavesti me kad se oslobodi mesto</button>
+              <button *ngIf="false" class="btn btn-dark">Odjavi me</button>
+            </h2>
             <p>
                 <strong>Mesto održavanja:</strong> {{location}}<br />
                 <strong>Datum i vreme:</strong> {{workshop.date}}<br />
@@ -57,13 +61,12 @@
       <fa-icon [icon]="faHeart"></fa-icon>
       <span>10</span>
       <fa-icon [icon]="faComment" flip="horizontal"></fa-icon>
-      <span>10</span>
+      <span>{{comments.length}}</span>
     </div>
     <div class="comment-box col-md-6">
       <div>
         <div class="list-unstyled">
-
-          <div *ngFor="let comment of comments" class="mb-2">{{comment['date']}}{{comment['text']}}</div>
+          <app-message-comment *ngFor="let comment of comments" [profilePicture]="getUser(comment.user)['profilePicture']" [name]="getUser(comment.user).firstname" [date]="comment['date']" [text]="comment['text']"></app-message-comment>
         </div>
         <form>
           <div class="d-flex align-items-center input-top">

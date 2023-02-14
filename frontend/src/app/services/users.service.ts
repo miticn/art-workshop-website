@@ -38,6 +38,13 @@ export class UsersService {
     return this.http.post(`${this.uri}/getSessionUser`, {}, { withCredentials: true });
   }
 
+  getUserById(id) {
+    const data = {
+      id: id
+    }
+    return this.http.post(`${this.uri}/getUserById`, data, { withCredentials: true });
+  }
+
   isUsernameFree(username) {
     const data = {
       username: username

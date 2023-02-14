@@ -34,5 +34,6 @@ userRouter.route('/isTokenValid').post((req, res) => new user_controller_1.UserC
 userRouter.route('/setNewResetPassword').post((req, res) => new user_controller_1.UserController().setNewResetPassword(req, res));
 userRouter.route('/resetPasswordRequest').post((req, res) => new user_controller_1.UserController().resetPasswordRequest(req, res));
 userRouter.route('/changePassword').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new user_controller_1.UserController().changePassword(req, res));
+userRouter.route('/getUserById').post((req, res) => new user_controller_1.UserController().getUserById(req, res));
 exports.default = userRouter;
 //# sourceMappingURL=user.router.js.map

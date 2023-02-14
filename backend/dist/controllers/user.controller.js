@@ -7,8 +7,30 @@ exports.UserController = void 0;
 const mailService_1 = __importDefault(require("../mailService"));
 const user_1 = __importDefault(require("../models/user"));
 const token_1 = __importDefault(require("../models/token"));
+const user_2 = __importDefault(require("../models/user"));
 class UserController {
     constructor() {
+        this.getUserById = (req, res) => {
+            let id = req.body.id;
+            user_2.default.findById(id, (err, user) => {
+                if (err)
+                    console.log(err);
+                else if (user)
+                    res.json({
+                        firstname: user.firstname,
+                        lastname: user.lastname,
+                        username: user.username,
+                        phone: user.phone,
+                        email: user.email,
+                        type: user.type,
+                        profilePicture: user.profilePicture,
+                        verified: user.verified,
+                        org: user.org
+                    });
+                else
+                    res.json({ error: "no user" });
+            });
+        };
         this.getSessionUser = (req, res) => {
             if (req.isAuthenticated()) {
                 let user = req.user;
