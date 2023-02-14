@@ -4,7 +4,7 @@ import { MapGeocoder } from '@angular/google-maps';
 import { ActivatedRoute } from '@angular/router';
 import { WorkshopsService } from '../services/workshops.service';
 import { Helper } from '../helper';
-import { faHeart, faComment,faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faComment, faMessage } from '@fortawesome/free-solid-svg-icons';
 import { UsersService } from '../services/users.service';
 import { Comment } from '../models/comment';
 
@@ -45,6 +45,8 @@ export class WorkshopComponent implements OnInit {
       this.workshop = data;
       this.images = [this.workshop.mainPicture, ...this.workshop.gallery];
       const location = new google.maps.LatLng(this.workshop.cordinates);
+      console.log("location")
+      console.log(location)
       this.geocoder.geocode({ location }).subscribe(data => {
         console.log(data)
         this.location = data.results[0].formatted_address;
@@ -67,6 +69,11 @@ export class WorkshopComponent implements OnInit {
       this.commentText = '';
       this.workshopService.getWorkshopComments(this.id).subscribe((data: any) => {
         this.comments = data;
+        this.comments.forEach(comment => {
+          this.userService.getUserById(comment.user).subscribe((data: any) => {
+            this.users[comment.user] = data;
+          });
+        });
       });
     });
   }
