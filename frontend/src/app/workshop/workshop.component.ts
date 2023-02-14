@@ -84,4 +84,10 @@ export class WorkshopComponent implements OnInit {
     $element.focus();
   }
 
+  like(){
+    this.workshopService.like(this.id).subscribe((data: any) => {
+      this.workshop.likes = data.likes;
+    });
+  }
+
 }

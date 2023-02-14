@@ -45,6 +45,9 @@ let Workshop = new Schema({
         type: mongoose_1.default.Schema.Types.ObjectId,
         ref: 'User'
     },
+    likes: {
+        type: Number
+    }
 });
 exports.default = mongoose_1.default.model('Workshop', Workshop, 'workshops');
 //# sourceMappingURL=workshop.js.map

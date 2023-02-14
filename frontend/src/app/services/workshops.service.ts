@@ -35,4 +35,11 @@ export class WorkshopsService {
     }
     return this.http.post(`${this.uri}/comment`, body,{withCredentials: true});
   }
+
+  like(workshopId: string){
+    let body = {
+      id: workshopId
+    }
+    return this.http.post(`${this.uri}/like`, body,{withCredentials: true});
+  }
 }

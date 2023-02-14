@@ -42,6 +42,9 @@ let Workshop = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    likes: {
+        type: Number
+    }
 })
 
 export default mongoose.model('Workshop', Workshop, 'workshops');

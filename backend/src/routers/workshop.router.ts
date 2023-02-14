@@ -1,4 +1,5 @@
 import express from 'express';
+import { PassportMiddleware } from '../passport.middleware';
 import { WorkshopController } from '../controllers/workshop.controller';
 const workshopRouter = express.Router();
 
@@ -11,11 +12,17 @@ workshopRouter.route('/getById').post(
 )
 
 workshopRouter.route('/comment').post(
+    PassportMiddleware.checkAuthenticated,
     (req, res) => new WorkshopController().comment(req, res)
 )
 
 workshopRouter.route('/getWorkshopComments').post(
     (req, res) => new WorkshopController().getWorkshopComments(req, res)
+)
+
+workshopRouter.route('/like').post(
+    PassportMiddleware.checkAuthenticated,
+    (req, res) => new WorkshopController().like(req, res)
 )
 
 export default workshopRouter;

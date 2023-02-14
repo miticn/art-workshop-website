@@ -36,4 +36,12 @@ export class WorkshopController {
             else res.json(comments);
         })
     }
+
+    like = (req, res: express.Response) => {
+        let workshopId = req.body.id;
+        workshop.findByIdAndUpdate(workshopId, {$inc: {likes: 1}}, { returnOriginal: false }, (err, workshop) => {
+            if (err) console.log(err);
+            else res.json(workshop);
+        })
+    }
 }

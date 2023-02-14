@@ -58,8 +58,8 @@
 
     <!--Workshop likes and comments-->
     <div class="align-items-center topOfComments">
-      <fa-icon [icon]="faHeart" size="2x"></fa-icon>
-      <span class="text-light">10</span>
+      <fa-icon (click)="like()" [icon]="faHeart" size="2x"></fa-icon>
+      <span class="text-light">{{workshop.likes}}</span>
       <fa-icon (click)="scrollToElement(commentinput)" [icon]="faComment" size="2x" flip="horizontal"></fa-icon>
       <span class="text-light">{{comments.length}}</span>
     </div>

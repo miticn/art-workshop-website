@@ -47,6 +47,15 @@ class WorkshopController {
                     res.json(comments);
             });
         };
+        this.like = (req, res) => {
+            let workshopId = req.body.id;
+            workshop_1.default.findByIdAndUpdate(workshopId, { $inc: { likes: 1 } }, { returnOriginal: false }, (err, workshop) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json(workshop);
+            });
+        };
     }
 }
 exports.WorkshopController = WorkshopController;
