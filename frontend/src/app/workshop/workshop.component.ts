@@ -78,4 +78,10 @@ export class WorkshopComponent implements OnInit {
     });
   }
 
+  scrollToElement($element): void {
+    console.log($element);
+    $element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+    $element.focus();
+  }
+
 }

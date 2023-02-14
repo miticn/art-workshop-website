@@ -60,7 +60,7 @@
     <div class="align-items-center topOfComments">
       <fa-icon [icon]="faHeart" size="2x"></fa-icon>
       <span class="text-light">10</span>
-      <fa-icon [icon]="faComment" size="2x" flip="horizontal"></fa-icon>
+      <fa-icon (click)="scrollToElement(commentinput)" [icon]="faComment" size="2x" flip="horizontal"></fa-icon>
       <span class="text-light">{{comments.length}}</span>
     </div>
     <div class="comment-box col-md-6">
@@ -71,7 +71,7 @@
         <form>
           <div class="d-flex align-items-center input-top">
             <label class="comment-label">Komentar:</label>
-            <input type="text" class="comment-input" [(ngModel)]="commentText" [ngModelOptions]="{standalone: true}">
+            <input type="text" #commentinput class="comment-input" [(ngModel)]="commentText" [ngModelOptions]="{standalone: true}">
             <button type="submit" class="btn btn-comment-send" (click)="comment()">Pošalji</button>
           </div>
           
