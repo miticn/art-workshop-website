@@ -1,0 +1,22 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th (click)="sort('name')">Ime</th>
+            <th (click)="sort('description')">Opis</th>
+            <th (click)="sort('date')">Datum</th>
+            <th (click)="sort('location')">Lokacija</th>
+            <th (click)="sort('totalSeats')">Ukupno mesta</th>
+            <th (click)="sort('likes')">Sviđanja</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let workshop of workshops">
+            <td>{{ workshop.name }}</td>
+            <td>{{ workshop.description }}</td>
+            <td>{{ workshop.date | date }}</td>
+            <td>{{ workshop.location }}</td>
+            <td>{{ workshop.totalSeats }}</td>
+            <td>{{ workshop.likes }}</td>
+        </tr>
+    </tbody>
+</table>

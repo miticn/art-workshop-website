@@ -25,6 +25,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MessageCommentComponent } from './message-comment/message-comment.component';
 import { Top5Component } from './top5/top5.component';
+import { WorkshopTableComponent } from './workshop-table/workshop-table.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { Top5Component } from './top5/top5.component';
     ChangePasswordComponent,
     MessageCommentComponent,
     Top5Component,
+    WorkshopTableComponent,
   ],
   imports: [
     BrowserAnimationsModule,
