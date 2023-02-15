@@ -3,6 +3,8 @@ import workshop from '../models/workshop';
 import comments from '../models/comments';
 import likes from '../models/likes';
 import attendance from '../models/attendance';
+import mailService from '../mailService';
+import user from '../models/user';
 
 export class WorkshopController {
     getAll = (req: express.Request, res: express.Response) => {
@@ -120,6 +122,7 @@ export class WorkshopController {
         workshop.findByIdAndUpdate(req.body.id, { $inc: { availableSeats: 1 } }, { returnOriginal: false }, (err, workshop) => {
             if (err) console.log(err);
             else {
+                this.sendEmailToAlert(req, res);
                 attendance.findOneAndDelete({user: req.user._id, workshop: req.body.id}, (err, _) => {
                     if (err) console.log(err);
                     else res.json(workshop);
@@ -128,12 +131,46 @@ export class WorkshopController {
         });
     };
 
-    isAttending = (req, res: express.Response) => {
+    attendingStatus = (req, res: express.Response) => {
         attendance.findOne({user: req.user._id, workshop: req.body.id}, (err, attend) => {
             if (err) console.log(err);
             else {
-                res.json({attending: attend ? true : false});
+                res.json({status: attend ? attend.status : 'not attending'});
             }
         })
     };
+
+    alertMe = (req, res: express.Response) => {
+        let attend = new attendance({
+            user: req.user._id,
+            workshop: req.body.id,
+            status: 'alert'
+        });
+        attend.save((err, _) => {
+            if (err) console.log(err);
+            else res.json({status: 'alert'});
+        })
+    };
+
+    sendEmailToAlert = (req, res: express.Response) => {
+        attendance.find({workshop: req.body.id, status: 'alert'}, (err, attends) => {
+            if (err) console.log(err);
+            else {
+                workshop.findById(req.body.id, (err, workshop) => {
+                    if (err) console.log(err);
+                    else {
+                        for (let attend of attends) {
+                            // send email to attend.user
+                            user.findById(attend.user, (err, user) => {
+                                if (err) console.log(err);
+                                else {
+                                    new mailService().sendFreeSeatsEmail(user.email, user.name, workshop);
+                                }
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    }
 }

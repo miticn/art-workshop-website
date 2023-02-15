@@ -8,6 +8,8 @@ const workshop_1 = __importDefault(require("../models/workshop"));
 const comments_1 = __importDefault(require("../models/comments"));
 const likes_1 = __importDefault(require("../models/likes"));
 const attendance_1 = __importDefault(require("../models/attendance"));
+const mailService_1 = __importDefault(require("../mailService"));
+const user_1 = __importDefault(require("../models/user"));
 class WorkshopController {
     constructor() {
         this.getAll = (req, res) => {
@@ -140,6 +142,7 @@ class WorkshopController {
                 if (err)
                     console.log(err);
                 else {
+                    this.sendEmailToAlert(req, res);
                     attendance_1.default.findOneAndDelete({ user: req.user._id, workshop: req.body.id }, (err, _) => {
                         if (err)
                             console.log(err);
@@ -149,12 +152,49 @@ class WorkshopController {
                 }
             });
         };
-        this.isAttending = (req, res) => {
+        this.attendingStatus = (req, res) => {
             attendance_1.default.findOne({ user: req.user._id, workshop: req.body.id }, (err, attend) => {
                 if (err)
                     console.log(err);
                 else {
-                    res.json({ attending: attend ? true : false });
+                    res.json({ status: attend ? attend.status : 'not attending' });
+                }
+            });
+        };
+        this.alertMe = (req, res) => {
+            let attend = new attendance_1.default({
+                user: req.user._id,
+                workshop: req.body.id,
+                status: 'alert'
+            });
+            attend.save((err, _) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json({ status: 'alert' });
+            });
+        };
+        this.sendEmailToAlert = (req, res) => {
+            attendance_1.default.find({ workshop: req.body.id, status: 'alert' }, (err, attends) => {
+                if (err)
+                    console.log(err);
+                else {
+                    workshop_1.default.findById(req.body.id, (err, workshop) => {
+                        if (err)
+                            console.log(err);
+                        else {
+                            for (let attend of attends) {
+                                // send email to attend.user
+                                user_1.default.findById(attend.user, (err, user) => {
+                                    if (err)
+                                        console.log(err);
+                                    else {
+                                        new mailService_1.default().sendFreeSeatsEmail(user.email, user.name, workshop);
+                                    }
+                                });
+                            }
+                        }
+                    });
                 }
             });
         };

@@ -21,7 +21,7 @@ export class WorkshopComponent implements OnInit {
 
   liked : boolean = true;
 
-  attending : boolean = true;
+  attendingStatus : string;
 
   comments : Comment[] = [];
   users = {};
@@ -45,8 +45,8 @@ export class WorkshopComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
 
-    this.workshopService.isAttending(this.id).subscribe((data: any) => {
-      this.attending = data.attending;
+    this.workshopService.attendingStatus(this.id).subscribe((data: any) => {
+      this.attendingStatus = data.status;
     });
     this.workshopService.isLiked(this.id).subscribe((data: any) => {
       this.liked = data.liked;
@@ -105,8 +105,8 @@ export class WorkshopComponent implements OnInit {
   reserveSeat(){
     this.workshopService.reserveSeat(this.id).subscribe((data: any) => {
       this.workshop = data;
-      this.workshopService.isAttending(this.id).subscribe((data: any) => {
-        this.attending = data.attending;
+      this.workshopService.attendingStatus(this.id).subscribe((data: any) => {
+        this.attendingStatus = data.status;
       });
     });
   }
@@ -114,9 +114,15 @@ export class WorkshopComponent implements OnInit {
   cancelSeat(){
     this.workshopService.cancelSeat(this.id).subscribe((data: any) => {
       this.workshop = data;
-      this.workshopService.isAttending(this.id).subscribe((data: any) => {
-        this.attending = data.attending;
+      this.workshopService.attendingStatus(this.id).subscribe((data: any) => {
+        this.attendingStatus = data.status;
       });
+    });
+  }
+
+  alertMe(){
+    this.workshopService.alertMe(this.id).subscribe((data: any) => {
+      this.attendingStatus = data.status;
     });
   }
 }

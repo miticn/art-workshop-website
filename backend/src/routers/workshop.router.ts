@@ -50,9 +50,15 @@ workshopRouter.route('/cancelSeat').post(
     (req, res) => new WorkshopController().cancelSeat(req, res)
 )
 
-workshopRouter.route('/isAttending').post(
+workshopRouter.route('/attendingStatus').post(
     PassportMiddleware.checkAuthenticated,
-    (req, res) => new WorkshopController().isAttending(req, res)
+    (req, res) => new WorkshopController().attendingStatus(req, res)
 )
+
+workshopRouter.route('/alertMe').post(
+    PassportMiddleware.checkAuthenticated,
+    (req, res) => new WorkshopController().alertMe(req, res)
+)
+
 
 export default workshopRouter;

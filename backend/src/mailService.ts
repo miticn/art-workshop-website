@@ -103,4 +103,26 @@ export default class mailService {
             }
         });    
     }
+
+    sendFreeSeatsEmail(email, name, workshop){
+        let mailOptions = {
+            from: this.user,
+            to: email,
+            subject: 'Art Workshop - Slobodna mesta',
+            text:'Poštovani ' + name +',\n'+
+            'Želimo da Vas obavestimo da su se slobodila mesta na radionici '+workshop.name+'.\n\n'+
+
+            'Ukoliko želite da se prijavite na radionicu, molimo Vas da to uradite putem našeg sajta.\n\n'+
+            
+            'S poštovanjem,\n'+
+            'Art Workshop Tim'
+        };
+        this.transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });    
+    }
 }

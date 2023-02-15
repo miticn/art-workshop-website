@@ -72,11 +72,11 @@ export class WorkshopsService {
     return this.http.post(`${this.uri}/attend`, body,{withCredentials: true});
   }
 
-  isAttending(workshopId: string){
+  attendingStatus(workshopId: string){
     let body = {
       id: workshopId
     }
-    return this.http.post(`${this.uri}/isAttending`, body,{withCredentials: true});
+    return this.http.post(`${this.uri}/attendingStatus`, body,{withCredentials: true});
   }
 
   cancelSeat(workshopId: string){
@@ -93,4 +93,10 @@ export class WorkshopsService {
     return this.http.post(`${this.uri}/reserveSeat`, body,{withCredentials: true});
   }
 
+  alertMe(workshopId: string){
+    let body = {
+      id: workshopId
+    }
+    return this.http.post(`${this.uri}/alertMe`, body,{withCredentials: true});
+  }
 }
