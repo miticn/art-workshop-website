@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: "resetPassword/:token", component: ResetPasswordComponent },
   { path: "workshops", component: WorkshopsComponent},
   { path: "top5", component: Top5Component},
-  { path: "workshop/:id", component: WorkshopComponent},
+  { path: "workshop/:id", canActivate: [AuthGuard], component: WorkshopComponent},
   { path: "waitingList", component: AdminWaitingListComponent}
   /*
   {

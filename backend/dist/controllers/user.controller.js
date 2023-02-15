@@ -8,6 +8,8 @@ const mailService_1 = __importDefault(require("../mailService"));
 const user_1 = __importDefault(require("../models/user"));
 const token_1 = __importDefault(require("../models/token"));
 const user_2 = __importDefault(require("../models/user"));
+const likes_1 = __importDefault(require("../models/likes"));
+const comments_1 = __importDefault(require("../models/comments"));
 class UserController {
     constructor() {
         this.getUserById = (req, res) => {
@@ -282,6 +284,26 @@ class UserController {
             else {
                 res.json({ "message": "error" });
             }
+        };
+        this.getMyLikes = (req, res) => {
+            let user = req.user;
+            likes_1.default.find({ 'user': user._id }, (err, likes) => {
+                if (err)
+                    console.log(err);
+                else {
+                    res.json(likes);
+                }
+            });
+        };
+        this.getMyComments = (req, res) => {
+            let user = req.user;
+            comments_1.default.find({ 'user': user._id }, (err, comments) => {
+                if (err)
+                    console.log(err);
+                else {
+                    res.json(comments);
+                }
+            });
         };
     }
 }

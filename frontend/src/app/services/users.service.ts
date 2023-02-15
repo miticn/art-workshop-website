@@ -173,4 +173,12 @@ export class UsersService {
     }
     return this.http.post(`${this.uri}/changePassword`, data, { withCredentials: true });
   }
+
+  getMyLikes() {
+    return this.http.post(`${this.uri}/getMyLikes`, {}, { withCredentials: true });
+  }
+
+  getMyComments() {
+    return this.http.post(`${this.uri}/getMyComments`, {}, { withCredentials: true });
+  }
 }

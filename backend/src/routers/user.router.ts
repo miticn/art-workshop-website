@@ -72,6 +72,10 @@ userRouter.route('/setNewResetPassword').post(
     (req, res) => new UserController().setNewResetPassword(req, res)
 )
 
+userRouter.route('/getMyLikes').post(   
+    (req, res) => new UserController().getMyLikes(req, res)
+)
+
 userRouter.route('/resetPasswordRequest').post(
     (req, res) => new UserController().resetPasswordRequest(req, res)
 )
@@ -82,7 +86,12 @@ userRouter.route('/changePassword').post(
 )
 
 userRouter.route('/getUserById').post(
+    PassportMiddleware.checkAuthenticated,
     (req, res) => new UserController().getUserById(req, res)
 )
 
+userRouter.route('/getMyComments').post(
+    PassportMiddleware.checkAuthenticated,
+    (req, res) => new UserController().getMyComments(req, res)
+)
 export default userRouter;

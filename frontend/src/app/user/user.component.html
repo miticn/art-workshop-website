@@ -1,34 +1,48 @@
 <h1 *ngIf="!exists">No user exists</h1>
-    <div *ngIf="exists" class="container mt-5">
-        <div class="row">
-          <div class="col-md-4 text-center">
-            <img
-              src="{{helper.getProfilePhotoUrl(user.profilePicture)}}"
-              alt="Profile Picture"
-              class="rounded-circle mx-auto d-block"
-              width="200"
-              height="200"
-            />
-          </div>
-          <div class="col-md-8">
-            <h2>{{user.firstname}} {{user.lastname}} 
-              <a *ngIf="auth.getUser().username==user.username" [routerLink]="['/user/',auth.getUser().username, 'edit' ]"><button class="btn btn-dark me-3">Izmeni</button></a>
-              <a *ngIf="auth.getUser().username==user.username" [routerLink]="['/user/',auth.getUser().username, 'cpw' ]"><button class="btn btn-dark">Promeni Lozinku</button></a>
-            </h2>
-            <h5 class="text-muted">{{user.username}}</h5>
-            <h6 class="text-muted">{{helper.getTypeString(user.type)}}</h6>
-            <p class="text-muted">{{user.email}}</p>
-            <p class="text-muted">{{user.phone}}</p>
-            <hr />
-            <div *ngIf="user.type=='org'">
-                <h5 class="text-muted">Organizacija</h5>
-                <p class="text-muted">{{user.org.name}}</p>
-                <p class="text-muted">{{user.org.street}} {{user.org.streetNumber}}, {{user.org.postNumber}}, {{user.org.city}}, {{user.org.country}}</p>
-                <p class="text-muted">Matični broj: {{user.org.regNumber}}</p>
-                <hr />
-            </div>
-            <h5 class="text-muted">Verifikacija</h5>
-            <p class="text-muted">{{helper.getVerifyString(user.verified)}}</p>
-          </div>
-        </div>
+<div *ngIf="exists" class="container mt-5">
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <img src="{{helper.getProfilePhotoUrl(user.profilePicture)}}" alt="Profile Picture"
+        class="rounded-circle mx-auto d-block" width="200" height="200" />
+    </div>
+    <div class="col-md-8">
+      <h2>{{user.firstname}} {{user.lastname}}
+        <a *ngIf="auth.getUser().username==user.username"
+          [routerLink]="['/user/',auth.getUser().username, 'edit' ]"><button
+            class="btn btn-dark me-3">Izmeni</button></a>
+        <a *ngIf="auth.getUser().username==user.username"
+          [routerLink]="['/user/',auth.getUser().username, 'cpw' ]"><button class="btn btn-dark">Promeni
+            Lozinku</button></a>
+      </h2>
+      <h5 class="text-muted">{{user.username}}</h5>
+      <h6 class="text-muted">{{helper.getTypeString(user.type)}}</h6>
+      <p class="text-muted">{{user.email}}</p>
+      <p class="text-muted">{{user.phone}}</p>
+      <hr />
+      <div *ngIf="user.type=='org'">
+        <h5 class="text-muted">Organizacija</h5>
+        <p class="text-muted">{{user.org.name}}</p>
+        <p class="text-muted">{{user.org.street}} {{user.org.streetNumber}}, {{user.org.postNumber}}, {{user.org.city}},
+          {{user.org.country}}</p>
+        <p class="text-muted">Matični broj: {{user.org.regNumber}}</p>
+        <hr />
       </div>
+      <h5 class="text-muted">Verifikacija</h5>
+      <p class="text-muted">{{helper.getVerifyString(user.verified)}}</p>
+    </div>
+  </div>
+  <div class="container">
+    <hr>
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <ul class="list-group">
+          <li class="list-group-item bg-dark text-light">Sviđanja radionica:</li>
+          <li *ngFor="let like of myLikes" class="list-group-item d-flex align-items-center justify-content-between">
+            <a [routerLink]="['/workshop/',like.workshop ]">{{getWorkshopFromId(like.workshop).name}}</a>
+            <fa-icon class="fas" [icon]="faHeartBroken" size="2x" (click)="unlike(like.workshop)"></fa-icon>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

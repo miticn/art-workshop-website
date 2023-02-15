@@ -1,0 +1,68 @@
+.topOfComments{
+    background-color: #F4555A;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+  
+.topOfComments:before {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top: 20px solid #F4555A;
+    border-right: 20px solid transparent;
+    border-left: 20px solid transparent;
+    border-bottom-right-radius: 50px solid transparent;
+  }
+  
+
+.btn-comment-send{
+    background-color: #FFDC64;
+    border-color: #FF7F27;
+    border-top-left-radius: 25px 7px;
+    border-top-right-radius: 25px 7px;
+    border-bottom-left-radius: 25px 7px;
+    border-bottom-right-radius: 25px 7px;
+    border-width: 3px;
+    font-weight: bold;
+    padding: 4px 15px;
+}
+
+.comment-input{
+    border-radius: 0;
+    border-width: 3px;
+    border-color: black;
+}
+
+.comment-label{
+    font-weight: bold;
+}
+
+.input-top{
+    border-top-style: solid;
+    border-top-width: 3px;
+}
+
+.comment-box{
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    border-radius: 10px;
+}
+
+fa-icon{
+    color: red;
+}
+
+fa-icon:hover, fa-icon.fill{
+    color: #f89da0;
+    cursor: pointer;
+}
+
+span{
+    margin-right: 5px;
+}

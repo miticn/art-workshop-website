@@ -5,6 +5,8 @@ import Token from '../models/token'
 import { Request, Response } from 'express';
 import { ParsedQs } from 'qs';
 import user from '../models/user';
+import likes from '../models/likes';
+import comments from '../models/comments';
 
 
 export class UserController {
@@ -278,5 +280,25 @@ export class UserController {
         else {
             res.json({"message": "error"})
         }
+    }
+
+    getMyLikes = (req, res: express.Response)=>{
+        let user = req.user;
+        likes.find({ 'user': user._id}, (err, likes) => {
+            if (err) console.log(err);
+            else {
+                res.json(likes);
+            }
+        })
+    }
+
+    getMyComments = (req, res: express.Response)=>{
+        let user = req.user;
+        comments.find({ 'user': user._id}, (err, comments) => {
+            if (err) console.log(err);
+            else {
+                res.json(comments);
+            }
+        })
     }
 }
