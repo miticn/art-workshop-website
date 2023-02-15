@@ -30,6 +30,14 @@ export class WorkshopController {
         });
     }
 
+    deleteComment = (req, res: express.Response) => {
+        let commentId = req.body.commentId;
+        comments.findByIdAndDelete(commentId, (err, comment) => {
+            if (err) console.log(err);
+            else res.json(comment);
+        });
+    }
+
     getWorkshopComments = (req: express.Request, res: express.Response) => {
         let workshopId = req.body.id;
         comments.find({workshop: workshopId}, (err, comments) => {

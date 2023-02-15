@@ -30,4 +30,9 @@ workshopRouter.route('/isLiked').post(
     (req, res) => new WorkshopController().isLiked(req, res)
 )
 
+workshopRouter.route('/deleteComment').post(
+    PassportMiddleware.checkAuthenticated,
+    (req, res) => new WorkshopController().deleteComment(req, res)
+)
+
 export default workshopRouter;

@@ -4,9 +4,11 @@ import { User } from '../models/user';
 import { Helper } from '../helper';
 import { UsersService } from '../services/users.service';
 import { AuthService } from '../services/auth.service';
-import { faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons';
+import { faHeartBroken, faClose, faPencil } from '@fortawesome/free-solid-svg-icons';
 import { WorkshopsService } from '../services/workshops.service';
 import { Workshop } from '../models/workshop';
+
+import { Comment } from '../models/comment';
 
 @Component({
   selector: 'app-user',
@@ -16,7 +18,8 @@ import { Workshop } from '../models/workshop';
 export class UserComponent implements OnInit {
 
   faHeartBroken = faHeartBroken;
-  faHeart = faHeart;
+  faClose = faClose;
+  faPencil = faPencil;
 
   constructor(private activatedRoute : ActivatedRoute, private userService : UsersService, public helper: Helper, public auth: AuthService,
     private workshopService: WorkshopsService) { }
@@ -64,6 +67,14 @@ export class UserComponent implements OnInit {
       this.userService.getMyLikes().subscribe((data: any) => {
       this.myLikes = data;
     
+      });
+    });
+  }
+
+  deleteComment(commentId){
+    this.workshopService.deleteComment(commentId).subscribe((data: any) => {
+      this.userService.getMyComments().subscribe((data: any) => {
+        this.myComments = data;
       });
     });
   }

@@ -49,4 +49,11 @@ export class WorkshopsService {
     }
     return this.http.post(`${this.uri}/isLiked`, body,{withCredentials: true});
   }
+
+  deleteComment(commentId: string){
+    let body = {
+      commentId: commentId
+    }
+    return this.http.post(`${this.uri}/deleteComment`, body,{withCredentials: true});
+  }
 }

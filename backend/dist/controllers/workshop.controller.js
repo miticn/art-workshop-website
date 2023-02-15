@@ -39,6 +39,15 @@ class WorkshopController {
                     res.json(comment);
             });
         };
+        this.deleteComment = (req, res) => {
+            let commentId = req.body.commentId;
+            comments_1.default.findByIdAndDelete(commentId, (err, comment) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json(comment);
+            });
+        };
         this.getWorkshopComments = (req, res) => {
             let workshopId = req.body.id;
             comments_1.default.find({ workshop: workshopId }, (err, comments) => {
