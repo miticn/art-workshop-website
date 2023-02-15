@@ -2,6 +2,8 @@ import * as express from 'express';
 import workshop from '../models/workshop';
 import comments from '../models/comments';
 import likes from '../models/likes';
+import attendance from '../models/attendance';
+
 export class WorkshopController {
     getAll = (req: express.Request, res: express.Response) => {
         workshop.find({}, (err, workshops) => {
@@ -96,4 +98,42 @@ export class WorkshopController {
             }
         })
     }
+
+    reserveSeat = (req, res: express.Response) => {
+        workshop.findByIdAndUpdate(req.body.id, { $inc: { availableSeats: -1 } }, { returnOriginal: false }, (err, workshop) => {
+            if (err) console.log(err);
+            else {
+                let attend = new attendance({
+                    user: req.user._id,
+                    workshop: req.body.id,
+                    status: 'reserved'
+                });
+                attend.save((err, _) => {
+                    if (err) console.log(err);
+                    else res.json(workshop);
+                })
+            }
+        })
+    }
+
+    cancelSeat = (req, res: express.Response) => {
+        workshop.findByIdAndUpdate(req.body.id, { $inc: { availableSeats: 1 } }, { returnOriginal: false }, (err, workshop) => {
+            if (err) console.log(err);
+            else {
+                attendance.findOneAndDelete({user: req.user._id, workshop: req.body.id}, (err, _) => {
+                    if (err) console.log(err);
+                    else res.json(workshop);
+                })
+            }
+        });
+    };
+
+    isAttending = (req, res: express.Response) => {
+        attendance.findOne({user: req.user._id, workshop: req.body.id}, (err, attend) => {
+            if (err) console.log(err);
+            else {
+                res.json({attending: attend ? true : false});
+            }
+        })
+    };
 }

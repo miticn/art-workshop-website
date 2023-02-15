@@ -7,6 +7,7 @@ exports.WorkshopController = void 0;
 const workshop_1 = __importDefault(require("../models/workshop"));
 const comments_1 = __importDefault(require("../models/comments"));
 const likes_1 = __importDefault(require("../models/likes"));
+const attendance_1 = __importDefault(require("../models/attendance"));
 class WorkshopController {
     constructor() {
         this.getAll = (req, res) => {
@@ -112,6 +113,48 @@ class WorkshopController {
                     console.log(err);
                 else {
                     res.json({ liked: like ? true : false });
+                }
+            });
+        };
+        this.reserveSeat = (req, res) => {
+            workshop_1.default.findByIdAndUpdate(req.body.id, { $inc: { availableSeats: -1 } }, { returnOriginal: false }, (err, workshop) => {
+                if (err)
+                    console.log(err);
+                else {
+                    let attend = new attendance_1.default({
+                        user: req.user._id,
+                        workshop: req.body.id,
+                        status: 'reserved'
+                    });
+                    attend.save((err, _) => {
+                        if (err)
+                            console.log(err);
+                        else
+                            res.json(workshop);
+                    });
+                }
+            });
+        };
+        this.cancelSeat = (req, res) => {
+            workshop_1.default.findByIdAndUpdate(req.body.id, { $inc: { availableSeats: 1 } }, { returnOriginal: false }, (err, workshop) => {
+                if (err)
+                    console.log(err);
+                else {
+                    attendance_1.default.findOneAndDelete({ user: req.user._id, workshop: req.body.id }, (err, _) => {
+                        if (err)
+                            console.log(err);
+                        else
+                            res.json(workshop);
+                    });
+                }
+            });
+        };
+        this.isAttending = (req, res) => {
+            attendance_1.default.findOne({ user: req.user._id, workshop: req.body.id }, (err, attend) => {
+                if (err)
+                    console.log(err);
+                else {
+                    res.json({ attending: attend ? true : false });
                 }
             });
         };

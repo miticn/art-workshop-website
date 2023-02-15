@@ -64,4 +64,33 @@ export class WorkshopsService {
     }
     return this.http.post(`${this.uri}/updateComment`, body,{withCredentials: true});
   }
+
+  attend(workshopId: string){
+    let body = {
+      id: workshopId
+    }
+    return this.http.post(`${this.uri}/attend`, body,{withCredentials: true});
+  }
+
+  isAttending(workshopId: string){
+    let body = {
+      id: workshopId
+    }
+    return this.http.post(`${this.uri}/isAttending`, body,{withCredentials: true});
+  }
+
+  cancelSeat(workshopId: string){
+    let body = {
+      id: workshopId
+    }
+    return this.http.post(`${this.uri}/cancelSeat`, body,{withCredentials: true});
+  }
+
+  reserveSeat(workshopId: string){
+    let body = {
+      id: workshopId
+    }
+    return this.http.post(`${this.uri}/reserveSeat`, body,{withCredentials: true});
+  }
+
 }
