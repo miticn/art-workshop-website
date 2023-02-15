@@ -37,6 +37,7 @@
       <div class="col-md-8 mx-auto">
         <ul class="list-group">
           <li class="list-group-item bg-dark text-light">Sviđanja radionica:</li>
+          <li *ngIf="myLikes.length==0" class="list-group-item d-flex align-items-center justify-content-between">Nema lajkovanih radionica.</li>
           <li *ngFor="let like of myLikes" class="list-group-item d-flex align-items-center justify-content-between">
             <a [routerLink]="['/workshop/',like.workshop ]">{{getWorkshopFromId(like.workshop).name}}</a>
             <fa-icon class="fas" [icon]="faHeartBroken" size="2x" (click)="unlike(like.workshop)"></fa-icon>
