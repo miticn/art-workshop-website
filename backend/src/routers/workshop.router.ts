@@ -35,4 +35,9 @@ workshopRouter.route('/deleteComment').post(
     (req, res) => new WorkshopController().deleteComment(req, res)
 )
 
+workshopRouter.route('/updateComment').post(
+    PassportMiddleware.checkAuthenticated,
+    (req, res) => new WorkshopController().updateComment(req, res)
+)
+
 export default workshopRouter;

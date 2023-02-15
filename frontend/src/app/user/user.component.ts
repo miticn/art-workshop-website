@@ -78,4 +78,24 @@ export class UserComponent implements OnInit {
       });
     });
   }
+
+  updateComment(commentId, text){
+    this.workshopService.updateComment(commentId, text).subscribe((data: any) => {
+      this.userService.getMyComments().subscribe((data: any) => {
+        this.myComments = data;
+        this.toggleEditingComment(commentId)
+      });
+    });
+  }
+
+  editingComments: string[] = [];
+
+  toggleEditingComment(commentId: string) {
+    const index = this.editingComments.indexOf(commentId);
+    if (index > -1) {
+      this.editingComments.splice(index, 1);
+    } else {
+      this.editingComments.push(commentId);
+    }
+  }
 }

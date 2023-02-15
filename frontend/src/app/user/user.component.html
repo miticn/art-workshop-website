@@ -34,7 +34,7 @@
   <div class="container">
     <hr>
     <div class="row">
-      <div class="col-md-6 mx-auto">
+      <div class="col-md-4 mx-auto">
         <ul class="list-group">
           <li class="list-group-item bg-dark text-light">Sviđanja radionica:</li>
           <li *ngIf="myLikes.length==0" class="list-group-item d-flex align-items-center justify-content-between">Nema lajkovanih radionica.</li>
@@ -44,16 +44,20 @@
           </li>
         </ul>
       </div>
-      <div class="col-md-6 mx-auto">
+      <div class="col-md-8 mx-auto">
         <ul class="list-group">
           <li class="list-group-item bg-dark text-light">Komentari radionica:</li>
           <li *ngIf="myComments.length==0" class="list-group-item d-flex align-items-center justify-content-between">Niste komentarisali nijednu radionica.</li>
           <li *ngFor="let comment of myComments" class="list-group-item d-flex align-items-center justify-content-between">
             <a class="text-decoration-none text-secondary" [routerLink]="['/workshop/',comment.workshop ]">{{getWorkshopFromId(comment.workshop).name}}</a>
-            <span>{{comment.text}}</span>
-            <fa-icon class="fas" [icon]="faClose" size="2x" (click)="deleteComment(comment._id)"></fa-icon>
-            
-            <fa-icon class="fas pencil" [icon]="faPencil" size="2x" (click)="unlike(comment.workshop)"></fa-icon>
+            <span [hidden]="editingComments.includes(comment._id)" id="{{comment._id}}">{{comment.text}}</span>
+
+            <textarea [hidden]="!editingComments.includes(comment._id)" #commentTextarea id="text{{comment._id}}" class="form-control ms-3 me-2" rows="3">{{comment.text}}</textarea>
+            <button [hidden]="!editingComments.includes(comment._id)" class="btn btn-dark ms-2 me-3" (click)="updateComment(comment._id, commentTextarea.value)">Izmeni</button>
+            <div>
+              <fa-icon class="fas me-3" [icon]="faClose" size="2x" (click)="deleteComment(comment._id)"></fa-icon>
+              <fa-icon class="fas pencil" [icon]="faPencil" size="2x" (click)="toggleEditingComment(comment._id)"></fa-icon>
+            </div>
           </li>
         </ul>
       </div>

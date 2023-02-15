@@ -48,6 +48,16 @@ class WorkshopController {
                     res.json(comment);
             });
         };
+        this.updateComment = (req, res) => {
+            let commentId = req.body.commentId;
+            let text = req.body.text;
+            comments_1.default.findByIdAndUpdate(commentId, { text: text }, { returnOriginal: false }, (err, comment) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json(comment);
+            });
+        };
         this.getWorkshopComments = (req, res) => {
             let workshopId = req.body.id;
             comments_1.default.find({ workshop: workshopId }, (err, comments) => {

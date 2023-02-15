@@ -38,6 +38,15 @@ export class WorkshopController {
         });
     }
 
+    updateComment = (req, res: express.Response) => {
+        let commentId = req.body.commentId;
+        let text = req.body.text;
+        comments.findByIdAndUpdate(commentId, {text: text}, {returnOriginal: false}, (err, comment) => {
+            if (err) console.log(err);
+            else res.json(comment);
+        });
+    }
+
     getWorkshopComments = (req: express.Request, res: express.Response) => {
         let workshopId = req.body.id;
         comments.find({workshop: workshopId}, (err, comments) => {

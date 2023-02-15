@@ -56,4 +56,12 @@ export class WorkshopsService {
     }
     return this.http.post(`${this.uri}/deleteComment`, body,{withCredentials: true});
   }
+
+  updateComment(commentId: string, text: string){
+    let body = {
+      commentId: commentId,
+      text: text
+    }
+    return this.http.post(`${this.uri}/updateComment`, body,{withCredentials: true});
+  }
 }
