@@ -27,7 +27,8 @@ import { MessageCommentComponent } from './message-comment/message-comment.compo
 import { Top5Component } from './top5/top5.component';
 import { WorkshopTableComponent } from './workshop-table/workshop-table.component';
 import { BecomeOrgComponent } from './become-org/become-org.component';
-import { GooglePlaceModule } from 'ngx-google-places-autocomplete'; 
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { ChatComponent } from './chat/chat.component'; 
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     Top5Component,
     WorkshopTableComponent,
     BecomeOrgComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserAnimationsModule,

@@ -15,6 +15,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { WorkshopComponent } from './workshop/workshop.component';
 import { Top5Component } from './top5/top5.component';
 import { BecomeOrgComponent } from './become-org/become-org.component';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   { path: "", component: IndexComponent },
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: "top5", component: Top5Component},
   { path: "workshop/:id", canActivate: [AuthGuard], component: WorkshopComponent},
   { path: "waitingList", component: AdminWaitingListComponent},
-  { path: "becomeOrg", canActivate: [AuthGuard], component: BecomeOrgComponent}
+  { path: "becomeOrg", canActivate: [AuthGuard], component: BecomeOrgComponent},
+  { path: "chat/:orgId", canActivate: [AuthGuard], component: ChatComponent}
   /*
   {
     path: 'protected',

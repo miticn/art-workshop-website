@@ -125,4 +125,9 @@ export class WorkshopComponent implements OnInit {
       this.attendingStatus = data.status;
     });
   }
+
+  startChat(){
+    const specs = 'width=500,height=500,top=100,left=100';
+    window.open('/chat/'+this.id, '_blank',specs);
+  }
 }
