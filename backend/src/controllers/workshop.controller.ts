@@ -5,6 +5,7 @@ import likes from '../models/likes';
 import attendance from '../models/attendance';
 import mailService from '../mailService';
 import user from '../models/user';
+import messages from '../models/messages';
 
 export class WorkshopController {
     getAll = (req: express.Request, res: express.Response) => {
@@ -173,4 +174,17 @@ export class WorkshopController {
             }
         })
     }
+
+    getMessages = (req, res: express.Response) => {
+        let workshopId = req.body.id;
+        let userId = req.user._id;
+        //select all messages where the user is the sender or the receiver
+        messages.find({$or: [{from: userId, workshop: workshopId}, {workshop: workshopId, to: userId}]}, (err, messages) => {
+            if (err) console.log(err);
+            else {
+                res.json(messages);
+            }
+        });
+    }
+    
 }

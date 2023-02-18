@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: "workshop/:id", canActivate: [AuthGuard], component: WorkshopComponent},
   { path: "waitingList", component: AdminWaitingListComponent},
   { path: "becomeOrg", canActivate: [AuthGuard], component: BecomeOrgComponent},
-  { path: "chat/:orgId", canActivate: [AuthGuard], component: ChatComponent}
+  { path: "chat/:workshopId", canActivate: [AuthGuard], component: ChatComponent}
   /*
   {
     path: 'protected',

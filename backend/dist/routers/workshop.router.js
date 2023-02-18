@@ -19,5 +19,6 @@ workshopRouter.route('/reserveSeat').post(passport_middleware_1.PassportMiddlewa
 workshopRouter.route('/cancelSeat').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new workshop_controller_1.WorkshopController().cancelSeat(req, res));
 workshopRouter.route('/attendingStatus').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new workshop_controller_1.WorkshopController().attendingStatus(req, res));
 workshopRouter.route('/alertMe').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new workshop_controller_1.WorkshopController().alertMe(req, res));
+workshopRouter.route('/getMessages').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new workshop_controller_1.WorkshopController().getMessages(req, res));
 exports.default = workshopRouter;
 //# sourceMappingURL=workshop.router.js.map

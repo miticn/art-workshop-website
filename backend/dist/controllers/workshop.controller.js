@@ -10,6 +10,7 @@ const likes_1 = __importDefault(require("../models/likes"));
 const attendance_1 = __importDefault(require("../models/attendance"));
 const mailService_1 = __importDefault(require("../mailService"));
 const user_1 = __importDefault(require("../models/user"));
+const messages_1 = __importDefault(require("../models/messages"));
 class WorkshopController {
     constructor() {
         this.getAll = (req, res) => {
@@ -195,6 +196,18 @@ class WorkshopController {
                             }
                         }
                     });
+                }
+            });
+        };
+        this.getMessages = (req, res) => {
+            let workshopId = req.body.id;
+            let userId = req.user._id;
+            //select all messages where the user is the sender or the receiver
+            messages_1.default.find({ $or: [{ from: userId, workshop: workshopId }, { workshop: workshopId, to: userId }] }, (err, messages) => {
+                if (err)
+                    console.log(err);
+                else {
+                    res.json(messages);
                 }
             });
         };

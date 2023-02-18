@@ -99,4 +99,11 @@ export class WorkshopsService {
     }
     return this.http.post(`${this.uri}/alertMe`, body,{withCredentials: true});
   }
+
+  getMessages(workshopId: string){
+    let body = {
+      id: workshopId
+    }
+    return this.http.post(`${this.uri}/getMessages`, body,{withCredentials: true});
+  }
 }
