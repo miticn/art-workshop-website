@@ -1,30 +1,57 @@
 <h3 class="text-center">Opis radionice:</h3>
-<form>
+<form [formGroup]="workshopForm">
     <div class="row d-flex justify-content-center">
         <div class="col-md-4">
             <label for="name">Ime</label>
-            <input type="text" class="form-control" id="name" [(ngModel)]="workshop.name" name="name" required>
+            <input formControlName="name" type="text" class="form-control" id="name" name="name" required>
+
+            <div class="inputError"
+                *ngIf="workshopForm.controls.name.invalid && (workshopForm.controls.name.dirty || workshopForm.controls.name.touched)">
+                <div *ngIf="workshopForm.get('name').errors['required']">Ime je obvezno</div>
+                <div *ngIf="workshopForm.get('name').errors['minlength']">Ime mora imati barem 2 znaka</div>
+                <div *ngIf="workshopForm.get('name').errors['maxlength']">Ime ne sme biti duže od 64 znaka</div>
+            </div>
         </div>
 
         <div class="col-md-4">
             <label for="description">Kraći opis</label>
-            <input type="text" class="form-control" id="description" [(ngModel)]="workshop.description"
-                name="description" required>
+            <input formControlName="description" type="text" class="form-control" id="description" name="description"
+                required>
+            <div class="inputError"
+                *ngIf="workshopForm.controls.description.invalid && (workshopForm.controls.description.dirty || workshopForm.controls.description.touched)">
+                <div *ngIf="workshopForm.get('description').errors['required']">Opis je obvezan</div>
+                <div *ngIf="workshopForm.get('description').errors['minlength']">Opis mora imati najmanje 2 karaktera
+                </div>
+                <div *ngIf="workshopForm.get('description').errors['maxlength']">Opis ne sme biti duži od 256 karaktera
+                </div>
+            </div>
         </div>
     </div>
     <div class="row d-flex justify-content-center">
         <div class="col-md-8">
             <label for="descriptionLong">Duži opis</label>
-            <textarea class="form-control" id="description" [(ngModel)]="workshop.descriptionLong"
-                name="descriptionLong" required></textarea>
+            <textarea formControlName="descriptionLong" class="form-control" id="description" name="descriptionLong"
+                required></textarea>
+            <div class="inputError"
+                *ngIf="workshopForm.controls.descriptionLong.invalid && (workshopForm.controls.descriptionLong.dirty || workshopForm.controls.descriptionLong.touched)">
+                <div *ngIf="workshopForm.get('descriptionLong').errors['required']">Duži opis je obavezan</div>
+                <div *ngIf="workshopForm.get('descriptionLong').errors['minlength']">Duži opis mora imati najmanje 2
+                    karaktera</div>
+                <div *ngIf="workshopForm.get('descriptionLong').errors['maxlength']">Duži opis ne sme biti duži od 1024
+                    karaktera</div>
+            </div>
         </div>
     </div>
     <div class="row d-flex justify-content-center">
         <div class="col-md-8">
             <label for="date">Vreme održavanja</label>
 
-            <input type="datetime-local" [min]="minDateTime" class="form-control" id="date" [(ngModel)]="workshop.date"
+            <input formControlName="date" type="datetime-local" [min]="minDateTime" class="form-control" id="date"
                 name="date" required>
+            <div class="inputError"
+                *ngIf="workshopForm.controls.date.invalid && (workshopForm.controls.date.dirty || workshopForm.controls.date.touched)">
+                <div *ngIf="workshopForm.get('date').errors['required']">Datum je obavezan</div>
+            </div>
 
 
         </div>
@@ -32,20 +59,29 @@
     <div class="row d-flex justify-content-center">
         <div class=" col-md-4">
             <label for="mainPicture">Glavnia slika</label>
-            <input type="file" class="form-control" id="mainPicture" [(ngModel)]="workshop.mainPicture"
-                name="mainPicture" required>
+            <input formControlName="mainPicture" type="file" class="form-control" id="mainPicture" name="mainPicture" required>
+            <div *ngIf="(workshopForm.controls.mainPicture.dirty || workshopForm.controls.mainPicture.touched)" class="inputError">
+                <div *ngIf="workshopForm.controls.mainPicture.errors?.['pattern']">Slika mora da bude u jpg ili png formatu.</div>
+                <div *ngIf="workshopForm.controls.mainPicture.errors?.['required']">Glavna slika je obavezna</div>
+            </div>
         </div>
 
         <div class=" col-md-4">
             <label for="gallery">Galerija</label>
-            <input type="file" class="form-control" id="gallery" [(ngModel)]="workshop.gallery" name="gallery" required>
+            <input type="file" class="form-control" id="gallery" name="gallery" required>
         </div>
     </div>
     <div class="row d-flex justify-content-center">
         <div class=" col-md-4">
             <label for="totalSeats">Broj mesta:</label>
-            <input type="number" class="form-control" id="totalSeats" [(ngModel)]="workshop.totalSeats"
-                name="totalSeats" required>
+            <input formControlName="availableSeats" type="number" class="form-control" id="totalSeats" name="totalSeats"
+                required>
+            <div class="inputError"
+                *ngIf="workshopForm.get('availableSeats').invalid && (workshopForm.get('availableSeats').dirty || workshopForm.get('availableSeats').touched)">
+                <div *ngIf="workshopForm.get('availableSeats').errors['required']">Slobodna mesta su obavezna</div>
+                <div *ngIf="workshopForm.get('availableSeats').errors['min']">Radionica mora imati barem jedno slobodno
+                    mesto</div>
+            </div>
         </div>
 
 
@@ -54,11 +90,14 @@
             <label for="location">Lokacija:</label>
             <input class="form-control" ngx-google-places-autocomplete #placesRef="ngx-places"
                 (onAddressChange)="handleAddressChange($event)" id="location" name="location" />
+            <div class="inputError" *ngIf="workshopForm.controls.location.invalid">
+                <div *ngIf="workshopForm.get('location').errors['required']">Lokacija je obavezna</div>
+            </div>
         </div>
     </div>
     <div class="row d-flex justify-content-center">
         <div class="col-md-8 d-flex justify-content-center">
-            <button type="submit" class="btn btn-dark w-100 mt-2">Napravi radionicu</button>
+            <button [disabled]="workshopForm.invalid" type="submit" class="btn btn-dark w-100 mt-2">Napravi radionicu</button>
         </div>
     </div>
 </form>

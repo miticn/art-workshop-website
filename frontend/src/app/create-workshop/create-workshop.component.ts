@@ -11,14 +11,14 @@ import { Workshop } from '../models/workshop';
 export class CreateWorkshopComponent implements OnInit {
   workshopForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(64)]),
-    description: new FormControl('', []),
-    descriptionLong: new FormControl('', []),
+    description: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(256)]),
+    descriptionLong: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(1024)]),
     date: new FormControl('', [Validators.required]),
     availableSeats: new FormControl('', [Validators.required, Validators.min(1)]),
     location: new FormControl('', [Validators.required]),
-    lat: new FormControl('', []),
-    lng: new FormControl('', []),
-    mainPicture: new FormControl('', []),
+    lat: new FormControl(null, [Validators.required, Validators.min(-90), Validators.max(90)]),
+    lng: new FormControl(null, [Validators.required, Validators.min(-180), Validators.max(180)]),
+    mainPicture: new FormControl('', [Validators.required, Validators.pattern("^.+\.(jpg|png|jpeg|JPG|PNG|JPEG)$")]),
     mainPictureFile: new FormControl(null, []),
     gallery: new FormControl('', []),
   });
@@ -37,7 +37,16 @@ export class CreateWorkshopComponent implements OnInit {
   location: Address;
 
   handleAddressChange(address: Address) {
-    console.log(address.geometry.location.lat());
-    console.log(address.geometry.location.lng());
+    if(address.name!="" && address.hasOwnProperty('formatted_address') && address.hasOwnProperty('geometry')){
+      this.workshopForm.controls['location'].setValue(address.formatted_address);
+    
+      this.workshopForm.controls['lat'].setValue(address.geometry.location.lat());
+      this.workshopForm.controls['lng'].setValue(address.geometry.location.lng());
+    }
+    else{
+      this.workshopForm.controls['location'].setValue("");
+      this.workshopForm.controls['lat'].setValue(null);
+      this.workshopForm.controls['lng'].setValue(null);
+    }
   }
 }
