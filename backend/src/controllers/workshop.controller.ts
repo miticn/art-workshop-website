@@ -196,6 +196,16 @@ export class WorkshopController {
         })
     }
 
+    getWorkshopJSON = (req, res: express.Response) => {
+        let workshopId = req.body.id;
+        workshop.findById(workshopId, (err, workshop) => {
+            if (err) console.log(err);
+            else {
+                res.json({json: JSON.stringify(workshop)});
+            }
+        });
+    }
+
 
     getMessages = (req, res: express.Response) => {
         let workshopId = req.body.id;

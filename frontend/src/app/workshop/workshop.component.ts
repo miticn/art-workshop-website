@@ -7,6 +7,7 @@ import { Helper } from '../helper';
 import { faHeart, faComment, faMessage } from '@fortawesome/free-solid-svg-icons';
 import { UsersService } from '../services/users.service';
 import { Comment } from '../models/comment';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-workshop',
@@ -19,6 +20,8 @@ export class WorkshopComponent implements OnInit {
   faOutbox = faMessage;
   workshop : Workshop = new Workshop();
 
+  isDisabled : boolean = false;
+  myUser: User;
   liked : boolean = true;
 
   attendingStatus : string;
@@ -52,8 +55,10 @@ export class WorkshopComponent implements OnInit {
       this.liked = data.liked;
     });
     this.workshopService.getById(this.id).subscribe((data: any) => {
-      console.log(data)
       this.workshop = data;
+      this.userService.getSessionUser().subscribe((data: any) => {
+        this.myUser = data;
+      });
       this.images = [this.workshop.mainPicture, ...this.workshop.gallery];
       const location = new google.maps.LatLng(this.workshop.cordinates);
       console.log("location")
@@ -62,6 +67,8 @@ export class WorkshopComponent implements OnInit {
         console.log(data)
         this.location = data.results[0].formatted_address;
       });
+      console.log((new Date(this.workshop.date).getTime() - new Date().getTime())/ (1000 * 60 * 60)) ;
+      this.isDisabled = (new Date(this.workshop.date).getTime() - new Date().getTime())/ (1000 * 60 * 60) < 12;
     });
 
     this.workshopService.getWorkshopComments(this.id).subscribe((data: any) => {
@@ -108,6 +115,7 @@ export class WorkshopComponent implements OnInit {
       this.workshopService.attendingStatus(this.id).subscribe((data: any) => {
         this.attendingStatus = data.status;
       });
+      this.isDisabled = (new Date(this.workshop.date).getTime() - new Date().getTime())/ (1000 * 60 * 60) < 12;
     });
   }
 
@@ -129,5 +137,17 @@ export class WorkshopComponent implements OnInit {
   startChat(){
     const specs = 'width=500,height=500,top=100,left=100';
     window.open('/chat/'+this.id+"?hide=true", '_blank',specs);
+  }
+
+  saveJSON(){
+    this.workshopService.getWorkshopJSON(this.id).subscribe((data: any) => {
+      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(data.json);
+      var downloadAnchorNode = document.createElement('a');
+      downloadAnchorNode.setAttribute("href", dataStr);
+      downloadAnchorNode.setAttribute("download", "workshop-"+this.workshop._id+".json");
+      document.body.appendChild(downloadAnchorNode); // required for firefox
+      downloadAnchorNode.click();
+      downloadAnchorNode.remove();
+    });
   }
 }

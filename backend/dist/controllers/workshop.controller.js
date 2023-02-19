@@ -221,6 +221,16 @@ class WorkshopController {
                     res.json(workshop);
             });
         };
+        this.getWorkshopJSON = (req, res) => {
+            let workshopId = req.body.id;
+            workshop_1.default.findById(workshopId, (err, workshop) => {
+                if (err)
+                    console.log(err);
+                else {
+                    res.json({ json: JSON.stringify(workshop) });
+                }
+            });
+        };
         this.getMessages = (req, res) => {
             let workshopId = req.body.id;
             let userId = req.user._id;

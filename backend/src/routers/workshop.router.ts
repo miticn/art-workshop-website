@@ -89,5 +89,9 @@ workshopRouter.route('/createWorkshop').post(
     (req, res) => new WorkshopController().createWorkshop(req, res)
 )
 
+workshopRouter.route('/getWorkshopJSON').post(
+    (req, res) => new WorkshopController().getWorkshopJSON(req, res)
+)
+
 
 export default workshopRouter;

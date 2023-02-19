@@ -37,9 +37,10 @@
             <h2>{{workshop.name}} 
               <button *ngIf="(attendingStatus==='not attending')&& (workshop.availableSeats>0)" class="btn btn-dark" (click)="reserveSeat()">Prijavi me</button>
               <button *ngIf="(attendingStatus==='not attending')&& (workshop.availableSeats<=0)" class="btn btn-dark" (click)="alertMe()">Obavesti me kad se oslobodi mesto</button>
-              <button *ngIf="(attendingStatus==='reserved')" class="btn btn-dark" (click)="cancelSeat()">Odjavi me</button>
+              <button *ngIf="(attendingStatus==='reserved')" class="btn btn-dark" (click)="cancelSeat()" [disabled]="isDisabled">Odjavi me</button>
               <button *ngIf="(attendingStatus==='alert')" class="btn btn-dark" (click)="cancelSeat()">Prekini obaveštenja.</button>
               <button class="btn btn-dark ms-2" (click)="startChat()">Započni ćaskanje</button>
+              <button *ngIf="myUser._id==workshop.owner" class="btn btn-dark ms-2" (click)="saveJSON()">Sačuvaj šablon</button>
             </h2>
             <p>
                 <strong>Mesto održavanja:</strong> {{location}}<br />
