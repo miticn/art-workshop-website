@@ -184,7 +184,7 @@ export class WorkshopController {
             description: req.body.description,
             date: req.body.date,
             mainPicture: "default.png",
-            gallery: req.body.gallery,
+            gallery: JSON.parse(req.body.gallery),
             availableSeats: req.body.totalSeats,
             totalSeats: req.body.totalSeats,
             descriptionLong: req.body.descriptionLong,
@@ -228,6 +228,19 @@ export class WorkshopController {
                 res.json(resp);
             }
         })
+    }
+
+    uploadGallery = (req, res: express.Response) => {
+        const files = req['files'];
+        console.log('Gallery files uploaded: '+JSON.stringify(files.map((file) => file.filename)));
+        if (!files) {
+            const error = new Error("Please upload files");
+            return res.status(400).send(error.message);
+        }
+        else{
+            //return all filenames
+            return res.json(files.map((file) => file.filename));
+        }
     }
 
     getWorkshopJSON = (req, res: express.Response) => {

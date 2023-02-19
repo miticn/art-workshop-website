@@ -133,12 +133,24 @@ export class WorkshopsService {
     formData.set('descriptionLong', workshopForm.descriptionLong);
     formData.set('lat', workshopForm.lat)
     formData.set('lng', workshopForm.lng)
+    formData.set('gallery', JSON.stringify(workshopForm.galleryServer))
     //if(profilePicture != null) 
     //  formData.append('file', profilePicture, profilePicture.name);
     if(mainPicture != null)
       formData.append('mainPicture', mainPicture, mainPicture.name);
 
     return this.http.post(`${this.uri}/createWorkshop`, formData,{
+      reportProgress: true,
+      observe: 'events',
+      withCredentials: true});
+  }
+
+  uploadGallery(galleryPictures){
+    const formData = new FormData();
+    for(let i = 0; i < galleryPictures.length; i++){
+      formData.append('galleryPictures', galleryPictures[i], galleryPictures[i].name);
+    }
+    return this.http.post(`${this.uri}/uploadGallery`, formData,{
       reportProgress: true,
       observe: 'events',
       withCredentials: true});

@@ -22,7 +22,10 @@ export class CreateWorkshopComponent implements OnInit {
     lng: new FormControl(null, [Validators.required, Validators.min(-180), Validators.max(180)]),
     mainPicture: new FormControl('', [Validators.required, Validators.pattern("^.+\.(jpg|png|jpeg|JPG|PNG|JPEG)$")]),
     mainPictureFile: new FormControl(null, []),
-    gallery: new FormControl('', []),
+    gallery: new FormControl([], []),
+    galleryFiles: new FormControl([], []),
+    galleryLength: new FormControl(0, [Validators.min(0), Validators.max(5)]),
+    galleryServer: new FormControl([], [])
   });
 
   constructor(private workshopService: WorkshopsService, private router: Router) { }
@@ -53,16 +56,36 @@ export class CreateWorkshopComponent implements OnInit {
   }
 
   onFileChangeMain(event) {
-    //console.log(this.registerForm.controls);
-    //console.log("Register form validation: ", this.registerForm.valid);
-    //alert(this.registerForm.controls.profilePicture.valid)
     if (event.target.files.length == 0){
       this.workshopForm.controls.mainPicture.setValue(null);
     }
-    else if (event.target.files.length == 1 && this.workshopForm.controls.mainPicture.valid) {
+    else if(this.workshopForm.controls.mainPicture.valid) {
       const file = event.target.files[0];
       this.workshopForm.patchValue({
         mainPictureFile: file
+      });
+      
+    }
+  }
+
+  onFileChangeGallery(event) {
+    if (event.target.files.length == 0){
+      this.workshopForm.controls.mainPicture.setValue(null);
+    }
+    else if (event.target.files.length >0 && event.target.files.length <5 && this.workshopForm.controls.gallery.valid) {
+      //upload all files
+      const files = event.target.files;
+      console.log(files)
+      this.workshopForm.patchValue({
+        galleryFiles: files
+      });
+      
+      this.workshopService.uploadGallery(files).subscribe((data : any) => {
+        if(data.body){
+          this.workshopForm.controls.galleryServer.setValue(data.body);
+          console.log(this.workshopForm.controls.galleryServer.value)
+        }
+        
       });
       
     }
