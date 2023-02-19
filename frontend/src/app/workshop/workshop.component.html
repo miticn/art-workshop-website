@@ -43,7 +43,7 @@
               <button *ngIf="myUser._id==workshop.owner" class="btn btn-dark ms-2" (click)="saveJSON()">Sačuvaj šablon</button>
             </h2>
             <p>
-                <strong>Mesto održavanja:</strong> {{location}}<br />
+                <strong>Mesto održavanja:</strong> {{workshop.location}}<br />
                 <strong>Datum i vreme:</strong> {{workshop.date}}<br />
                 <strong>Slobodna mesta:</strong> {{workshop.availableSeats}}<br />
                 <strong>Opis:</strong> {{workshop.description}}

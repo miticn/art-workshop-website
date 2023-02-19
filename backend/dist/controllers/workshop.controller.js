@@ -210,7 +210,10 @@ class WorkshopController {
                 availableSeats: req.body.totalSeats,
                 totalSeats: req.body.totalSeats,
                 descriptionLong: req.body.descriptionLong,
-                cordinates: req.body.cordinates,
+                cordinates: {
+                    lat: req.body.lat,
+                    lng: req.body.lng
+                },
                 owner: req.user._id,
                 likes: 0,
             });

@@ -122,4 +122,25 @@ export class WorkshopsService {
     }
     return this.http.post(`${this.uri}/getWorkshopJSON`, body,{withCredentials: true});
   }
+
+  createWorkshop(workshopForm, mainPicture){
+    const formData = new FormData();
+    formData.set('name', workshopForm.name);
+    formData.set('location', workshopForm.location);
+    formData.set('description', workshopForm.description);
+    formData.set('date', workshopForm.date);
+    formData.set('totalSeats', workshopForm.availableSeats);
+    formData.set('descriptionLong', workshopForm.descriptionLong);
+    formData.set('lat', workshopForm.lat)
+    formData.set('lng', workshopForm.lng)
+    //if(profilePicture != null) 
+    //  formData.append('file', profilePicture, profilePicture.name);
+      
+
+
+    return this.http.post(`${this.uri}/createWorkshop`, formData,{
+      reportProgress: true,
+      observe: 'events',
+      withCredentials: true});
+  }
 }
