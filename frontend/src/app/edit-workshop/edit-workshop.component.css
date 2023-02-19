@@ -26,3 +26,7 @@
     width: min-content;
     position: relative;
   }
+
+  a:hover{
+    cursor: pointer;
+  }

@@ -21,12 +21,12 @@ export class EditWorkshopComponent implements OnInit {
     location: new FormControl('', [Validators.required]),
     lat: new FormControl(null, [Validators.required, Validators.min(-90), Validators.max(90)]),
     lng: new FormControl(null, [Validators.required, Validators.min(-180), Validators.max(180)]),
-    mainPicture: new FormControl('', [Validators.required, Validators.pattern("^.+\.(jpg|png|jpeg|JPG|PNG|JPEG)$")]),
+    mainPicture: new FormControl('', [Validators.pattern("^.+\.(jpg|png|jpeg|JPG|PNG|JPEG)$")]),
     mainPictureFile: new FormControl(null, []),
+    mainPictureServer: new FormControl('', []),
     gallery: new FormControl(null, []),
     galleryFiles: new FormControl([], []),
     galleryLength: new FormControl(0, [Validators.min(0), Validators.max(5)]),
-    galleryFileTypesOK: new FormControl(true, []),
     galleryServer: new FormControl([], [])
   });
 
@@ -58,8 +58,8 @@ export class EditWorkshopComponent implements OnInit {
       this.LocElem.nativeElement.value = this.workshop.location;
       this.workshopForm.controls['lat'].setValue(this.workshop.cordinates.lat);
       this.workshopForm.controls['lng'].setValue(this.workshop.cordinates.lng);
-      //this.workshopForm.controls['mainPicture'].setValue(this.workshop.mainPicture);
-      //this.workshopForm.controls['galleryServer'].setValue(this.workshop.gallery);
+      this.workshopForm.controls['mainPictureServer'].setValue(this.workshop.mainPicture);
+      this.workshopForm.controls['galleryServer'].setValue(this.workshop.gallery);
       //this.workshopForm.controls['galleryLength'].setValue(this.workshop.gallery.length);
 
     });
@@ -135,4 +135,9 @@ export class EditWorkshopComponent implements OnInit {
       }
     );
   }
+
+  removeGalleryImage(image: string){
+    this.workshopForm.controls.galleryServer.setValue(this.workshopForm.controls.galleryServer.value.filter((el: string) => el !== image));
+  }
+
 }

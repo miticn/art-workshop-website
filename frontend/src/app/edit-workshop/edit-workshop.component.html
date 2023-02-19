@@ -62,8 +62,7 @@
             <input formControlName="mainPicture" type="file" class="form-control" id="mainPicture" name="mainPicture" 
             accept="image/jpeg, image/png" (change)="onFileChangeMain($event)" required>
             <div class="image-container">
-                <img [src]="this.helper.getWorkshopPhotoUrl(workshop.mainPicture)" alt="Image" height="100" width="auto">
-                <a href="#" class="close-button">&times;</a>
+                <img [src]="this.helper.getWorkshopPhotoUrl(workshopForm.controls.mainPictureServer.value)" alt="Image" height="100" width="auto">
             </div>
             <div *ngIf="(workshopForm.controls.mainPicture.dirty || workshopForm.controls.mainPicture.touched)" class="inputError">
                 <div *ngIf="workshopForm.controls.mainPicture.errors?.['pattern']">Slika mora da bude u jpg ili png formatu.</div>
@@ -75,9 +74,9 @@
             <label for="gallery">Galerija</label>
             <input type="file" class="form-control" id="gallery" name="gallery"  accept="image/jpeg, image/png" (change)="onFileChangeGallery($event)" multiple>
             <div class="row">
-                <div *ngFor="let image of workshop.gallery" class="image-container col-2">
+                <div *ngFor="let image of workshopForm.controls.galleryServer.value" class="image-container col-2">
                     <img [src]="this.helper.getWorkshopPhotoUrl(image)" alt="Image" height="100" width="auto">
-                    <a href="#" class="close-button">&times;</a>
+                    <a (click)="removeGalleryImage(image)" class="close-button">&times;</a>
                 </div>
             </div>
             <div class="inputError">
