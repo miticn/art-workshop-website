@@ -60,7 +60,7 @@ export class EditWorkshopComponent implements OnInit {
       this.workshopForm.controls['lng'].setValue(this.workshop.cordinates.lng);
       this.workshopForm.controls['mainPictureServer'].setValue(this.workshop.mainPicture);
       this.workshopForm.controls['galleryServer'].setValue(this.workshop.gallery);
-      //this.workshopForm.controls['galleryLength'].setValue(this.workshop.gallery.length);
+      this.workshopForm.controls['galleryLength'].setValue(this.workshop.gallery.length);
 
     });
   }
@@ -91,11 +91,16 @@ export class EditWorkshopComponent implements OnInit {
         mainPictureFile: file
       });
       
+      this.workshopService.uploadMainPicture(this.workshopForm.get('mainPictureFile').value).subscribe((data: any) => {
+        
+        if(data.body)
+          this.workshopForm.controls.mainPictureServer.setValue(data.body.mainPicture);
+      });
     }
   }
 
   onFileChangeGallery(event) {
-    this.workshopForm.controls.galleryLength.setValue(event.target.files.length);
+    this.workshopForm.controls.galleryLength.setValue(event.target.files.length+this.workshopForm.controls.galleryServer.value.length);
     console.log(this.workshopForm.controls.galleryLength.value)
     this.workshopForm.controls.gallery.reset();
     for (let i = 0; i < event.target.files.length; i++) {
@@ -107,7 +112,7 @@ export class EditWorkshopComponent implements OnInit {
     if (event.target.files.length == 0){
       this.workshopForm.controls.mainPicture.setValue(null);
     }
-    else if (event.target.files.length >0 && event.target.files.length <5 && this.workshopForm.controls.gallery.valid) {
+    else if (this.workshopForm.controls.galleryLength.value >0 && this.workshopForm.controls.galleryLength.value <=5 && this.workshopForm.controls.gallery.valid) {
       //upload all files
       const files = event.target.files;
       console.log(files)
@@ -117,7 +122,9 @@ export class EditWorkshopComponent implements OnInit {
       
       this.workshopService.uploadGallery(files).subscribe((data : any) => {
         if(data.body){
-          this.workshopForm.controls.galleryServer.setValue(data.body);
+          this.workshopForm.controls.galleryServer.setValue(
+            this.workshopForm.controls.galleryServer.value.concat(data.body)
+          );
           console.log(this.workshopForm.controls.galleryServer.value)
         }
         
@@ -138,6 +145,7 @@ export class EditWorkshopComponent implements OnInit {
 
   removeGalleryImage(image: string){
     this.workshopForm.controls.galleryServer.setValue(this.workshopForm.controls.galleryServer.value.filter((el: string) => el !== image));
+    this.workshopForm.controls.galleryLength.setValue(this.workshopForm.controls.galleryLength.value - 1);
   }
 
 }

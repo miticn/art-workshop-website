@@ -82,7 +82,7 @@ export class CreateWorkshopComponent implements OnInit {
     if (event.target.files.length == 0){
       this.workshopForm.controls.mainPicture.setValue(null);
     }
-    else if (event.target.files.length >0 && event.target.files.length <5 && this.workshopForm.controls.gallery.valid) {
+    else if (event.target.files.length >0 && event.target.files.length <=5 && this.workshopForm.controls.gallery.valid) {
       //upload all files
       const files = event.target.files;
       console.log(files)

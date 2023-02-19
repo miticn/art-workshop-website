@@ -155,4 +155,13 @@ export class WorkshopsService {
       observe: 'events',
       withCredentials: true});
   }
+
+  uploadMainPicture(mainPicture){
+    const formData = new FormData();
+    formData.append('mainPicture', mainPicture, mainPicture.name);
+    return this.http.post(`${this.uri}/uploadMainPicture`, formData,{
+      reportProgress: true,
+      observe: 'events',
+      withCredentials: true});
+  }
 }

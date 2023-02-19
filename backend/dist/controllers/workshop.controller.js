@@ -237,19 +237,24 @@ class WorkshopController {
             let workshopId = req.body.id;
             const file = req['files'].find((file) => file.fieldname === 'mainPicture');
             const filename = file.filename;
-            console.log('Filename: ' + filename + '; Username: ' + workshopId);
+            console.log('Filename: ' + filename + '; WorkshopId: ' + workshopId);
             if (!file) {
                 const error = new Error("Please upload file");
                 return res.status(400).send(error.message);
             }
-            workshop_1.default.findOneAndUpdate({ '_id': workshopId }, { $set: { 'mainPicture': file.filename } }, (err, resp) => {
-                if (err)
-                    res.json({ error: err });
-                else {
-                    //console.log(resp);
-                    res.json(resp);
-                }
-            });
+            if (workshopId === undefined) {
+                res.json({ mainPicture: file.filename });
+            }
+            else {
+                workshop_1.default.findOneAndUpdate({ '_id': workshopId }, { $set: { 'mainPicture': file.filename } }, (err, resp) => {
+                    if (err)
+                        res.json({ error: err });
+                    else {
+                        //console.log(resp);
+                        res.json(resp);
+                    }
+                });
+            }
         };
         this.uploadGallery = (req, res) => {
             const files = req['files'];
