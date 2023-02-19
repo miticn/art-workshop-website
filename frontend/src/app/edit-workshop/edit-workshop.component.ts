@@ -140,12 +140,9 @@ export class EditWorkshopComponent implements OnInit {
     }
   }
 
-  createWorkshop(){
-    this.workshopService.createWorkshop(this.workshopFormUpdate.value,this.workshopFormUpdate.get('mainPictureFile').value).subscribe((data : any) => {
-        console.log(data);
-        if(data.body){
-          this.router.navigate(['/workshop/'+data.body._id]);
-        }
+  updateWorkshop(){
+    this.workshopService.updateWorkshop(this.workshopFormUpdate.value,this.workshop._id).subscribe((data : any) => {
+        this.router.navigate(['/workshop/'+this.workshop._id]);
       }
     );
   }

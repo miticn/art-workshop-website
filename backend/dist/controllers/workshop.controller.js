@@ -306,6 +306,27 @@ class WorkshopController {
             });
         };
         this.updateWorkshop = (req, res) => {
+            let workshopId = req.body.id;
+            workshop_1.default.findByIdAndUpdate(workshopId, {
+                name: req.body.name,
+                location: req.body.location,
+                description: req.body.description,
+                date: req.body.date,
+                totalSeats: req.body.totalSeats,
+                descriptionLong: req.body.descriptionLong,
+                cordinates: {
+                    lat: req.body.lat,
+                    lng: req.body.lng
+                },
+                mainPicture: req.body.mainPicture,
+                gallery: JSON.parse(req.body.gallery)
+            }, (err, workshop) => {
+                if (err)
+                    console.log(err);
+                else {
+                    res.json(workshop);
+                }
+            });
         };
     }
 }

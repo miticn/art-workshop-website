@@ -164,4 +164,23 @@ export class WorkshopsService {
       observe: 'events',
       withCredentials: true});
   }
+
+  updateWorkshop(workshopForm, id){
+    let body = {
+      id: id,
+      name: workshopForm.name,
+      location: workshopForm.location,
+      description: workshopForm.description,
+      date: workshopForm.date,
+      totalSeats: workshopForm.availableSeats,
+      descriptionLong: workshopForm.descriptionLong,
+      lat: workshopForm.lat,
+      lng: workshopForm.lng,
+      mainPicture: workshopForm.mainPictureServer,
+      gallery: JSON.stringify(workshopForm.galleryServer)
+    }
+    console.log(body);
+    return this.http.post(`${this.uri}/updateWorkshop`, body,{withCredentials: true});
+  }
+
 }
