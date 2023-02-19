@@ -1,3 +1,4 @@
-<app-menu></app-menu>
+<app-menu *ngIf="!hide"></app-menu>
 <router-outlet></router-outlet>
-<app-custom-modal></app-custom-modal>
+<footer class="text-center text-secondary bg-light " *ngIf="!hide">Autor: Nikola Mitić, Elektrotehnički fakultet Univerziteta u Beogradu</footer>
+<app-custom-modal *ngIf="!hide"></app-custom-modal>

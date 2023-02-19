@@ -16,16 +16,17 @@ import { WorkshopComponent } from './workshop/workshop.component';
 import { Top5Component } from './top5/top5.component';
 import { BecomeOrgComponent } from './become-org/become-org.component';
 import { ChatComponent } from './chat/chat.component';
+import { AntiAuth } from './anti-auth.guard';
 
 const routes: Routes = [
-  { path: "", component: IndexComponent },
+  { path: "", canActivate: [AntiAuth], component: IndexComponent },
   { path: "user/:username", canActivate: [AuthGuard], component: UserComponent },
   { path: "user/:username/edit", canActivate: [AuthGuard], component: UserEditComponent },
   { path: "user/:username/cpw", canActivate: [AuthGuard], component: ChangePasswordComponent },
   { path: "org", component: OrgComponent },
-  { path: "AdminLogin", component: AdminLoginComponent },
-  { path: "resetPassword", component: PasswordResetRequestComponent },
-  { path: "resetPassword/:token", component: ResetPasswordComponent },
+  { path: "AdminLogin", canActivate: [AntiAuth], component: AdminLoginComponent },
+  { path: "resetPassword", canActivate: [AntiAuth], component: PasswordResetRequestComponent },
+  { path: "resetPassword/:token", canActivate: [AntiAuth], component: ResetPasswordComponent },
   { path: "workshops", component: WorkshopsComponent},
   { path: "top5", component: Top5Component},
   { path: "workshop/:id", canActivate: [AuthGuard], component: WorkshopComponent},

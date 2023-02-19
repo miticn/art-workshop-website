@@ -128,6 +128,6 @@ export class WorkshopComponent implements OnInit {
 
   startChat(){
     const specs = 'width=500,height=500,top=100,left=100';
-    window.open('/chat/'+this.id, '_blank',specs);
+    window.open('/chat/'+this.id+"?hide=true", '_blank',specs);
   }
 }
