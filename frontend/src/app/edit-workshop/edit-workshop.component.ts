@@ -12,7 +12,7 @@ import { WorkshopsService } from '../services/workshops.service';
   styleUrls: ['./edit-workshop.component.css']
 })
 export class EditWorkshopComponent implements OnInit {
-  workshopForm = new FormGroup({
+  workshopFormUpdate = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(64)]),
     description: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(256)]),
     descriptionLong: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(1024)]),
@@ -21,7 +21,6 @@ export class EditWorkshopComponent implements OnInit {
     location: new FormControl('', [Validators.required]),
     lat: new FormControl(null, [Validators.required, Validators.min(-90), Validators.max(90)]),
     lng: new FormControl(null, [Validators.required, Validators.min(-180), Validators.max(180)]),
-    mainPicture: new FormControl('', [Validators.pattern("^.+\.(jpg|png|jpeg|JPG|PNG|JPEG)$")]),
     mainPictureFile: new FormControl(null, []),
     mainPictureServer: new FormControl('', []),
     gallery: new FormControl(null, []),
@@ -36,6 +35,8 @@ export class EditWorkshopComponent implements OnInit {
   workshop : Workshop = new Workshop();
   workshopId: string;
 
+  mainPicturep: string;
+
   @ViewChild('location') LocElem: ElementRef;
 
   ngOnInit(): void {
@@ -49,19 +50,19 @@ export class EditWorkshopComponent implements OnInit {
     this.workshopId = this.activatedRoute.snapshot.paramMap.get('id');
     this.workshopService.getById(this.workshopId).subscribe((data: any) => {
       this.workshop = data;
-      this.workshopForm.controls['name'].setValue(this.workshop.name);
-      this.workshopForm.controls['description'].setValue(this.workshop.description);
-      this.workshopForm.controls['descriptionLong'].setValue(this.workshop.descriptionLong);
+      this.workshopFormUpdate.controls['name'].setValue(this.workshop.name);
+      this.workshopFormUpdate.controls['description'].setValue(this.workshop.description);
+      this.workshopFormUpdate.controls['descriptionLong'].setValue(this.workshop.descriptionLong);
       let selectedDate = new Date(this.workshop.date);
-      this.workshopForm.controls['date'].setValue(selectedDate.toISOString().slice(0, 16));
-      this.workshopForm.controls['availableSeats'].setValue(this.workshop.totalSeats);
-      this.workshopForm.controls['location'].setValue(this.workshop.location);
+      this.workshopFormUpdate.controls['date'].setValue(selectedDate.toISOString().slice(0, 16));
+      this.workshopFormUpdate.controls['availableSeats'].setValue(this.workshop.totalSeats);
+      this.workshopFormUpdate.controls['location'].setValue(this.workshop.location);
       this.LocElem.nativeElement.value = this.workshop.location;
-      this.workshopForm.controls['lat'].setValue(this.workshop.cordinates.lat);
-      this.workshopForm.controls['lng'].setValue(this.workshop.cordinates.lng);
-      this.workshopForm.controls['mainPictureServer'].setValue(this.workshop.mainPicture);
-      this.workshopForm.controls['galleryServer'].setValue(this.workshop.gallery);
-      this.workshopForm.controls['galleryLength'].setValue(this.workshop.gallery.length);
+      this.workshopFormUpdate.controls['lat'].setValue(this.workshop.cordinates.lat);
+      this.workshopFormUpdate.controls['lng'].setValue(this.workshop.cordinates.lng);
+      this.workshopFormUpdate.controls['mainPictureServer'].setValue(this.workshop.mainPicture);
+      this.workshopFormUpdate.controls['galleryServer'].setValue(this.workshop.gallery);
+      this.workshopFormUpdate.controls['galleryLength'].setValue(this.workshop.gallery.length);
 
     });
   }
@@ -70,63 +71,68 @@ export class EditWorkshopComponent implements OnInit {
 
   handleAddressChange(address: Address) {
     if(address.name!="" && address.hasOwnProperty('formatted_address') && address.hasOwnProperty('geometry')){
-      this.workshopForm.controls['location'].setValue(address.formatted_address);
+      this.workshopFormUpdate.controls['location'].setValue(address.formatted_address);
     
-      this.workshopForm.controls['lat'].setValue(address.geometry.location.lat());
-      this.workshopForm.controls['lng'].setValue(address.geometry.location.lng());
+      this.workshopFormUpdate.controls['lat'].setValue(address.geometry.location.lat());
+      this.workshopFormUpdate.controls['lng'].setValue(address.geometry.location.lng());
     }
     else{
-      this.workshopForm.controls['location'].setValue("");
-      this.workshopForm.controls['lat'].setValue(null);
-      this.workshopForm.controls['lng'].setValue(null);
+      this.workshopFormUpdate.controls['location'].setValue("");
+      this.workshopFormUpdate.controls['lat'].setValue(null);
+      this.workshopFormUpdate.controls['lng'].setValue(null);
     }
   }
 
   onFileChangeMain(event) {
     if (event.target.files.length == 0){
-      this.workshopForm.controls.mainPicture.setValue(null);
+      this.mainPicturep = '';
     }
-    else if(this.workshopForm.controls.mainPicture.valid) {
+    else if(!event.target.files[0].name.match("^.+\.(jpg|png|jpeg|JPG|PNG|JPEG)$")){
+      this.mainPicturep = '';
+      this.workshopFormUpdate.controls.mainPictureFile.setErrors({badfile: true});
+    }
+    else {
+
       const file = event.target.files[0];
-      this.workshopForm.patchValue({
+      this.workshopFormUpdate.patchValue({
         mainPictureFile: file
       });
       
-      this.workshopService.uploadMainPicture(this.workshopForm.get('mainPictureFile').value).subscribe((data: any) => {
+      this.workshopService.uploadMainPicture(this.workshopFormUpdate.get('mainPictureFile').value).subscribe((data: any) => {
         
         if(data.body)
-          this.workshopForm.controls.mainPictureServer.setValue(data.body.mainPicture);
+          this.workshopFormUpdate.controls.mainPictureServer.setValue(data.body.mainPicture);
       });
     }
   }
 
   onFileChangeGallery(event) {
-    this.workshopForm.controls.galleryLength.setValue(event.target.files.length+this.workshopForm.controls.galleryServer.value.length);
-    console.log(this.workshopForm.controls.galleryLength.value)
-    this.workshopForm.controls.gallery.reset();
+    this.workshopFormUpdate.controls.galleryLength.setValue(event.target.files.length+this.workshopFormUpdate.controls.galleryServer.value.length);
+    console.log(this.workshopFormUpdate.controls.galleryLength.value)
+    this.workshopFormUpdate.controls.gallery.reset();
     for (let i = 0; i < event.target.files.length; i++) {
       if(!event.target.files[i].name.match("^.+\.(jpg|png|jpeg|JPG|PNG|JPEG)$")){
-        this.workshopForm.controls.gallery.setErrors({badfile: true});
+        this.workshopFormUpdate.controls.gallery.setErrors({badfile: true});
         return;
       }
     }
     if (event.target.files.length == 0){
-      this.workshopForm.controls.mainPicture.setValue(null);
+      this.workshopFormUpdate.controls.gallery.setValue(null);
     }
-    else if (this.workshopForm.controls.galleryLength.value >0 && this.workshopForm.controls.galleryLength.value <=5 && this.workshopForm.controls.gallery.valid) {
+    else if (this.workshopFormUpdate.controls.galleryLength.value >0 && this.workshopFormUpdate.controls.galleryLength.value <=5 && this.workshopFormUpdate.controls.gallery.valid) {
       //upload all files
       const files = event.target.files;
       console.log(files)
-      this.workshopForm.patchValue({
+      this.workshopFormUpdate.patchValue({
         galleryFiles: files
       });
       
       this.workshopService.uploadGallery(files).subscribe((data : any) => {
         if(data.body){
-          this.workshopForm.controls.galleryServer.setValue(
-            this.workshopForm.controls.galleryServer.value.concat(data.body)
+          this.workshopFormUpdate.controls.galleryServer.setValue(
+            this.workshopFormUpdate.controls.galleryServer.value.concat(data.body)
           );
-          console.log(this.workshopForm.controls.galleryServer.value)
+          console.log(this.workshopFormUpdate.controls.galleryServer.value)
         }
         
       });
@@ -135,7 +141,7 @@ export class EditWorkshopComponent implements OnInit {
   }
 
   createWorkshop(){
-    this.workshopService.createWorkshop(this.workshopForm.value,this.workshopForm.get('mainPictureFile').value).subscribe((data : any) => {
+    this.workshopService.createWorkshop(this.workshopFormUpdate.value,this.workshopFormUpdate.get('mainPictureFile').value).subscribe((data : any) => {
         console.log(data);
         if(data.body){
           this.router.navigate(['/workshop/'+data.body._id]);
@@ -145,8 +151,10 @@ export class EditWorkshopComponent implements OnInit {
   }
 
   removeGalleryImage(image: string){
-    this.workshopForm.controls.galleryServer.setValue(this.workshopForm.controls.galleryServer.value.filter((el: string) => el !== image));
-    this.workshopForm.controls.galleryLength.setValue(this.workshopForm.controls.galleryLength.value - 1);
+    this.workshopFormUpdate.controls.galleryServer.setValue(this.workshopFormUpdate.controls.galleryServer.value.filter((el: string) => el !== image));
+    this.workshopFormUpdate.controls.galleryLength.setValue(this.workshopFormUpdate.controls.galleryLength.value - 1);
+
+    console.log(this.workshopFormUpdate.controls)
   }
 
 }

@@ -283,5 +283,9 @@ export class WorkshopController {
             else res.json(message);
         });
     }
+
+    updateWorkshop = (req, res: express.Response) => {
+        
+    }
     
 }

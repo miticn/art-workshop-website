@@ -105,4 +105,9 @@ workshopRouter.route('/uploadMainPicture').post(
     (req, res) => new WorkshopController().uploadMainPicture(req, res)
 )
 
+workshopRouter.route('/updateWorkshop').post(
+    PassportMiddleware.checkAuthenticated,
+    (req, res) => new WorkshopController().updateWorkshop(req, res)
+)
+
 export default workshopRouter;

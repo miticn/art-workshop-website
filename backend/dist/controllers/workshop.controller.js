@@ -305,6 +305,8 @@ class WorkshopController {
                     res.json(message);
             });
         };
+        this.updateWorkshop = (req, res) => {
+        };
     }
 }
 exports.WorkshopController = WorkshopController;
