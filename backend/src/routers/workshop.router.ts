@@ -3,6 +3,19 @@ import { PassportMiddleware } from '../passport.middleware';
 import { WorkshopController } from '../controllers/workshop.controller';
 const workshopRouter = express.Router();
 
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: (req: any, file: any, cb: any) => {
+        cb(null, 'uploads/workshopPictures');
+    },
+    filename: (req: any, file: any, cb: any) => {
+        let randomString = Math.random().toString(36).substring(2, 15);
+        cb(null, Date.now() + '_' + randomString+ '.' + file.mimetype.split('/')[1]);
+    }
+});
+
+export var upload = multer({ storage: storage });
+
 workshopRouter.route('/getAll').get(
     (req, res) => new WorkshopController().getAll(req, res)
 )
@@ -68,6 +81,12 @@ workshopRouter.route('/getMessages').post(
 workshopRouter.route('/sendMessage').post(
     PassportMiddleware.checkAuthenticated,
     (req, res) => new WorkshopController().sendMessage(req, res)
+)
+
+workshopRouter.route('/createWorkshop').post(
+    upload.any(),
+    PassportMiddleware.checkAuthenticated,
+    (req, res) => new WorkshopController().createWorkshop(req, res)
 )
 
 

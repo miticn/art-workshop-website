@@ -3,10 +3,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.upload = void 0;
 const express_1 = __importDefault(require("express"));
 const passport_middleware_1 = require("../passport.middleware");
 const workshop_controller_1 = require("../controllers/workshop.controller");
 const workshopRouter = express_1.default.Router();
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/workshopPictures');
+    },
+    filename: (req, file, cb) => {
+        let randomString = Math.random().toString(36).substring(2, 15);
+        cb(null, Date.now() + '_' + randomString + '.' + file.mimetype.split('/')[1]);
+    }
+});
+exports.upload = multer({ storage: storage });
 workshopRouter.route('/getAll').get((req, res) => new workshop_controller_1.WorkshopController().getAll(req, res));
 workshopRouter.route('/getById').post((req, res) => new workshop_controller_1.WorkshopController().getById(req, res));
 workshopRouter.route('/comment').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new workshop_controller_1.WorkshopController().comment(req, res));
@@ -21,5 +33,6 @@ workshopRouter.route('/attendingStatus').post(passport_middleware_1.PassportMidd
 workshopRouter.route('/alertMe').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new workshop_controller_1.WorkshopController().alertMe(req, res));
 workshopRouter.route('/getMessages').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new workshop_controller_1.WorkshopController().getMessages(req, res));
 workshopRouter.route('/sendMessage').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new workshop_controller_1.WorkshopController().sendMessage(req, res));
+workshopRouter.route('/createWorkshop').post(exports.upload.any(), passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new workshop_controller_1.WorkshopController().createWorkshop(req, res));
 exports.default = workshopRouter;
 //# sourceMappingURL=workshop.router.js.map

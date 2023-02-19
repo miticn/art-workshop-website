@@ -199,6 +199,28 @@ class WorkshopController {
                 }
             });
         };
+        this.createWorkshop = (req, res) => {
+            let w = new workshop_1.default({
+                name: req.body.name,
+                location: req.body.location,
+                description: req.body.description,
+                date: req.body.date,
+                mainPicture: req.body.mainPicture,
+                gallery: req.body.gallery,
+                availableSeats: req.body.totalSeats,
+                totalSeats: req.body.totalSeats,
+                descriptionLong: req.body.descriptionLong,
+                cordinates: req.body.cordinates,
+                owner: req.user._id,
+                likes: 0,
+            });
+            w.save((err, workshop) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json(workshop);
+            });
+        };
         this.getMessages = (req, res) => {
             let workshopId = req.body.id;
             let userId = req.user._id;

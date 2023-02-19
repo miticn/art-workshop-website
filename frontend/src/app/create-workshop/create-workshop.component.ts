@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { Workshop } from '../models/workshop';
 
@@ -8,6 +9,19 @@ import { Workshop } from '../models/workshop';
   styleUrls: ['./create-workshop.component.css']
 })
 export class CreateWorkshopComponent implements OnInit {
+  workshopForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(64)]),
+    description: new FormControl('', []),
+    descriptionLong: new FormControl('', []),
+    date: new FormControl('', [Validators.required]),
+    availableSeats: new FormControl('', [Validators.required, Validators.min(1)]),
+    location: new FormControl('', [Validators.required]),
+    lat: new FormControl('', []),
+    lng: new FormControl('', []),
+    mainPicture: new FormControl('', []),
+    mainPictureFile: new FormControl(null, []),
+    gallery: new FormControl('', []),
+  });
 
   constructor() { }
   minDateTime: string;
