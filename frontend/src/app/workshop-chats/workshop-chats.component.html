@@ -1,1 +1,22 @@
-<p>workshop-chats works!</p>
+<h1>Sva ćaskanja za {{workshop.name}}</h1>
+<div *ngIf="">
+  <h3>Nema ćaskanja</h3>
+</div>
+<div *ngIf="true">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Slika</th>
+        <th>Ime</th>
+        <th>Detalji</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usersChating">
+        <td><img src="{{helper.getProfilePhotoUrl(user.profilePicture)}}" alt="Profile Picture"
+            class="rounded-circle mx-auto d-block" width="50" height="50" /></td>
+        <td>{{user.firstname}} {{user.lastname}}</td>
+        <td><button (click)="startChat(user._id)" class="btn btn-dark">Ćaskanja</button></td>
+        </tr>
+    </tbody>
+  </table>

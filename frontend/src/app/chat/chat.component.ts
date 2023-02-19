@@ -16,6 +16,7 @@ export class ChatComponent implements OnInit {
   constructor(private workshopService: WorkshopsService, private activatedRoute : ActivatedRoute,
     private userService: UsersService) { }
   workshopId: string;
+  userId: string;
   msgs : Message[] = [];
   workshop: Workshop;
   users = {};
@@ -25,12 +26,12 @@ export class ChatComponent implements OnInit {
   intervalId: any;
   ngOnInit(): void {
     this.workshopId = this.activatedRoute.snapshot.paramMap.get('workshopId');
-
+    this.userId = this.activatedRoute.snapshot.paramMap.get('userId');
     this.userService.getSessionUser().subscribe((res: any) => {
       this.me = res;
       console.log(this.me);
     });
-    this.workshopService.getMessages(this.workshopId).subscribe((res: any) => {
+    this.workshopService.getMessages(this.workshopId, this.userId).subscribe((res: any) => {
       this.msgs = res;
       //sort messages by date
       this.msgs.sort((a, b) => {
@@ -56,7 +57,7 @@ export class ChatComponent implements OnInit {
     });
 
     this.intervalId = setInterval(() => {
-      this.workshopService.getMessages(this.workshopId).subscribe((res: any) => {
+      this.workshopService.getMessages(this.workshopId, this.userId).subscribe((res: any) => {
         this.msgs = res;
         //sort messages by date
         this.msgs.sort((a, b) => {
@@ -77,7 +78,7 @@ export class ChatComponent implements OnInit {
   }
   sendMsg(){
     if(this.msgText){
-      this.workshopService.sendMessage(this.workshopId, this.msgText, this.workshop.owner).subscribe((res: any) => {
+      this.workshopService.sendMessage(this.workshopId, this.msgText, this.userId).subscribe((res: any) => {
         this.msgs.push(res);
         this.msgText = '';
       });

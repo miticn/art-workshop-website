@@ -6,6 +6,7 @@ import attendance from '../models/attendance';
 import mailService from '../mailService';
 import user from '../models/user';
 import messages from '../models/messages';
+import { ObjectId } from 'mongodb';
 
 export class WorkshopController {
     getAll = (req: express.Request, res: express.Response) => {
@@ -261,8 +262,9 @@ export class WorkshopController {
     getMessages = (req, res: express.Response) => {
         let workshopId = req.body.id;
         let userId = req.user._id;
+        let userId2 = req.body.userId;
         //select all messages where the user is the sender or the receiver
-        messages.find({$or: [{from: userId, workshop: workshopId}, {workshop: workshopId, to: userId}]}, (err, messages) => {
+        messages.find({$or: [{from: userId, workshop: workshopId, to: userId2}, {workshop: workshopId, to: userId, from:userId2}]}, (err, messages) => {
             if (err) console.log(err);
             else {
                 res.json(messages);
@@ -314,6 +316,41 @@ export class WorkshopController {
             if (err) console.log(err);
             else {
                 res.json(workshops);
+            }
+        });
+    }
+
+    getUsersChatingWithWorkshop = (req, res: express.Response) => {
+        let workshopId = req.body.id;
+
+        messages.find({workshop: workshopId}, (err, messages) => {
+            if (err) console.log(err);
+            else {
+                let users = [];
+                for (let message of messages) {
+                    if (message.from != req.user._id) {
+                        if (!users.includes(message.from)) {
+                            users.push(message.from.toString());
+                        }
+                    }
+                    else {
+                        if (!users.includes(message.to)) {
+                            users.push(message.to.toString());
+                        }
+                    }
+                }
+                //remove duplicates
+                users = users.filter((v, i, a) => a.indexOf(v) === i);
+
+                //remove owner from the list
+                let index = users.indexOf(req.user._id.toString());
+                if (index > -1) {
+                    users.splice(index, 1);
+                }
+
+
+                res.json(users);
+
             }
         });
     }

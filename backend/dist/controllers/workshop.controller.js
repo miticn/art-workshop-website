@@ -281,8 +281,9 @@ class WorkshopController {
         this.getMessages = (req, res) => {
             let workshopId = req.body.id;
             let userId = req.user._id;
+            let userId2 = req.body.userId;
             //select all messages where the user is the sender or the receiver
-            messages_1.default.find({ $or: [{ from: userId, workshop: workshopId }, { workshop: workshopId, to: userId }] }, (err, messages) => {
+            messages_1.default.find({ $or: [{ from: userId, workshop: workshopId, to: userId2 }, { workshop: workshopId, to: userId, from: userId2 }] }, (err, messages) => {
                 if (err)
                     console.log(err);
                 else {
@@ -329,11 +330,42 @@ class WorkshopController {
             });
         };
         this.getWorkshopsByOwner = (req, res) => {
-            workshop_1.default.find({ owner: req.user._id }, (err, workshops) => {
+            let owner = req.body.id;
+            workshop_1.default.find({ owner: owner }, (err, workshops) => {
                 if (err)
                     console.log(err);
                 else {
                     res.json(workshops);
+                }
+            });
+        };
+        this.getUsersChatingWithWorkshop = (req, res) => {
+            let workshopId = req.body.id;
+            messages_1.default.find({ workshop: workshopId }, (err, messages) => {
+                if (err)
+                    console.log(err);
+                else {
+                    let users = [];
+                    for (let message of messages) {
+                        if (message.from != req.user._id) {
+                            if (!users.includes(message.from)) {
+                                users.push(message.from.toString());
+                            }
+                        }
+                        else {
+                            if (!users.includes(message.to)) {
+                                users.push(message.to.toString());
+                            }
+                        }
+                    }
+                    //remove duplicates
+                    users = users.filter((v, i, a) => a.indexOf(v) === i);
+                    //remove owner from the list
+                    let index = users.indexOf(req.user._id.toString());
+                    if (index > -1) {
+                        users.splice(index, 1);
+                    }
+                    res.json(users);
                 }
             });
         };

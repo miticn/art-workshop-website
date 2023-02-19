@@ -100,9 +100,10 @@ export class WorkshopsService {
     return this.http.post(`${this.uri}/alertMe`, body,{withCredentials: true});
   }
 
-  getMessages(workshopId: string){
+  getMessages(workshopId: string, userId: string){
     let body = {
-      id: workshopId
+      id: workshopId,
+      userId : userId
     }
     return this.http.post(`${this.uri}/getMessages`, body,{withCredentials: true});
   }
@@ -190,4 +191,12 @@ export class WorkshopsService {
     }
     return this.http.post(`${this.uri}/getWorkshopsByOwner`,body , {withCredentials: true});
   }
+
+  getUsersChatingWithWorkshop(workshopId){
+    let body = {
+      id: workshopId
+    }
+    return this.http.post(`${this.uri}/getUsersChatingWithWorkshop`, body,{withCredentials: true});
+  }
+  
 }

@@ -115,4 +115,9 @@ workshopRouter.route('/getWorkshopsByOwner').post(
     (req, res) => new WorkshopController().getWorkshopsByOwner(req, res)
 )
 
+workshopRouter.route('/getUsersChatingWithWorkshop').post(
+    PassportMiddleware.checkAuthenticated,
+    (req, res) => new WorkshopController().getUsersChatingWithWorkshop(req, res)
+)
+
 export default workshopRouter;
