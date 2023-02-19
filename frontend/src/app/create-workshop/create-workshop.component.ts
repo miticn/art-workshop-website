@@ -52,10 +52,28 @@ export class CreateWorkshopComponent implements OnInit {
     }
   }
 
+  onFileChangeMain(event) {
+    //console.log(this.registerForm.controls);
+    //console.log("Register form validation: ", this.registerForm.valid);
+    //alert(this.registerForm.controls.profilePicture.valid)
+    if (event.target.files.length == 0){
+      this.workshopForm.controls.mainPicture.setValue(null);
+    }
+    else if (event.target.files.length == 1 && this.workshopForm.controls.mainPicture.valid) {
+      const file = event.target.files[0];
+      this.workshopForm.patchValue({
+        mainPictureFile: file
+      });
+      
+    }
+  }
+
   createWorkshop(){
-    this.workshopService.createWorkshop(this.workshopForm.value,"test").subscribe((data : any) => {
-        let ws : Workshop = data;
-        this.router.navigate(['/workshop/'+ws._id]);
+    this.workshopService.createWorkshop(this.workshopForm.value,this.workshopForm.get('mainPictureFile').value).subscribe((data : any) => {
+        console.log(data);
+        if(data.body){
+          this.router.navigate(['/workshop/'+data.body._id]);
+        }
       }
     );
   }

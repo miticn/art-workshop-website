@@ -135,10 +135,12 @@ export class WorkshopsService {
     formData.set('lng', workshopForm.lng)
     //if(profilePicture != null) 
     //  formData.append('file', profilePicture, profilePicture.name);
-      
-
+    if(mainPicture != null)
+      formData.append('mainPicture', mainPicture, mainPicture.name);
 
     return this.http.post(`${this.uri}/createWorkshop`, formData,{
+      reportProgress: true,
+      observe: 'events',
       withCredentials: true});
   }
 }

@@ -183,7 +183,7 @@ export class WorkshopController {
             location: req.body.location,
             description: req.body.description,
             date: req.body.date,
-            mainPicture: req.body.mainPicture,
+            mainPicture: "default.png",
             gallery: req.body.gallery,
             availableSeats: req.body.totalSeats,
             totalSeats: req.body.totalSeats,
@@ -198,10 +198,36 @@ export class WorkshopController {
         w.save((err, workshop) => {
             if (err) console.log(err);
             else {
-                res.json(workshop);
+                console.log("Workshop created: "+w.name);
+                req.body.id = workshop._id;
+                if (req['files'].find((file) => file.fieldname === 'mainPicture')){
+                    this.uploadMainPicture(req, res);
+                }
+                else {
+                    res.json({"message": "error"});
+                }
             }
         })
 
+    }
+
+    uploadMainPicture = (req, res: express.Response) => {
+        let workshopId = req.body.id;
+        const file = req['files'].find((file) => file.fieldname === 'mainPicture');
+        const filename = file.filename;
+        console.log('Filename: '+filename + '; Username: '+workshopId);
+        if (!file) {
+            const error = new Error("Please upload file");
+            return res.status(400).send(error.message);
+        }
+
+        workshop.findOneAndUpdate({ '_id': workshopId }, { $set: { 'mainPicture': file.filename } }, (err, resp) => {
+            if (err) res.json({error: err});
+            else {
+                //console.log(resp);
+                res.json(resp);
+            }
+        })
     }
 
     getWorkshopJSON = (req, res: express.Response) => {
