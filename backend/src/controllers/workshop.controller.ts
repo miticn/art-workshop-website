@@ -186,5 +186,19 @@ export class WorkshopController {
             }
         });
     }
+
+    sendMessage = (req, res: express.Response) => {
+        let message = new messages({
+            from: req.user._id,
+            to: req.body.to,
+            workshop: req.body.id,
+            text: req.body.text,
+            date: new Date()
+        });
+        message.save((err, message) => {
+            if (err) console.log(err);
+            else res.json(message);
+        });
+    }
     
 }

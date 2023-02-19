@@ -106,4 +106,13 @@ export class WorkshopsService {
     }
     return this.http.post(`${this.uri}/getMessages`, body,{withCredentials: true});
   }
+
+  sendMessage(workshopId: string, message: string, to: string){
+    let body = {
+      id: workshopId,
+      text: message,
+      to: to
+    }
+    return this.http.post(`${this.uri}/sendMessage`, body,{withCredentials: true});
+  }
 }

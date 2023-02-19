@@ -21,6 +21,8 @@ export class ChatComponent implements OnInit {
   users = {};
   msgText: string;
   me: User;
+
+  intervalId: any;
   ngOnInit(): void {
     this.workshopId = this.activatedRoute.snapshot.paramMap.get('workshopId');
 
@@ -52,6 +54,16 @@ export class ChatComponent implements OnInit {
     this.workshopService.getById(this.workshopId).subscribe((data: any) => {
       this.workshop = data;
     });
+
+    this.intervalId = setInterval(() => {
+      this.workshopService.getMessages(this.workshopId).subscribe((res: any) => {
+        this.msgs = res;
+        //sort messages by date
+        this.msgs.sort((a, b) => {
+          return new Date(a.date).getTime() - new Date(b.date).getTime();
+        });
+      });
+    }, 3000);
   }
 
   getUser(userId){
@@ -65,10 +77,10 @@ export class ChatComponent implements OnInit {
   }
   sendMsg(){
     if(this.msgText){
-      /*this.workshopService.sendMessage(this.workshopId, this.msgText).subscribe((res: any) => {
+      this.workshopService.sendMessage(this.workshopId, this.msgText, this.workshop.owner).subscribe((res: any) => {
         this.msgs.push(res);
         this.msgText = '';
-      });*/
+      });
     }
   }
 

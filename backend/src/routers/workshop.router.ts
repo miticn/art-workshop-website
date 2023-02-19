@@ -65,5 +65,10 @@ workshopRouter.route('/getMessages').post(
     (req, res) => new WorkshopController().getMessages(req, res)
 )
 
+workshopRouter.route('/sendMessage').post(
+    PassportMiddleware.checkAuthenticated,
+    (req, res) => new WorkshopController().sendMessage(req, res)
+)
+
 
 export default workshopRouter;

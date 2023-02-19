@@ -211,6 +211,21 @@ class WorkshopController {
                 }
             });
         };
+        this.sendMessage = (req, res) => {
+            let message = new messages_1.default({
+                from: req.user._id,
+                to: req.body.to,
+                workshop: req.body.id,
+                text: req.body.text,
+                date: new Date()
+            });
+            message.save((err, message) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json(message);
+            });
+        };
     }
 }
 exports.WorkshopController = WorkshopController;

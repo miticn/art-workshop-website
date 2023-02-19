@@ -14,4 +14,5 @@ export class Workshop{
     location: string;
     _id: string;
     likes: number;
+    owner: string;
 }
