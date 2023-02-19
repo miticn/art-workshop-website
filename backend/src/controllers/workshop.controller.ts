@@ -354,5 +354,32 @@ export class WorkshopController {
             }
         });
     }
+
+    createWorkshopJSON = (req, res: express.Response) => {
+        let JSONObj = JSON.parse(req.body.json);
+
+        let ws = new workshop({
+            name: JSONObj.name,
+            location: JSONObj.location,
+            description: JSONObj.description,
+            date: JSONObj.date,
+            totalSeats: JSONObj.totalSeats,
+            availableSeats : JSONObj.totalSeats,
+            descriptionLong: JSONObj.descriptionLong,
+            cordinates: JSONObj.cordinates,
+            owner: req.user._id,
+            likes: JSONObj.likes,
+            mainPicture: JSONObj.mainPicture,
+            gallery: JSONObj.gallery
+        });
+        ws.save((err, workshop) => {
+            if (err) console.log(err);
+            else {
+                console.log("Workshop created: "+ws.name);
+                res.json(workshop);
+            }
+        });
+
+    }
     
 }

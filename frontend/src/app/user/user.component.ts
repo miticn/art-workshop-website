@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../models/user';
 import { Helper } from '../helper';
 import { UsersService } from '../services/users.service';
@@ -22,7 +22,7 @@ export class UserComponent implements OnInit {
   faPencil = faPencil;
 
   constructor(private activatedRoute : ActivatedRoute, private userService : UsersService, public helper: Helper, public auth: AuthService,
-    private workshopService: WorkshopsService) { }
+    private workshopService: WorkshopsService, private router : Router) { }
   username: string;
   user: User;
   exists: boolean = true;
@@ -103,6 +103,31 @@ export class UserComponent implements OnInit {
       this.editingComments.splice(index, 1);
     } else {
       this.editingComments.push(commentId);
+    }
+  }
+
+  createWorkshopJSON(){
+    //open file picker
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    console.log(input)
+    input.click();
+    input.onchange = e => {
+      //get file
+      var file = e.target['files'][0];
+      //read file
+      var reader = new FileReader();
+      reader.readAsText(file, "UTF-8");
+      reader.onload = readerEvent => {
+        var content = readerEvent.target['result'];
+        console.log(content)
+        //send file
+        this.workshopService.createWorkshopJSON(content).subscribe((data: any) => {
+          let ws : Workshop = data;
+          this.router.navigate(['/workshop', ws._id,'edit']);
+        });
+      }
     }
   }
 }

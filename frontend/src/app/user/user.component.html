@@ -21,6 +21,11 @@
               </tr>
           </tbody>
       </table>
+      <div class="d-flex col-8 offset-4">
+        <a [routerLink]="['/createWorkshop']"><button class="btn btn-dark">Kreiraj radionicu</button></a>
+        <button  class="ms-2 btn btn-dark" (click)="createWorkshopJSON()">Kreiraj radionicu (JSON).</button>
+        
+      </div>
     </div>
   </div>
   <div class="row">

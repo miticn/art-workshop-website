@@ -198,5 +198,12 @@ export class WorkshopsService {
     }
     return this.http.post(`${this.uri}/getUsersChatingWithWorkshop`, body,{withCredentials: true});
   }
+
+  createWorkshopJSON(workshopJSON){
+    let body = {
+      json: workshopJSON
+    }
+    return this.http.post(`${this.uri}/createWorkshopJSON`, body,{withCredentials: true});
+  }
   
 }
