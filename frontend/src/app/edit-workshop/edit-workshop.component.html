@@ -57,19 +57,29 @@
         </div>
     </div>
     <div class="row d-flex justify-content-center">
-        <div class=" col-md-4">
+        <div class=" col-md-2">
             <label for="mainPicture">Glavnia slika</label>
             <input formControlName="mainPicture" type="file" class="form-control" id="mainPicture" name="mainPicture" 
             accept="image/jpeg, image/png" (change)="onFileChangeMain($event)" required>
+            <div class="image-container">
+                <img [src]="this.helper.getWorkshopPhotoUrl(workshop.mainPicture)" alt="Image" height="100" width="auto">
+                <a href="#" class="close-button">&times;</a>
+            </div>
             <div *ngIf="(workshopForm.controls.mainPicture.dirty || workshopForm.controls.mainPicture.touched)" class="inputError">
                 <div *ngIf="workshopForm.controls.mainPicture.errors?.['pattern']">Slika mora da bude u jpg ili png formatu.</div>
                 <div *ngIf="workshopForm.controls.mainPicture.errors?.['required']">Glavna slika je obavezna</div>
             </div>
         </div>
 
-        <div class=" col-md-4">
+        <div class=" col-md-6">
             <label for="gallery">Galerija</label>
             <input type="file" class="form-control" id="gallery" name="gallery"  accept="image/jpeg, image/png" (change)="onFileChangeGallery($event)" multiple>
+            <div class="row">
+                <div *ngFor="let image of workshop.gallery" class="image-container col-2">
+                    <img [src]="this.helper.getWorkshopPhotoUrl(image)" alt="Image" height="100" width="auto">
+                    <a href="#" class="close-button">&times;</a>
+                </div>
+            </div>
             <div class="inputError">
                 <div *ngIf="workshopForm.controls.gallery.errors?.['badfile']">Slike moraju da budu u jpg ili png formatu.</div>
                 <div *ngIf="workshopForm.controls.galleryLength.errors?.['max']">Moguce je imati najvise 5 slika u galeriji.</div>
@@ -93,7 +103,7 @@
         <!--Search on google maps-->
         <div class=" col-md-4">
             <label for="location">Lokacija:</label>
-            <input class="form-control" ngx-google-places-autocomplete #placesRef="ngx-places"
+            <input #location class="form-control" ngx-google-places-autocomplete #placesRef="ngx-places"
                 (onAddressChange)="handleAddressChange($event)" id="location" name="location" />
             <div class="inputError" *ngIf="workshopForm.controls.location.invalid">
                 <div *ngIf="workshopForm.get('location').errors['required']">Lokacija je obavezna</div>

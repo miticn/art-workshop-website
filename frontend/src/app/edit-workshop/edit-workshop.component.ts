@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { Helper } from '../helper';
 import { Workshop } from '../models/workshop';
 import { WorkshopsService } from '../services/workshops.service';
 
@@ -16,7 +17,7 @@ export class EditWorkshopComponent implements OnInit {
     description: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(256)]),
     descriptionLong: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(1024)]),
     date: new FormControl('', [Validators.required]),
-    availableSeats: new FormControl('', [Validators.required, Validators.min(1)]),
+    availableSeats: new FormControl(0, [Validators.required, Validators.min(1)]),
     location: new FormControl('', [Validators.required]),
     lat: new FormControl(null, [Validators.required, Validators.min(-90), Validators.max(90)]),
     lng: new FormControl(null, [Validators.required, Validators.min(-180), Validators.max(180)]),
@@ -29,16 +30,40 @@ export class EditWorkshopComponent implements OnInit {
     galleryServer: new FormControl([], [])
   });
 
-  constructor(private workshopService: WorkshopsService, private router: Router) { }
+  constructor(private workshopService: WorkshopsService, private router: Router,
+    private activatedRoute : ActivatedRoute, public helper: Helper) { }
   minDateTime: string;
+  workshop : Workshop = new Workshop();
+  workshopId: string;
+
+  @ViewChild('location') LocElem: ElementRef;
+
   ngOnInit(): void {
     //set minDateTime to 24 hours from now rounded to the nearest minute for the date picker
     let now = new Date();
     now.setHours(now.getHours() + 24);
     this.minDateTime = now.toISOString().slice(0, 16).replace('T', ' '); 
     console.log(this.minDateTime)
+
+    
+    this.workshopId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.workshopService.getById(this.workshopId).subscribe((data: any) => {
+      this.workshop = data;
+      this.workshopForm.controls['name'].setValue(this.workshop.name);
+      this.workshopForm.controls['description'].setValue(this.workshop.description);
+      this.workshopForm.controls['descriptionLong'].setValue(this.workshop.descriptionLong);
+      //this.workshopForm.controls['date'].setValue(this.workshop.date.toISOString().slice(0, 16).replace('T', ' '));
+      this.workshopForm.controls['availableSeats'].setValue(this.workshop.totalSeats);
+      this.workshopForm.controls['location'].setValue(this.workshop.location);
+      this.LocElem.nativeElement.value = this.workshop.location;
+      this.workshopForm.controls['lat'].setValue(this.workshop.cordinates.lat);
+      this.workshopForm.controls['lng'].setValue(this.workshop.cordinates.lng);
+      //this.workshopForm.controls['mainPicture'].setValue(this.workshop.mainPicture);
+      //this.workshopForm.controls['galleryServer'].setValue(this.workshop.gallery);
+      //this.workshopForm.controls['galleryLength'].setValue(this.workshop.gallery.length);
+
+    });
   }
-  workshop : Workshop = new Workshop();
 
   location: Address;
 
