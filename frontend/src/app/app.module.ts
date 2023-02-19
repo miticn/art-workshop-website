@@ -28,7 +28,8 @@ import { Top5Component } from './top5/top5.component';
 import { WorkshopTableComponent } from './workshop-table/workshop-table.component';
 import { BecomeOrgComponent } from './become-org/become-org.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
-import { ChatComponent } from './chat/chat.component'; 
+import { ChatComponent } from './chat/chat.component';
+import { MsgComponent } from './msg/msg.component'; 
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { ChatComponent } from './chat/chat.component';
     WorkshopTableComponent,
     BecomeOrgComponent,
     ChatComponent,
+    MsgComponent,
   ],
   imports: [
     BrowserAnimationsModule,
