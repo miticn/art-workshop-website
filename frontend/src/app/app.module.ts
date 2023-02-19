@@ -35,6 +35,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { EditWorkshopComponent } from './edit-workshop/edit-workshop.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { MatInputModule } from '@angular/material/input';
     ChatComponent,
     MsgComponent,
     CreateWorkshopComponent,
+    EditWorkshopComponent,
   ],
   imports: [
     BrowserAnimationsModule,

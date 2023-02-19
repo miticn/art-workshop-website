@@ -18,6 +18,7 @@ import { BecomeOrgComponent } from './become-org/become-org.component';
 import { ChatComponent } from './chat/chat.component';
 import { AntiAuth } from './anti-auth.guard';
 import { CreateWorkshopComponent } from './create-workshop/create-workshop.component';
+import { EditWorkshopComponent } from './edit-workshop/edit-workshop.component';
 
 const routes: Routes = [
   { path: "", canActivate: [AntiAuth], component: IndexComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: "becomeOrg", canActivate: [AuthGuard], component: BecomeOrgComponent},
   { path: "chat/:workshopId", canActivate: [AuthGuard], component: ChatComponent},
   { path: "createWorkshop", canActivate: [AuthGuard], component: CreateWorkshopComponent},
+  { path: "workshop/:id/edit", canActivate: [AuthGuard], component: EditWorkshopComponent},
   /*
   {
     path: 'protected',
