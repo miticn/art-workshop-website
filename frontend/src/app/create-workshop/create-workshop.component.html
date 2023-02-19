@@ -1,56 +1,64 @@
-<h3>Opis radionice:</h3>
+<h3 class="text-center">Opis radionice:</h3>
 <form>
-    <div class="form-group">
-        <label for="name">Ime</label>
-        <input type="text" class="form-control" id="name" [(ngModel)]="workshop.name" name="name" required>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-4">
+            <label for="name">Ime</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="workshop.name" name="name" required>
+        </div>
+
+        <div class="col-md-4">
+            <label for="description">Kraći opis</label>
+            <input type="text" class="form-control" id="description" [(ngModel)]="workshop.description"
+                name="description" required>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="description">Kraći opis</label>
-        <input type="text" class="form-control" id="description" [(ngModel)]="workshop.description" name="description"
-            required>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+            <label for="descriptionLong">Duži opis</label>
+            <textarea class="form-control" id="description" [(ngModel)]="workshop.descriptionLong"
+                name="descriptionLong" required></textarea>
+        </div>
     </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+            <label for="date">Vreme održavanja</label>
 
-    <div class="form-group">
-        <label for="descriptionLong">Duži opis</label>
-        <textarea class="form-control" id="description" [(ngModel)]="workshop.descriptionLong" name="descriptionLong"
-            required></textarea>
+            <input type="datetime-local" [min]="minDateTime" class="form-control" id="date" [(ngModel)]="workshop.date"
+                name="date" required>
+
+
+        </div>
     </div>
+    <div class="row d-flex justify-content-center">
+        <div class=" col-md-4">
+            <label for="mainPicture">Glavnia slika</label>
+            <input type="file" class="form-control" id="mainPicture" [(ngModel)]="workshop.mainPicture"
+                name="mainPicture" required>
+        </div>
 
-    <div class="form-group">
-        <label for="date">Vreme održavanja</label>
-        
-        <input type="datetime-local" [min]="minDateTime" class="form-control" id="date" [(ngModel)]="workshop.date" name="date" required>
-        
-          
+        <div class=" col-md-4">
+            <label for="gallery">Galerija</label>
+            <input type="file" class="form-control" id="gallery" [(ngModel)]="workshop.gallery" name="gallery" required>
+        </div>
     </div>
+    <div class="row d-flex justify-content-center">
+        <div class=" col-md-4">
+            <label for="totalSeats">Broj mesta:</label>
+            <input type="number" class="form-control" id="totalSeats" [(ngModel)]="workshop.totalSeats"
+                name="totalSeats" required>
+        </div>
 
-    <div class="form-group">
-        <label for="mainPicture">Glavnia slika</label>
-        <input type="text" class="form-control" id="mainPicture" [(ngModel)]="workshop.mainPicture" name="mainPicture"
-            required>
+
+        <!--Search on google maps-->
+        <div class=" col-md-4">
+            <label for="location">Lokacija:</label>
+            <input class="form-control" ngx-google-places-autocomplete #placesRef="ngx-places"
+                (onAddressChange)="handleAddressChange($event)" id="location" name="location" />
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="gallery">Galerija</label>
-        <input type="text" class="form-control" id="gallery" [(ngModel)]="workshop.gallery" name="gallery" required>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8 d-flex justify-content-center">
+            <button type="submit" class="btn btn-dark w-100 mt-2">Napravi radionicu</button>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="totalSeats">Broj mesta:</label>
-        <input type="number" class="form-control" id="totalSeats" [(ngModel)]="workshop.totalSeats" name="totalSeats"
-            required>
-    </div>
-
-    <div class="form-group">
-        <label for="descriptionLong">Duži opis</label>
-        <textarea class="form-control" id="descriptionLong" [(ngModel)]="workshop.descriptionLong"
-            name="descriptionLong" required></textarea>
-    </div>
-
-
-    <!--Search on google maps-->
-    <input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
-
-    <button type="submit" class="btn btn-dark">Submit</button>
 </form>
