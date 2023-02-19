@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { Workshop } from '../models/workshop';
 import { WorkshopsService } from '../services/workshops.service';
@@ -24,7 +25,7 @@ export class CreateWorkshopComponent implements OnInit {
     gallery: new FormControl('', []),
   });
 
-  constructor(private workshopService: WorkshopsService) { }
+  constructor(private workshopService: WorkshopsService, private router: Router) { }
   minDateTime: string;
   ngOnInit(): void {
     //set minDateTime to 24 hours from now rounded to the nearest minute for the date picker
@@ -52,9 +53,9 @@ export class CreateWorkshopComponent implements OnInit {
   }
 
   createWorkshop(){
-    this.workshopService.createWorkshop(this.workshopForm.value,"test").subscribe(
-      (data) => {
-        console.log(data);
+    this.workshopService.createWorkshop(this.workshopForm.value,"test").subscribe((data : any) => {
+        let ws : Workshop = data;
+        this.router.navigate(['/workshop/'+ws._id]);
       }
     );
   }

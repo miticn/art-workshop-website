@@ -200,6 +200,7 @@ class WorkshopController {
             });
         };
         this.createWorkshop = (req, res) => {
+            //crete new workshop and return with the id
             let w = new workshop_1.default({
                 name: req.body.name,
                 location: req.body.location,
@@ -220,8 +221,9 @@ class WorkshopController {
             w.save((err, workshop) => {
                 if (err)
                     console.log(err);
-                else
+                else {
                     res.json(workshop);
+                }
             });
         };
         this.getWorkshopJSON = (req, res) => {

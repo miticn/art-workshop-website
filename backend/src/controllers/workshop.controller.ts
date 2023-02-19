@@ -176,6 +176,8 @@ export class WorkshopController {
     }
 
     createWorkshop = (req, res: express.Response) => {
+        //crete new workshop and return with the id
+        
         let w = new workshop({
             name: req.body.name,
             location: req.body.location,
@@ -195,8 +197,11 @@ export class WorkshopController {
         });
         w.save((err, workshop) => {
             if (err) console.log(err);
-            else res.json(workshop);
+            else {
+                res.json(workshop);
+            }
         })
+
     }
 
     getWorkshopJSON = (req, res: express.Response) => {

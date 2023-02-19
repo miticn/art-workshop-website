@@ -139,8 +139,6 @@ export class WorkshopsService {
 
 
     return this.http.post(`${this.uri}/createWorkshop`, formData,{
-      reportProgress: true,
-      observe: 'events',
       withCredentials: true});
   }
 }
