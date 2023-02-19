@@ -307,5 +307,15 @@ export class WorkshopController {
             }
         });
     }
+
+    getWorkshopsByOwner = (req, res: express.Response) => {
+        let owner = req.body.id;
+        workshop.find({owner: owner}, (err, workshops) => {
+            if (err) console.log(err);
+            else {
+                res.json(workshops);
+            }
+        });
+    }
     
 }

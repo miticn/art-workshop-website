@@ -1,5 +1,28 @@
 <h1 *ngIf="!exists">No user exists</h1>
 <div *ngIf="exists" class="container mt-5">
+  <div *ngIf="user.type=='org'" class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">Radionice</h1>
+        <table class="table">
+          <thead>
+              <tr>
+                  <th>Ime</th>
+                  <th>Ćaskanja</th>
+                  <th>Detalji</th>
+                  <th>Uredi</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let myWorkshop of myWorkshops">
+                  <td>{{ myWorkshop.name }}</td>
+                  <td><a [routerLink]="['/workshop/', myWorkshop._id, 'chat']"><button class="btn btn-dark">Ćaskanja</button></a></td>
+                  <td><a [routerLink]="['/workshop/', myWorkshop._id]"><button class="btn btn-dark">Detalji</button></a></td>
+                  <td><a [routerLink]="['/workshop/', myWorkshop._id, 'edit']"><button class="btn btn-dark">Uredi</button></a></td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-4 text-center">
       <img src="{{helper.getProfilePhotoUrl(user.profilePicture)}}" alt="Profile Picture"

@@ -328,6 +328,15 @@ class WorkshopController {
                 }
             });
         };
+        this.getWorkshopsByOwner = (req, res) => {
+            workshop_1.default.find({ owner: req.user._id }, (err, workshops) => {
+                if (err)
+                    console.log(err);
+                else {
+                    res.json(workshops);
+                }
+            });
+        };
     }
 }
 exports.WorkshopController = WorkshopController;

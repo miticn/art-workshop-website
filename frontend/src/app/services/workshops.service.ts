@@ -183,4 +183,11 @@ export class WorkshopsService {
     return this.http.post(`${this.uri}/updateWorkshop`, body,{withCredentials: true});
   }
 
+
+  getWorkshopsByOwner(id){
+    let body = {
+      id: id
+    }
+    return this.http.post(`${this.uri}/getWorkshopsByOwner`,body , {withCredentials: true});
+  }
 }
