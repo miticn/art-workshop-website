@@ -52,7 +52,8 @@ export class EditWorkshopComponent implements OnInit {
       this.workshopForm.controls['name'].setValue(this.workshop.name);
       this.workshopForm.controls['description'].setValue(this.workshop.description);
       this.workshopForm.controls['descriptionLong'].setValue(this.workshop.descriptionLong);
-      //this.workshopForm.controls['date'].setValue(this.workshop.date.toISOString().slice(0, 16).replace('T', ' '));
+      let selectedDate = new Date(this.workshop.date);
+      this.workshopForm.controls['date'].setValue(selectedDate.toISOString().slice(0, 16));
       this.workshopForm.controls['availableSeats'].setValue(this.workshop.totalSeats);
       this.workshopForm.controls['location'].setValue(this.workshop.location);
       this.LocElem.nativeElement.value = this.workshop.location;
