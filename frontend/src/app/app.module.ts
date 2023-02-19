@@ -29,8 +29,12 @@ import { WorkshopTableComponent } from './workshop-table/workshop-table.componen
 import { BecomeOrgComponent } from './become-org/become-org.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { ChatComponent } from './chat/chat.component';
-import { MsgComponent } from './msg/msg.component'; 
-
+import { MsgComponent } from './msg/msg.component';
+import { CreateWorkshopComponent } from './create-workshop/create-workshop.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -56,6 +60,7 @@ import { MsgComponent } from './msg/msg.component';
     BecomeOrgComponent,
     ChatComponent,
     MsgComponent,
+    CreateWorkshopComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -66,7 +71,11 @@ import { MsgComponent } from './msg/msg.component';
     ReactiveFormsModule,
     GoogleMapsModule,
     FontAwesomeModule,
-    GooglePlaceModule
+    GooglePlaceModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
