@@ -32,6 +32,7 @@ export class AuthService {
         }
         else{
           this.user = {
+            _id: resp._id,
             firstname: resp.firstname,
             lastname: resp.lastname,
             username: resp.username,

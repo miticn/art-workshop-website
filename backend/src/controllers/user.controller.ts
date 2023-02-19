@@ -16,6 +16,7 @@ export class UserController {
         user.findById(id, (err, user) => {
             if (err) console.log(err);
             else if(user) res.json({
+                _id: user._id,
                 firstname: user.firstname,
                 lastname: user.lastname,
                 username: user.username,
@@ -35,6 +36,7 @@ export class UserController {
             let user = req.user;
             if(user)
                 res.json({
+                    _id: user._id,
                     firstname: user.firstname,
                     lastname: user.lastname,
                     username: user.username,
@@ -56,6 +58,7 @@ export class UserController {
         User.findOne({ 'username': username }, (err, user) => {
             if (err) console.log(err);
             else if(user) res.json({
+                _id: user._id,
                 firstname: user.firstname,
                 lastname: user.lastname,
                 username: user.username,

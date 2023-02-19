@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Message } from '../models/message';
+import { User } from '../models/user';
 import { Workshop } from '../models/workshop';
 import { UsersService } from '../services/users.service';
 import { WorkshopsService } from '../services/workshops.service';
@@ -19,8 +20,14 @@ export class ChatComponent implements OnInit {
   workshop: Workshop;
   users = {};
   msgText: string;
+  me: User;
   ngOnInit(): void {
     this.workshopId = this.activatedRoute.snapshot.paramMap.get('workshopId');
+
+    this.userService.getSessionUser().subscribe((res: any) => {
+      this.me = res;
+      console.log(this.me);
+    });
     this.workshopService.getMessages(this.workshopId).subscribe((res: any) => {
       this.msgs = res;
       //sort messages by date

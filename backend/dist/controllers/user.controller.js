@@ -19,6 +19,7 @@ class UserController {
                     console.log(err);
                 else if (user)
                     res.json({
+                        _id: user._id,
                         firstname: user.firstname,
                         lastname: user.lastname,
                         username: user.username,
@@ -38,6 +39,7 @@ class UserController {
                 let user = req.user;
                 if (user)
                     res.json({
+                        _id: user._id,
                         firstname: user.firstname,
                         lastname: user.lastname,
                         username: user.username,
@@ -61,6 +63,7 @@ class UserController {
                     console.log(err);
                 else if (user)
                     res.json({
+                        _id: user._id,
                         firstname: user.firstname,
                         lastname: user.lastname,
                         username: user.username,
