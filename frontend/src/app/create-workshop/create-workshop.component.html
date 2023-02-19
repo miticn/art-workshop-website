@@ -70,6 +70,10 @@
         <div class=" col-md-4">
             <label for="gallery">Galerija</label>
             <input type="file" class="form-control" id="gallery" name="gallery"  accept="image/jpeg, image/png" (change)="onFileChangeGallery($event)" multiple>
+            <div class="inputError">
+                <div *ngIf="workshopForm.controls.gallery.errors?.['badfile']">Slike moraju da budu u jpg ili png formatu.</div>
+                <div *ngIf="workshopForm.controls.galleryLength.errors?.['max']">Moguce je imati najvise 5 slika u galeriji.</div>
+            </div>
         </div>
     </div>
     <div class="row d-flex justify-content-center">

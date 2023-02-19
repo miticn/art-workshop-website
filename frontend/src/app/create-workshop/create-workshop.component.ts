@@ -22,9 +22,10 @@ export class CreateWorkshopComponent implements OnInit {
     lng: new FormControl(null, [Validators.required, Validators.min(-180), Validators.max(180)]),
     mainPicture: new FormControl('', [Validators.required, Validators.pattern("^.+\.(jpg|png|jpeg|JPG|PNG|JPEG)$")]),
     mainPictureFile: new FormControl(null, []),
-    gallery: new FormControl([], []),
+    gallery: new FormControl(null, []),
     galleryFiles: new FormControl([], []),
     galleryLength: new FormControl(0, [Validators.min(0), Validators.max(5)]),
+    galleryFileTypesOK: new FormControl(true, []),
     galleryServer: new FormControl([], [])
   });
 
@@ -69,6 +70,15 @@ export class CreateWorkshopComponent implements OnInit {
   }
 
   onFileChangeGallery(event) {
+    this.workshopForm.controls.galleryLength.setValue(event.target.files.length);
+    console.log(this.workshopForm.controls.galleryLength.value)
+    this.workshopForm.controls.gallery.reset();
+    for (let i = 0; i < event.target.files.length; i++) {
+      if(!event.target.files[i].name.match("^.+\.(jpg|png|jpeg|JPG|PNG|JPEG)$")){
+        this.workshopForm.controls.gallery.setErrors({badfile: true});
+        return;
+      }
+    }
     if (event.target.files.length == 0){
       this.workshopForm.controls.mainPicture.setValue(null);
     }
