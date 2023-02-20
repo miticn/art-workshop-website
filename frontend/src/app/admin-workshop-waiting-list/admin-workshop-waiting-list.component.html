@@ -60,7 +60,7 @@
             </td><!--Slika-->
             <td>{{workshop.owner.firstname}} {{workshop.owner.lastname}}</td><!--Ime-->
             <td>{{workshop.owner.email}}</td>
-            <td><button class="btn btn-dark">Odobri</button></td>
+            <td><button [disabled]="!workshop.owner.canBecomeOrg" (click)="approveWorkshopUser(workshop)" class="btn btn-dark">Odobri</button></td>
         </tr>
     </tbody>
 </table>

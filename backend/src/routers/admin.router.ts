@@ -45,5 +45,10 @@ adminRouter.route('/approveWorkshop').post(
     (req, res) => new AdminController().approveWorkshop(req, res)
 )
 
+adminRouter.route('/setUserToOrg').post(
+    PassportMiddleware.checkAdmin,
+    (req, res) => new AdminController().setUserToOrg(req, res)
+)
+
 
 export default adminRouter;

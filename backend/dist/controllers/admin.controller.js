@@ -7,6 +7,7 @@ exports.AdminController = void 0;
 const user_1 = __importDefault(require("../models/user"));
 const mailService_1 = __importDefault(require("../mailService"));
 const workshop_1 = __importDefault(require("../models/workshop"));
+const user_2 = __importDefault(require("../models/user"));
 class AdminController {
     constructor() {
         this.approveUser = (req, res) => {
@@ -132,6 +133,28 @@ class AdminController {
                         return;
                     }
                     res.send({ message: "Workshop was approved successfully!" });
+                });
+            });
+        };
+        this.setUserToOrg = (req, res) => {
+            let userId = req.body.userId;
+            // find user and update type to org
+            user_2.default.findOne({ _id: userId }, (err, user) => {
+                if (err) {
+                    res.status(500).send({ message: err });
+                    return;
+                }
+                if (!user) {
+                    res.status(404).send({ message: "User Not found." });
+                    return;
+                }
+                user.type = "org";
+                user.save((err) => {
+                    if (err) {
+                        res.status(500).send({ message: err });
+                        return;
+                    }
+                    res.send({ message: "User was updated successfully!" });
                 });
             });
         };

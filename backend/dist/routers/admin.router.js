@@ -15,5 +15,6 @@ adminRouter.route('/getAllWorkshops').post(passport_middleware_1.PassportMiddlew
 adminRouter.route('/getWorkshopRequestsOrg').post(passport_middleware_1.PassportMiddleware.checkAdmin, (req, res) => new admin_controller_1.AdminController().getWorkshopRequestsOrg(req, res));
 adminRouter.route('/getWorkshopRequestsUser').post(passport_middleware_1.PassportMiddleware.checkAdmin, (req, res) => new admin_controller_1.AdminController().getWorkshopRequestsUser(req, res));
 adminRouter.route('/approveWorkshop').post(passport_middleware_1.PassportMiddleware.checkAdmin, (req, res) => new admin_controller_1.AdminController().approveWorkshop(req, res));
+adminRouter.route('/setUserToOrg').post(passport_middleware_1.PassportMiddleware.checkAdmin, (req, res) => new admin_controller_1.AdminController().setUserToOrg(req, res));
 exports.default = adminRouter;
 //# sourceMappingURL=admin.router.js.map

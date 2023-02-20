@@ -49,5 +49,12 @@ export class AdminService {
     }
     return this.http.post(`${this.uri}/approveWorkshop`, data, { withCredentials: true });
   }
+
+  setUserToOrg(userId) {
+    const data = {
+      userId: userId
+    }
+    return this.http.post(`${this.uri}/setUserToOrg`, data, { withCredentials: true });
+  }
   
 }

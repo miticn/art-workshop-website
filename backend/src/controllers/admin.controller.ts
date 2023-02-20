@@ -2,6 +2,7 @@ import { UserController } from "./user.controller";
 import User  from "../models/user";
 import mailService from "../mailService";
 import workshop from "../models/workshop";
+import user from "../models/user";
 
 export class AdminController {
     approveUser = (req, res) => {
@@ -134,6 +135,30 @@ export class AdminController {
                     return;
                 }
                 res.send({ message: "Workshop was approved successfully!" });
+            });
+        });
+    }
+
+    setUserToOrg = (req, res) => {
+        let userId = req.body.userId;
+
+        // find user and update type to org
+        user.findOne({ _id: userId }, (err, user) => {
+            if (err) {
+                res.status(500).send({ message: err });
+                return;
+            }
+            if (!user) {
+                res.status(404).send({ message: "User Not found." });
+                return;
+            }
+            user.type = "org";
+            user.save((err) => {
+                if (err) {
+                    res.status(500).send({ message: err });
+                    return;
+                }
+                res.send({ message: "User was updated successfully!" });
             });
         });
     }
