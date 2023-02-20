@@ -50,8 +50,16 @@ export class AdminWorkshopWaitingListComponent implements OnInit {
 
     this.adminService.approveWorkshop(workshop._id).subscribe((data: any) => {
       console.log(data);
-      this.adminService.getWorkshopRequestsOrg().subscribe((data: any) => {
-        this.requestsFromOrgs = data;
+      this.adminService.getWorkshopRequestsUser().subscribe((data: any) => {
+        this.requestsFromUsers = data;
+        console.log(this.requestsFromUsers);
+        //get getWorkshopsUserSignedUp for each user
+        for(let i = 0; i < this.requestsFromUsers.length; i++){
+          this.workshopService.getWorkshopsUserSignedUp(this.requestsFromUsers[i].owner._id).subscribe((data: any) => {
+            this.requestsFromUsers[i].owner.canBecomeOrg = data.length == 0;
+            console.log(this.requestsFromUsers[i].owner.canBecomeOrg);
+          });
+        }
       });
 
     });

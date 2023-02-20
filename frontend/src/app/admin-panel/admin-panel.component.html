@@ -1,9 +1,9 @@
 <h1 class="text-center">Rad sa korisnicima</h1>
 
-
-<a [routerLink]="['/waitingList']"><button class="btn btn-dark">Zahtevi za registraciju</button></a>
-<a [routerLink]="['/adminAddUser']"><button class="btn btn-dark">Dodaj korisnika</button></a>
-
+<div class="d-flex justify-content-center">
+  <a [routerLink]="['/waitingList']"><button class="btn btn-dark">Zahtevi za registraciju</button></a>
+  <a [routerLink]="['/adminAddUser']"><button class="btn btn-dark ms-3">Dodaj korisnika</button></a>
+</div>
 
 <table *ngIf="allUsers.length>0" class="table table-striped">
     <thead>
@@ -42,8 +42,10 @@
 
 
   <h1 class="text-center">Rad sa radionicama</h1>
-  <a [routerLink]="['/createWorkshop']"><button class="btn btn-dark">Napravi radionicu</button></a>
-  <a [routerLink]="['/adminWorkshopWaitingList']"><button class="btn btn-dark">Vidi predloge za novu radionicu</button></a>
+  <div class="d-flex justify-content-center">
+    <a [routerLink]="['/createWorkshop']"><button class="btn btn-dark">Napravi radionicu</button></a>
+    <a [routerLink]="['/adminWorkshopWaitingList']"><button class="btn btn-dark ms-3">Vidi predloge za novu radionicu</button></a>
+  </div>
   <table *ngIf="allWorkshops.length>0" class="table table-striped">
     <thead>
       <tr>
