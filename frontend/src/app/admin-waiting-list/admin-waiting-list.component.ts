@@ -14,17 +14,22 @@ export class AdminWaitingListComponent implements OnInit {
   ngOnInit(): void {
     this.adminService.getWaitingUsers().subscribe((data: any) => {
       this.users = data;
-      console.log(this.users)
     });
   }
 
   approveUser(username:string) {
     this.adminService.approveUser(username).subscribe((data: any) => {
+      this.adminService.getWaitingUsers().subscribe((data: any) => {
+        this.users = data;
+      });
     });
   }
 
   rejectUser(username:string) {
     this.adminService.rejectUser(username).subscribe((data: any) => {
+      this.adminService.getWaitingUsers().subscribe((data: any) => {
+        this.users = data;
+      });
     });
   }
 }

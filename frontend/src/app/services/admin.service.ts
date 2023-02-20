@@ -26,5 +26,9 @@ export class AdminService {
   getWaitingUsers() {
     return this.http.post(`${this.uri}/getWaitingUsers`, {}, { withCredentials: true });
   }
+
+  getAllUsers() {
+    return this.http.post(`${this.uri}/getAllUsers`, {}, { withCredentials: true });
+  }
   
 }

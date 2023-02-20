@@ -61,6 +61,16 @@ class AdminController {
                 res.send(users);
             });
         };
+        this.getAllUsers = (req, res) => {
+            console.log("getAllUsers");
+            user_1.default.find({}).select("-password").exec((err, users) => {
+                if (err) {
+                    res.status(500).send({ message: err });
+                    return;
+                }
+                res.send(users);
+            });
+        };
     }
 }
 exports.AdminController = AdminController;

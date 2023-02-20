@@ -1,0 +1,37 @@
+<a [routerLink]="['/waitingList']"><button class="btn btn-dark">Zahtevi za registraciju</button></a>
+
+
+<table *ngIf="allUsers.length>0" class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Slika</th>
+        <th scope="col">Ime</th>
+        <th scope="col">Prezime</th>
+        <th scope="col">Korisničko ime</th>
+        <th scope="col">Telefon</th>
+        <th scope="col">Email</th>
+        <th scope="col">Status</th>
+        <th scope="col">Tip</th>
+        <th scope="col">Organizacija</th>
+        <th scope="col">Izmeni</th>
+        <th scope="col">Obriši</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of allUsers">
+        <td><img src={{helper.getProfilePhotoUrl(user.profilePicture)}} alt="user" width="50" height="50"></td><!--Slika-->
+        <td>{{user.firstname}}</td><!--Ime-->
+        <td>{{user.lastname}}</td><!--Prezime-->
+        <td>{{user.username}}</td><!--Korisničko ime-->
+        <td>{{user.phone}}</td><!--Telefon-->
+        <td>{{user.email}}</td><!--Email-->
+        <td>{{user.verified}}</td><!--Tip-->
+        <td>{{helper.getTypeString(user.type)}}</td><!--Tip-->
+        <td>{{user.type=='org'?helper.getOrgString(user.org):'-'}}</td><!--Organizacija-->
+        <td><a [routerLink]="['/user/',user.username,'edit']"><button class="btn btn-dark" >Izmeni</button></a></td>
+        <td><button class="btn btn-dark" (click)="rejectUser(user.username)">Obriši</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h1 class="text-center" *ngIf="allUsers.length==0">Nema korisnika</h1>

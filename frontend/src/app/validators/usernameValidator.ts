@@ -7,7 +7,7 @@ export function usernameValidator(userService: UsersService): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
         return userService.getSessionUser().pipe(
             switchMap(sessionUser => {
-                if (sessionUser && control.value === sessionUser["username"]) {
+                if (sessionUser && (control.value === sessionUser["username"] || sessionUser["type"] === "admin")) {
                     return of(null);
                 }
                 return userService.isUsernameFree(control.value).pipe(

@@ -21,6 +21,7 @@ import { CreateWorkshopComponent } from './create-workshop/create-workshop.compo
 import { EditWorkshopComponent } from './edit-workshop/edit-workshop.component';
 import { WorkshopChatsComponent } from './workshop-chats/workshop-chats.component';
 import { WorkshopAppliedComponent } from './workshop-applied/workshop-applied.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 const routes: Routes = [
   { path: "", canActivate: [AntiAuth], component: IndexComponent },
@@ -34,13 +35,14 @@ const routes: Routes = [
   { path: "workshops", component: WorkshopsComponent},
   { path: "top5", component: Top5Component},
   { path: "workshop/:id", canActivate: [AuthGuard], component: WorkshopComponent},
-  { path: "waitingList", component: AdminWaitingListComponent},
+  { path: "waitingList", canActivate: [AuthGuard], component: AdminWaitingListComponent},
   { path: "becomeOrg", canActivate: [AuthGuard], component: BecomeOrgComponent},
   { path: "chat/:workshopId/:userId", canActivate: [AuthGuard], component: ChatComponent},
   { path: "createWorkshop", canActivate: [AuthGuard], component: CreateWorkshopComponent},
   { path: "workshop/:id/edit", canActivate: [AuthGuard], component: EditWorkshopComponent},
   { path: "workshop/:id/chat", canActivate: [AuthGuard], component: WorkshopChatsComponent},
   { path: "workshop/:id/applied", canActivate: [AuthGuard], component: WorkshopAppliedComponent},
+  { path: "adminPanel", canActivate: [AuthGuard], component: AdminPanelComponent },
   /*
   {
     path: 'protected',

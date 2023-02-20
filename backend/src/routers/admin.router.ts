@@ -20,6 +20,10 @@ adminRouter.route('/getWaitingUsers').post(
     (req, res) => new AdminController().getWaitingUsers(req, res)
 )
 
+adminRouter.route('/getAllUsers').post(
+    PassportMiddleware.checkAdmin,
+    (req, res) => new AdminController().getAllUsers(req, res)
+)
 
 
 

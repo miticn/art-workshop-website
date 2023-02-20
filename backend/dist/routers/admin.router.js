@@ -10,5 +10,6 @@ const admin_controller_1 = require("../controllers/admin.controller");
 adminRouter.route('/approveUser').post(passport_middleware_1.PassportMiddleware.checkAdmin, (req, res) => new admin_controller_1.AdminController().approveUser(req, res));
 adminRouter.route('/rejectUser').post(passport_middleware_1.PassportMiddleware.checkAdmin, (req, res) => new admin_controller_1.AdminController().rejectUser(req, res));
 adminRouter.route('/getWaitingUsers').post(passport_middleware_1.PassportMiddleware.checkAdmin, (req, res) => new admin_controller_1.AdminController().getWaitingUsers(req, res));
+adminRouter.route('/getAllUsers').post(passport_middleware_1.PassportMiddleware.checkAdmin, (req, res) => new admin_controller_1.AdminController().getAllUsers(req, res));
 exports.default = adminRouter;
 //# sourceMappingURL=admin.router.js.map

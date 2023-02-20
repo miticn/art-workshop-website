@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table *ngIf="users.length>0" class="table table-striped">
     <thead>
       <tr>
         <th scope="col">Slika</th>
@@ -23,8 +23,10 @@
         <td>{{user.email}}</td><!--Email-->
         <td>{{photoHelper.getTypeString(user.type)}}</td><!--Tip-->
         <td>{{user.type=='org'?photoHelper.getOrgString(user.org):'-'}}</td><!--Organizacija-->
-        <td><button (click)="approveUser(user.username)">Odobri</button></td>
-        <td><button (click)="rejectUser(user.username)">Odbij</button></td>
+        <td><button class="btn btn-dark" (click)="approveUser(user.username)">Odobri</button></td>
+        <td><button class="btn btn-dark" (click)="rejectUser(user.username)">Odbij</button></td>
       </tr>
     </tbody>
   </table>
+
+  <h1 class="text-center" *ngIf="users.length==0">Nema zahteva za registraciju</h1>
