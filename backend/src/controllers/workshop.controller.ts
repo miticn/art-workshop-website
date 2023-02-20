@@ -391,5 +391,16 @@ export class WorkshopController {
             }
         });
     }
+
+    approveApplication = (req, res: express.Response) => {
+        let applicationId = req.body.id;
+        console.log("Approving application: "+applicationId);
+        attendance.findByIdAndUpdate(applicationId, {status: "approved"}, (err, application) => {
+            if (err) console.log(err);
+            else {
+                res.json(application);
+            }
+        });
+    }
     
 }

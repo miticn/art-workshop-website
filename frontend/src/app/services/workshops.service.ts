@@ -212,5 +212,13 @@ export class WorkshopsService {
     }
     return this.http.post(`${this.uri}/getApplications`, body,{withCredentials: true});
   }
+
+  approveApplication(applicationId){
+    let body = {
+      id: applicationId
+    }
+    console.log(body)
+    return this.http.post(`${this.uri}/approveApplication`, body,{withCredentials: true});
+  }
   
 }

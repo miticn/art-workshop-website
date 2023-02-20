@@ -32,6 +32,23 @@ export class WorkshopAppliedComponent implements OnInit {
   }
 
   approveUser(userId: string){
+    //find application
+    let application = this.applications.find((application)=>{
+      return application.user == userId;
+    });
+    console.log(application._id)
+    this.workshopService.approveApplication(application._id).subscribe((res:any)=>{
+      this.users = [];
+      console.log(res);
+      this.workshopService.getApplications(this.workshopId).subscribe((res:any)=>{
+        this.applications = res;
+        this.applications.forEach((application)=>{
+          this.userService.getUserById(application.user).subscribe((res:any)=>{
+            this.users.push(res);
+          })
+        })
+      });
+    })
   }
 
 }

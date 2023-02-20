@@ -404,6 +404,17 @@ class WorkshopController {
                 }
             });
         };
+        this.approveApplication = (req, res) => {
+            let applicationId = req.body.id;
+            console.log("Approving application: " + applicationId);
+            attendance_1.default.findByIdAndUpdate(applicationId, { status: "approved" }, (err, application) => {
+                if (err)
+                    console.log(err);
+                else {
+                    res.json(application);
+                }
+            });
+        };
     }
 }
 exports.WorkshopController = WorkshopController;
