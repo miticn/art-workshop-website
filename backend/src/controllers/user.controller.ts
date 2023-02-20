@@ -307,4 +307,20 @@ export class UserController {
             }
         })
     }
+
+    becomeOrganizer = (req, res: express.Response)=>{
+        let user = req.user;
+        let org = req.body.org;
+        user.org = org;
+        user.save((err, resp)=>{
+            if(err) {
+                console.log(err);
+                res.json({"message": "error"})
+            }
+            else {
+                res.json({"message": "ok"});
+                console.log("User sent request to become organizer: "+user.username);
+            }
+        })
+    }
 }

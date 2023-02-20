@@ -102,7 +102,7 @@
     </div>
     <div class="row d-flex justify-content-center">
         <div class="col-md-8 d-flex justify-content-center">
-            <button [disabled]="workshopForm.invalid" type="submit" class="btn btn-dark w-100 mt-2"
+            <button [disabled]="workshopForm.invalid || (becomeOrg && becameOrgFrom.invalid)" type="submit" class="btn btn-dark w-100 mt-2"
             (click)="createWorkshop()">Napravi radionicu</button>
         </div>
     </div>

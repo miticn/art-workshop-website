@@ -94,4 +94,10 @@ userRouter.route('/getMyComments').post(
     PassportMiddleware.checkAuthenticated,
     (req, res) => new UserController().getMyComments(req, res)
 )
+
+userRouter.route('/becomeOrganizer').post(
+    PassportMiddleware.checkAuthenticated,
+    (req, res) => new UserController().becomeOrganizer(req, res)
+)
+
 export default userRouter;

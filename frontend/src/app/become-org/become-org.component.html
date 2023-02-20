@@ -1,25 +1,28 @@
 <h3>Opis organizacije:</h3>
 <form [formGroup]="orgForm">
-    <div class="row">
-        <div class="col-sm-6">
-            <input type="text" class="form-control" name="organizationName" formControlName="organizationName" placeholder="Ime organizacije">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-4">
+            <label for="organizationName">Ime organizacije</label>
+            <input type="text" class="form-control" name="organizationName" formControlName="organizationName">
             <div *ngIf="orgForm.controls.organizationName.invalid && (orgForm.controls.organizationName.dirty || orgForm.controls.organizationName.touched)" class="inputError">
                 <div *ngIf="orgForm.controls.organizationName.errors?.['required']">Ime organizacije nije uneto.</div>
                 <div *ngIf="orgForm.controls.organizationName.errors?.['minlength']">Ime organizacije mora da ima barem 2 karaktera.</div>
                 <div *ngIf="orgForm.controls.organizationName.errors?.['maxlength']">Ime organizacije može da ima najviše 16 karaktera.</div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <input type="text" class="form-control" name="matNumber" formControlName="matNumber" placeholder="Matični broj organizacije">
+        <div class="col-md-4">
+            <label for="matNumber">Matični broj organizacije</label>
+            <input type="text" class="form-control" name="matNumber" formControlName="matNumber">
             <div *ngIf="orgForm.controls.matNumber.invalid && (orgForm.controls.matNumber.dirty || orgForm.controls.matNumber.touched)" class="inputError">
                 <div *ngIf="orgForm.controls.matNumber.errors?.['required']">Matični broj je obavezan.</div>
                 <div *ngIf="orgForm.controls.matNumber.errors?.['pattern']">Matični broj može da se sastoji samo od brojeva.</div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div div class="col-sm-12">
-            <input type="text" class="form-control" name="country" formControlName="country" placeholder="Država">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+            <label for="country">Država</label>
+            <input type="text" class="form-control" name="country" formControlName="country">
             <div *ngIf="orgForm.controls.country.invalid && (orgForm.controls.country.dirty || orgForm.controls.country.touched)" class="inputError">
                 <div *ngIf="orgForm.controls.country.errors?.['required']">Država je obavezna.</div>
                 <div *ngIf="orgForm.controls.country.errors?.['minlength']">Država mora da ima najmanje 2 karaktera.</div>
@@ -27,16 +30,18 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-8">
-            <input type="text" class="form-control" name="city" formControlName="city" placeholder="Grad">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-5">
+            <label for="city">Grad</label>
+            <input type="text" class="form-control" name="city" formControlName="city">
             <div *ngIf="orgForm.controls.city.invalid && (orgForm.controls.city.dirty || orgForm.controls.city.touched)" class="inputError">
                 <div *ngIf="orgForm.controls.city.errors?.['required']">Grad je obavezan.</div>
                 <div *ngIf="orgForm.controls.city.errors?.['pattern']">Grad mora da počne velikim slovom i može da se sastoji samo od velikih i malih slova i razmaka.</div>
             </div>
         </div>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" name="postNumber" formControlName="postNumber" placeholder="Poštanski broj">
+        <div class="col-md-3">
+            <label for="postNumber">Poštanski broj</label>
+            <input type="text" class="form-control" name="postNumber" formControlName="postNumber">
             <div *ngIf="orgForm.controls.postNumber.invalid && (orgForm.controls.postNumber.dirty || orgForm.controls.postNumber.touched)" class="inputError">
                 <div *ngIf="orgForm.controls.postNumber.errors?.['required']">Poštanski broj je obavezan.</div>
                 <div *ngIf="orgForm.controls.postNumber.errors?.['pattern']">Poštanski može da se sastoji samo od brojeva i velikih slova.</div>
@@ -44,16 +49,18 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-8">
-            <input type="text" class="form-control" name="street" formControlName="street" placeholder="Ulica">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-4">
+            <label for="street">Ulica</label>
+            <input type="text" class="form-control" name="street" formControlName="street">
             <div *ngIf="orgForm.controls.street.invalid && (orgForm.controls.street.dirty || orgForm.controls.street.touched)" class="inputError">
                 <div *ngIf="orgForm.controls.street.errors?.['required']">Ulica je obavezna.</div>
                 <div *ngIf="orgForm.controls.street.errors?.['pattern']">Ulica može da se sastoji samo od malih i velikih slova i razmaka.</div>
             </div>
         </div>
         <div class="col-sm-4">
-            <input type="text" class="form-control" name="streetNumber" formControlName="streetNumber" placeholder="Broj">
+            <label for="streetNumber">Broj</label>
+            <input type="text" class="form-control" name="streetNumber" formControlName="streetNumber">
             <div *ngIf="orgForm.controls.streetNumber.invalid && (orgForm.controls.streetNumber.dirty || orgForm.controls.streetNumber.touched)" class="inputError">
                 <div *ngIf="orgForm.controls.streetNumber.errors?.['required']">Broj je obavezan.</div>
                 <div *ngIf="orgForm.controls.streetNumber.errors?.['pattern']">Broj nije u odgovarajućem formatu.</div>
@@ -63,47 +70,4 @@
 </form>
 
 <h3>Opis radionice:</h3>
-<form>
-    <div class="form-group">
-      <label for="name">Ime</label>
-      <input type="text" class="form-control" id="name" [(ngModel)]="workshop.name" name="name" required>
-    </div>
-    
-    <div class="form-group">
-      <label for="description">Kraći opis</label>
-      <textarea class="form-control" id="description" [(ngModel)]="workshop.description" name="description" required></textarea>
-    </div>
-    
-    <div class="form-group">
-      <label for="date">Duži opis</label>
-      <input type="date" class="form-control" id="date" [(ngModel)]="workshop.date" name="date" required>
-    </div>
-    
-    <div class="form-group">
-      <label for="mainPicture">Glavnia slika</label>
-      <input type="text" class="form-control" id="mainPicture" [(ngModel)]="workshop.mainPicture" name="mainPicture" required>
-    </div>
-    
-    <div class="form-group">
-      <label for="gallery">Galerija</label>
-      <input type="text" class="form-control" id="gallery" [(ngModel)]="workshop.gallery" name="gallery" required>
-    </div>
-    
-    <div class="form-group">
-      <label for="totalSeats">Broj mesta:</label>
-      <input type="number" class="form-control" id="totalSeats" [(ngModel)]="workshop.totalSeats" name="totalSeats" required>
-    </div>
-    
-    <div class="form-group">
-      <label for="descriptionLong">Duži opis</label>
-      <textarea class="form-control" id="descriptionLong" [(ngModel)]="workshop.descriptionLong" name="descriptionLong" required></textarea>
-    </div>
-    
-    
-    <!--Search on google maps-->
-    <input ngx-google-places-autocomplete #placesRef="ngx-places" 
-            (onAddressChange)="handleAddressChange($event)"/>
-    
-    <button type="submit" class="btn btn-dark">Submit</button>
-  </form>
-  
+<app-create-workshop [becomeOrg]="true" [becameOrgFrom]="orgForm"></app-create-workshop>

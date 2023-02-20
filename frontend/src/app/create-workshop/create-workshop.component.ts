@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { Workshop } from '../models/workshop';
+import { UsersService } from '../services/users.service';
 import { WorkshopsService } from '../services/workshops.service';
 
 @Component({
@@ -29,7 +30,11 @@ export class CreateWorkshopComponent implements OnInit {
     galleryServer: new FormControl([], [])
   });
 
-  constructor(private workshopService: WorkshopsService, private router: Router) { }
+  @Input() becomeOrg: boolean = false;
+  
+  @Input() becameOrgFrom: FormGroup;
+  constructor(private workshopService: WorkshopsService, private router: Router,
+    private userService: UsersService) { }
   minDateTime: string;
   ngOnInit(): void {
     //set minDateTime to 24 hours from now rounded to the nearest minute for the date picker
@@ -109,5 +114,14 @@ export class CreateWorkshopComponent implements OnInit {
         }
       }
     );
+
+    if(this.becomeOrg)
+      this.becomeOrganizer();
+  }
+
+  becomeOrganizer(){
+    this.userService.becomeOrganizer(this.becameOrgFrom.value).subscribe((data : any) => {
+    }
+  );
   }
 }

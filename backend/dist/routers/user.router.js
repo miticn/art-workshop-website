@@ -37,5 +37,6 @@ userRouter.route('/resetPasswordRequest').post((req, res) => new user_controller
 userRouter.route('/changePassword').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new user_controller_1.UserController().changePassword(req, res));
 userRouter.route('/getUserById').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new user_controller_1.UserController().getUserById(req, res));
 userRouter.route('/getMyComments').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new user_controller_1.UserController().getMyComments(req, res));
+userRouter.route('/becomeOrganizer').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new user_controller_1.UserController().becomeOrganizer(req, res));
 exports.default = userRouter;
 //# sourceMappingURL=user.router.js.map

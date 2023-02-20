@@ -181,4 +181,20 @@ export class UsersService {
   getMyComments() {
     return this.http.post(`${this.uri}/getMyComments`, {}, { withCredentials: true });
   }
+
+  becomeOrganizer(orgForm) {
+    let org = {
+      city:orgForm.city,
+      country:orgForm.country,
+      name:orgForm.organizationName,
+      postNumber:orgForm.postNumber,
+      regNumber:orgForm.matNumber,
+      street:orgForm.street,
+      streetNumber:orgForm.streetNumber,
+    }
+    const data = {
+      org: org
+    }
+    return this.http.post(`${this.uri}/becomeOrganizer`, data, { withCredentials: true });
+  }
 }
