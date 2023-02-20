@@ -27,6 +27,8 @@ export class UserComponent implements OnInit {
   user: User;
   exists: boolean = true;
   userString: string;
+
+  chatWorkshopIds: string[] = [];
   
   attendedWorkshops: Workshop[] = [];
   myWorkshops: Workshop[] = [];
@@ -45,6 +47,11 @@ export class UserComponent implements OnInit {
         this.workshopService.getWorkshopsUserAttended(this.user._id).subscribe((data: any) => {
           this.attendedWorkshops = data;
           console.log(this.workshops)
+        });
+        this.workshopService.getAllUsersChats(this.user._id).subscribe((data: any) => {
+          this.chatWorkshopIds = data;
+          console.log("chatWorkshopIds")
+          console.log(this.chatWorkshopIds)
         });
       }
       if(this.user.type == "org")

@@ -241,5 +241,12 @@ export class WorkshopsService {
     }
     return this.http.post(`${this.uri}/getWorkshopsUserSignedUp`, body,{withCredentials: true});
   }
+
+  getAllUsersChats(userId){
+    let body = {
+      id: userId
+    }
+    return this.http.post(`${this.uri}/getAllUsersChats`, body,{withCredentials: true});
+  }
   
 }

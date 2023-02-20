@@ -2,7 +2,7 @@
 
 <div class="comment-box col-md-6">
     <div>
-      <div class="list-unstyled">
+      <div class="list-unstyled makescroll">
         <app-msg *ngFor="let msg of msgs" [profilePicture]="getUser(msg.from)['profilePicture']" [name]="(msg.from==me._id)?'Ja':getUser(msg.from).firstname" [date]="msg['date']" [text]="msg['text']" [right]="msg.from!=me._id"></app-msg>
       </div>
       <form>

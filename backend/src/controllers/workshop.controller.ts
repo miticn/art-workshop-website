@@ -491,5 +491,22 @@ export class WorkshopController {
             }
         });
     }
+
+    getAllUsersChats = (req, res: express.Response) => {
+        let userId = req.body.id;
+        messages.find({$or: [{from: userId}, {to: userId}]}, (err, messages) => {
+            if (err) console.log(err);
+            else {
+                //get all workshops
+                let workshopIds = [];
+                for (let message of messages) {
+                    if (!workshopIds.includes(message.workshop.toString())) {
+                        workshopIds.push(message.workshop.toString());
+                    }
+                }
+                res.json(workshopIds);
+            }
+        });
+    }
     
 }

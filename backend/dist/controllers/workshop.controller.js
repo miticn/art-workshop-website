@@ -499,6 +499,23 @@ class WorkshopController {
                 }
             });
         };
+        this.getAllUsersChats = (req, res) => {
+            let userId = req.body.id;
+            messages_1.default.find({ $or: [{ from: userId }, { to: userId }] }, (err, messages) => {
+                if (err)
+                    console.log(err);
+                else {
+                    //get all workshops
+                    let workshopIds = [];
+                    for (let message of messages) {
+                        if (!workshopIds.includes(message.workshop.toString())) {
+                            workshopIds.push(message.workshop.toString());
+                        }
+                    }
+                    res.json(workshopIds);
+                }
+            });
+        };
     }
 }
 exports.WorkshopController = WorkshopController;
