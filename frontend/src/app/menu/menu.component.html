@@ -3,7 +3,8 @@
     <a class="navbar-brand" routerLink="">Art world</a>
     <a class="nav-link" [routerLink]="['/workshops']">Radionice</a>
     <a class="nav-link" [routerLink]="['/top5']">Top 5 Radionica</a>
-    <a class="nav-link" [routerLink]="['/becomeOrg']">Postani Organizator</a>
+    <a *ngIf="auth.isLoggedIn() && myUser.type=='user'" class="nav-link" [routerLink]="['/becomeOrg']">Postani Organizator</a>
+    <a *ngIf="auth.isLoggedIn() && myUser.type=='admin'" class="nav-link" [routerLink]="['/becomeOrg']">Admin Panel</a>
     <app-login></app-login>
   </div>
 </nav>
