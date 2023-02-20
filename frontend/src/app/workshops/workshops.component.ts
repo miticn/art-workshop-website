@@ -5,6 +5,8 @@ import { Helper } from '../helper';
 import { ModalService } from '../services/modal.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { UsersService } from '../services/users.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-workshops',
@@ -13,10 +15,12 @@ import { Router } from '@angular/router';
 })
 export class WorkshopsComponent implements OnInit {
 
-  constructor(private workshopService : WorkshopsService, public photoHepler: Helper, private modalService: ModalService, private auth: AuthService,
-    private router: Router) { }
+  constructor(private workshopService : WorkshopsService, public photoHepler: Helper, private modalService: ModalService, public auth: AuthService,
+    private router: Router, private userService:UsersService) { }
+  workshopsSignedUp : Workshop[] = [];
   workshops : Workshop[] = [];
   workshopsAll : Workshop[] = [];
+  myUser : User;
   ngOnInit(): void {
     this.workshopService.getAll().subscribe((data:Workshop[]) => {
       this.workshopsAll = data;
@@ -27,6 +31,14 @@ export class WorkshopsComponent implements OnInit {
 
       this.workshops = this.workshopsAll;
       console.log(this.workshops);
+    });
+    this.userService.getSessionUser().subscribe((data:any) => {
+      this.myUser = data;
+      console.log(this.myUser);
+      this.workshopService.getWorkshopsUserSignedUp(this.myUser._id).subscribe((data:Workshop[]) => {
+        console.log(data);
+        this.workshopsSignedUp = data;
+      });
     });
   }
 

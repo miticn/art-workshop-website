@@ -452,7 +452,6 @@ export class WorkshopController {
 
     getWorkshopsUserAttended = (req, res: express.Response) => {
         let userId = req.body.id;
-        console.log("Getting workshops user attended: "+userId);
         attendance.find({user: userId, status: "approved"}, (err, attendances) => {
             if (err) console.log(err);
             else {
@@ -463,6 +462,27 @@ export class WorkshopController {
 
                 //find all workshops that happened in the past
                 workshop.find({_id: {$in: workshopIds}, date: {$lt: new Date()}}, (err, workshops) => {
+                    if (err) console.log(err);
+                    else {
+                        res.json(workshops);
+                    }
+                });
+            }
+        });
+    }
+
+    getWorkshopsUserSignedUp = (req, res: express.Response) => {
+        let userId = req.body.id;
+        attendance.find({user: userId, status: {$in: ["approved", "reserved"]}}, (err, attendances) => {
+            if (err) console.log(err);
+            else {
+                let workshopIds = [];
+                for (let attendance of attendances) {
+                    workshopIds.push(attendance.workshop);
+                }
+
+                //find all workshops that happened in the past
+                workshop.find({_id: {$in: workshopIds}, date: {$gt: new Date()}}, (err, workshops) => {
                     if (err) console.log(err);
                     else {
                         res.json(workshops);
