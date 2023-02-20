@@ -1,3 +1,6 @@
+<h1 class="text-center">Rad sa korisnicima</h1>
+
+
 <a [routerLink]="['/waitingList']"><button class="btn btn-dark">Zahtevi za registraciju</button></a>
 <a [routerLink]="['/adminAddUser']"><button class="btn btn-dark">Dodaj korisnika</button></a>
 
@@ -36,3 +39,39 @@
   </table>
 
   <h1 class="text-center" *ngIf="allUsers.length==0">Nema korisnika</h1>
+
+
+  <h1 class="text-center">Rad sa radionicama</h1>
+  <a [routerLink]="['/createWorkshop']"><button class="btn btn-dark">Napravi radionicu</button></a>
+
+  <table *ngIf="allWorkshops.length>0" class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Slika</th>
+        <th scope="col">Ime</th>
+        <th scope="col">Lokacija</th>
+        <th scope="col">Ukupno mesta</th>
+        <th scope="col">Slobodnih mesta</th>
+        <th scope="col">Opis</th>
+        <th scope="col">Status</th>
+        <th scope="col">Izmeni</th>
+        <th scope="col">Obriši</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let workshop of allWorkshops">
+        <td><img src={{helper.getWorkshopPhotoUrl(workshop.mainPicture)}} alt="user" width="50" height="50"></td><!--Slika-->
+        <td>{{workshop.name}}</td><!--Ime-->
+        <td>{{workshop.location}}</td>
+        <td>{{workshop.totalSeats}}</td>
+        <td>{{workshop.availableSeats}}</td>
+        <td>{{workshop.description}}</td>
+        <td>{{workshop.status}}</td>
+        <td><a [routerLink]="['/workshop/',workshop._id,'edit']"><button class="btn btn-dark" >Izmeni</button></a></td>
+        <td><button class="btn btn-dark" (click)="cancelWorkshop(workshop._id)" >Obriši</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  
+  <h1 class="text-center" *ngIf="allWorkshops.length==0">Nema radionica</h1>

@@ -25,6 +25,10 @@ adminRouter.route('/getAllUsers').post(
     (req, res) => new AdminController().getAllUsers(req, res)
 )
 
+adminRouter.route('/getAllWorkshops').post(
+    PassportMiddleware.checkAdmin,
+    (req, res) => new AdminController().getAllWorkshops(req, res)
+)
 
 
 

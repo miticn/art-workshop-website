@@ -1,6 +1,7 @@
 import { UserController } from "./user.controller";
 import User  from "../models/user";
 import mailService from "../mailService";
+import workshop from "../models/workshop";
 
 export class AdminController {
     approveUser = (req, res) => {
@@ -68,6 +69,16 @@ export class AdminController {
                 return;
             }
             res.send(users);
+        });
+    }
+
+    getAllWorkshops = (req, res) => {
+        workshop.find({}).exec((err, workshops) => {
+            if (err) {
+                res.send({ message: err });
+                return;
+            }
+            res.send(workshops);
         });
     }
 };

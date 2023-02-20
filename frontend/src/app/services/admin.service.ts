@@ -31,4 +31,7 @@ export class AdminService {
     return this.http.post(`${this.uri}/getAllUsers`, {}, { withCredentials: true });
   }
   
+  getAllWorkshops() {
+    return this.http.post(`${this.uri}/getAllWorkshops`, {}, { withCredentials: true });
+  }
 }

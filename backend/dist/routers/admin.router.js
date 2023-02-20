@@ -11,5 +11,6 @@ adminRouter.route('/approveUser').post(passport_middleware_1.PassportMiddleware.
 adminRouter.route('/rejectUser').post(passport_middleware_1.PassportMiddleware.checkAdmin, (req, res) => new admin_controller_1.AdminController().rejectUser(req, res));
 adminRouter.route('/getWaitingUsers').post(passport_middleware_1.PassportMiddleware.checkAdmin, (req, res) => new admin_controller_1.AdminController().getWaitingUsers(req, res));
 adminRouter.route('/getAllUsers').post(passport_middleware_1.PassportMiddleware.checkAdmin, (req, res) => new admin_controller_1.AdminController().getAllUsers(req, res));
+adminRouter.route('/getAllWorkshops').post(passport_middleware_1.PassportMiddleware.checkAdmin, (req, res) => new admin_controller_1.AdminController().getAllWorkshops(req, res));
 exports.default = adminRouter;
 //# sourceMappingURL=admin.router.js.map

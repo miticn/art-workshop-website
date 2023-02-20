@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdminController = void 0;
 const user_1 = __importDefault(require("../models/user"));
 const mailService_1 = __importDefault(require("../mailService"));
+const workshop_1 = __importDefault(require("../models/workshop"));
 class AdminController {
     constructor() {
         this.approveUser = (req, res) => {
@@ -68,6 +69,15 @@ class AdminController {
                     return;
                 }
                 res.send(users);
+            });
+        };
+        this.getAllWorkshops = (req, res) => {
+            workshop_1.default.find({}).exec((err, workshops) => {
+                if (err) {
+                    res.send({ message: err });
+                    return;
+                }
+                res.send(workshops);
             });
         };
     }
