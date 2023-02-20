@@ -1,0 +1,259 @@
+[{
+  "_id": {
+    "$oid": "63ed548a74954f7998e94664"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1676415600000"
+    }
+  },
+  "from": {
+    "$oid": "63c4161a333ec27cdb11915f"
+  },
+  "text": "Tekst poruke",
+  "to": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "workshop": {
+    "$oid": "63ea6ca2dc92e23714227e49"
+  }
+},{
+  "_id": {
+    "$oid": "63f16926062f6653ed8274ec"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1676502000000"
+    }
+  },
+  "from": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "text": "Odgovor na poruku",
+  "to": {
+    "$oid": "63c4161a333ec27cdb11915f"
+  },
+  "workshop": {
+    "$oid": "63ea6ca2dc92e23714227e49"
+  }
+},{
+  "_id": {
+    "$oid": "63f29fb1bd7fb2b0acca5ffa"
+  },
+  "workshop": {
+    "$oid": "63ea6ca2dc92e23714227e49"
+  },
+  "from": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "to": {
+    "$oid": "63c4161a333ec27cdb11915f"
+  },
+  "text": "Jako mi je drako sto ste resili problem.",
+  "date": {
+    "$date": {
+      "$numberLong": "1676844977183"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f29fdebd7fb2b0acca6063"
+  },
+  "workshop": {
+    "$oid": "63ea6ca2dc92e23714227e49"
+  },
+  "from": {
+    "$oid": "63c4161a333ec27cdb11915f"
+  },
+  "to": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "text": "I meni je drago sto je vama drago.",
+  "date": {
+    "$date": {
+      "$numberLong": "1676845022974"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f29fe4bd7fb2b0acca606e"
+  },
+  "workshop": {
+    "$oid": "63ea6ca2dc92e23714227e49"
+  },
+  "from": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "to": {
+    "$oid": "63c4161a333ec27cdb11915f"
+  },
+  "text": "Divno",
+  "date": {
+    "$date": {
+      "$numberLong": "1676845028894"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f29fecbd7fb2b0acca607b"
+  },
+  "workshop": {
+    "$oid": "63ea6ca2dc92e23714227e49"
+  },
+  "from": {
+    "$oid": "63c4161a333ec27cdb11915f"
+  },
+  "to": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "text": "Jeste divno",
+  "date": {
+    "$date": {
+      "$numberLong": "1676845036796"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f2a03ebd7fb2b0acca60d5"
+  },
+  "workshop": {
+    "$oid": "63ea6ca2dc92e23714227e49"
+  },
+  "from": {
+    "$oid": "63e2b1ea52c809598c27783f"
+  },
+  "to": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "text": "Ovo je moja prva poruka",
+  "date": {
+    "$date": {
+      "$numberLong": "1676845118922"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f2a0b2d17ec407d3b8aed0"
+  },
+  "workshop": {
+    "$oid": "63ea6ca2dc92e23714227e49"
+  },
+  "from": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "to": {
+    "$oid": "63e2b1ea52c809598c27783f"
+  },
+  "text": "sad",
+  "date": {
+    "$date": {
+      "$numberLong": "1676845234520"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f2a0dad17ec407d3b8af1f"
+  },
+  "workshop": {
+    "$oid": "63ea6ca2dc92e23714227e49"
+  },
+  "from": {
+    "$oid": "63e2b1ea52c809598c27783f"
+  },
+  "to": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "text": "EV",
+  "date": {
+    "$date": {
+      "$numberLong": "1676845274180"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f2a0e1d17ec407d3b8af2e"
+  },
+  "workshop": {
+    "$oid": "63ea6ca2dc92e23714227e49"
+  },
+  "from": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "to": {
+    "$oid": "63e2b1ea52c809598c27783f"
+  },
+  "text": "ok",
+  "date": {
+    "$date": {
+      "$numberLong": "1676845281988"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f2dd9c4221ec90ba984e85"
+  },
+  "workshop": {
+    "$oid": "63ea6ca2dc92e23714227e49"
+  },
+  "from": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "to": {
+    "$oid": "63e2b1ea52c809598c27783f"
+  },
+  "text": "?",
+  "date": {
+    "$date": {
+      "$numberLong": "1676860828195"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f2dd9d4221ec90ba984e88"
+  },
+  "workshop": {
+    "$oid": "63ea6ca2dc92e23714227e49"
+  },
+  "from": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "to": {
+    "$oid": "63e2b1ea52c809598c27783f"
+  },
+  "text": "?",
+  "date": {
+    "$date": {
+      "$numberLong": "1676860829066"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f2e0f24221ec90ba985461"
+  },
+  "workshop": {
+    "$oid": "63ea6f5cdc92e23714227e57"
+  },
+  "from": {
+    "$oid": "63c4161a333ec27cdb11915f"
+  },
+  "to": {
+    "$oid": "63e3dbff1566c8e5599a4e75"
+  },
+  "text": "cao",
+  "date": {
+    "$date": {
+      "$numberLong": "1676861682588"
+    }
+  },
+  "__v": 0
+}]

@@ -99,7 +99,6 @@ export class UserController {
     register = (req, res: express.Response)=>{
         let sendingUser = req.user;
         let isAdmin = sendingUser!=undefined && sendingUser.type=="admin";
-        console.log(sendingUser);
         let user = new User({
             firstname: req.body.firstname,
             lastname: req.body.lastname,
@@ -109,8 +108,8 @@ export class UserController {
             email: req.body.email,
             type: req.body.type,
             profilePicture: "default.png",
+            org: JSON.parse(req.body.org),
             verified: isAdmin?"approved":"waiting",
-            org: JSON.parse(req.body.org)
         })
         user.save((err, resp)=>{
             if(err) {

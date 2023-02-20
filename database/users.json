@@ -1,0 +1,250 @@
+[{
+  "_id": {
+    "$oid": "63c4069920574910d2a6a344"
+  },
+  "firstname": "Pera",
+  "lastname": "Peric",
+  "username": "pera",
+  "password": "pera123",
+  "phone": "+381656666655",
+  "email": "pera@pera.com",
+  "type": "admin",
+  "profilePicture": "1675443118869_wcti4x85sh.png",
+  "verified": "approved",
+  "org": {
+    "city": "",
+    "country": "",
+    "name": "",
+    "postNumber": "",
+    "regNumber": "",
+    "street": "",
+    "streetNumber": ""
+  }
+},{
+  "_id": {
+    "$oid": "63c4161a333ec27cdb11915f"
+  },
+  "firstname": "Zika",
+  "lastname": "Zikic",
+  "username": "zika",
+  "password": "Zika123!",
+  "phone": "+381656666655",
+  "email": "zika@zika.com",
+  "type": "user",
+  "profilePicture": "1676130963854_0n0lzdmrefs.png",
+  "verified": "approved",
+  "org": {
+    "city": "Istanbul",
+    "country": "Turksa",
+    "name": "Zikina Firma",
+    "postNumber": "1",
+    "regNumber": "100",
+    "street": "Perihan Abla Street",
+    "streetNumber": "12"
+  }
+},{
+  "_id": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "firstname": "Marko",
+  "lastname": "Markovic",
+  "username": "marko",
+  "password": "marko123",
+  "phone": "+381656666655",
+  "email": "marko@marko.com",
+  "type": "org",
+  "profilePicture": "default.png",
+  "verified": "approved",
+  "org": {
+    "city": "",
+    "country": "",
+    "name": "Art Org",
+    "regNumber": "",
+    "street": "",
+    "streetNumber": "",
+    "postNumber": ""
+  }
+},{
+  "_id": {
+    "$oid": "63e2b1ea52c809598c27783f"
+  },
+  "firstname": "Stanko",
+  "lastname": "Markovic",
+  "username": "stanko",
+  "password": "stanko123",
+  "phone": "+381656666655",
+  "email": "stanko@marko.com",
+  "type": "org",
+  "profilePicture": "1675606897331_568slspj7we.png",
+  "verified": "approved",
+  "org": {
+    "city": "New York",
+    "country": "USA",
+    "name": "The Art Society",
+    "regNumber": "2021001",
+    "street": "Fifth Avenue",
+    "streetNumber": "7",
+    "postNumber": "10001"
+  }
+},{
+  "_id": {
+    "$oid": "63e3dbff1566c8e5599a4e75"
+  },
+  "firstname": "Vlada",
+  "lastname": "Vladic",
+  "username": "vlada",
+  "password": "Vlada123!",
+  "phone": "0650000023",
+  "email": "vlada@vlada.com",
+  "type": "org",
+  "profilePicture": "default.png",
+  "verified": "approved",
+  "org": {
+    "city": "Leskovac",
+    "country": "Srbija",
+    "name": "Drvo",
+    "postNumber": "11000",
+    "regNumber": "123",
+    "street": "Kuca Moja",
+    "streetNumber": "6"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e584979eb9789a5cad9828"
+  },
+  "firstname": "Vlada",
+  "lastname": "Vladic",
+  "username": "vlada1",
+  "password": "Vlada123!",
+  "phone": "0650000023",
+  "email": "vlada1@vlada.com",
+  "type": "user",
+  "profilePicture": "1676866374624_j9u8be3b6d.png",
+  "verified": "approved",
+  "__v": 0,
+  "org": {
+    "city": "Beograd",
+    "country": "Srbija",
+    "name": "Vlada Srbije",
+    "postNumber": "11000",
+    "regNumber": "1",
+    "street": "Vlada Srbije",
+    "streetNumber": "1"
+  }
+},{
+  "_id": {
+    "$oid": "63e584d29eb9789a5cad9831"
+  },
+  "firstname": "Vlada",
+  "lastname": "Vladic",
+  "username": "vlada2",
+  "password": "Vlada123!",
+  "phone": "0650000023",
+  "email": "vlada2@vlada.com",
+  "type": "user",
+  "profilePicture": "1675986130164_0yg8vwxlnnb.jpeg",
+  "verified": "rejected",
+  "org": {
+    "city": "",
+    "country": "",
+    "name": "",
+    "postNumber": "",
+    "regNumber": "",
+    "street": "",
+    "streetNumber": ""
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f2edde4221ec90ba9860b5"
+  },
+  "firstname": "Zravko",
+  "lastname": "Zravkovic",
+  "username": "zdravko",
+  "password": "Zdravko123!",
+  "phone": "0650000001",
+  "email": "zdravko@zdravko.com",
+  "type": "user",
+  "profilePicture": "default.png",
+  "verified": "waiting",
+  "org": {
+    "city": "",
+    "country": "",
+    "name": "",
+    "postNumber": "",
+    "regNumber": "",
+    "street": "",
+    "streetNumber": ""
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f2f9d3d684031d75e4963f"
+  },
+  "firstname": "Cd",
+  "lastname": "Cd",
+  "username": "cd",
+  "password": "Qwert123!",
+  "phone": "0650000001",
+  "email": "Cd@cd.com",
+  "type": "user",
+  "profilePicture": "default.png",
+  "verified": "waiting",
+  "org": {
+    "city": "",
+    "country": "",
+    "name": "",
+    "postNumber": "",
+    "regNumber": "",
+    "street": "",
+    "streetNumber": ""
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f2fa79d684031d75e4966e"
+  },
+  "firstname": "Cd",
+  "lastname": "Cd",
+  "username": "cd1",
+  "password": "Qwerty123!",
+  "phone": "0650000001",
+  "email": "Cd1@cd.com",
+  "type": "user",
+  "profilePicture": "default.png",
+  "verified": "approved",
+  "org": {
+    "city": "",
+    "country": "",
+    "name": "",
+    "postNumber": "",
+    "regNumber": "",
+    "street": "",
+    "streetNumber": ""
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f381865468d197fd4f4e4a"
+  },
+  "firstname": "Test",
+  "lastname": "Test",
+  "username": "Test",
+  "password": "Test123!",
+  "phone": "0650000001",
+  "email": "test@gmail.com",
+  "type": "user",
+  "profilePicture": "default.png",
+  "verified": "waiting",
+  "org": {
+    "city": "",
+    "country": "",
+    "name": "",
+    "postNumber": "",
+    "regNumber": "",
+    "street": "",
+    "streetNumber": ""
+  },
+  "__v": 0
+}]

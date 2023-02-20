@@ -1,0 +1,56 @@
+[{
+  "_id": {
+    "$oid": "63ed46a69e35cef1906ce11c"
+  },
+  "workshop": {
+    "$oid": "63ea6f22dc92e23714227e55"
+  },
+  "user": {
+    "$oid": "63c4161a333ec27cdb11915f"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f2570c9d92fd03eb41334d"
+  },
+  "workshop": {
+    "$oid": "63f255de9627a4b4e91ec2d4"
+  },
+  "user": {
+    "$oid": "63c4161a333ec27cdb11915f"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f2e6084221ec90ba985c62"
+  },
+  "workshop": {
+    "$oid": "63ea6ca2dc92e23714227e49"
+  },
+  "user": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f2e78f4221ec90ba985e68"
+  },
+  "workshop": {
+    "$oid": "63ea6ca2dc92e23714227e49"
+  },
+  "user": {
+    "$oid": "63c4161a333ec27cdb11915f"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f2e79c4221ec90ba985e9b"
+  },
+  "workshop": {
+    "$oid": "63ea6f5cdc92e23714227e57"
+  },
+  "user": {
+    "$oid": "63c4161a333ec27cdb11915f"
+  },
+  "__v": 0
+}]

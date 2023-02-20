@@ -107,7 +107,6 @@ class UserController {
         this.register = (req, res) => {
             let sendingUser = req.user;
             let isAdmin = sendingUser != undefined && sendingUser.type == "admin";
-            console.log(sendingUser);
             let user = new user_1.default({
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
@@ -117,8 +116,8 @@ class UserController {
                 email: req.body.email,
                 type: req.body.type,
                 profilePicture: "default.png",
+                org: JSON.parse(req.body.org),
                 verified: isAdmin ? "approved" : "waiting",
-                org: JSON.parse(req.body.org)
             });
             user.save((err, resp) => {
                 if (err) {

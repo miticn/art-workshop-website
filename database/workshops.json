@@ -1,0 +1,391 @@
+[{
+  "_id": {
+    "$oid": "63ea6ca2dc92e23714227e49"
+  },
+  "name": "Uvod u drvoobradu",
+  "location": "Kneza Mihaila 12, Beograd 11000, Serbia",
+  "description": "Naučite osnove drvoobrade i kreirajte svoje projekte",
+  "date": {
+    "$date": {
+      "$numberLong": "1685606400000"
+    }
+  },
+  "mainPicture": "woodworking_4.png",
+  "gallery": [
+    "woodworking_1.png",
+    "woodworking_2.png",
+    "woodworking_3.png"
+  ],
+  "availableSeats": 20,
+  "totalSeats": 20,
+  "descriptionLong": "U ovom radionicama ćete naučiti osnove drvoobrade kroz praktične primere i vežbe. Naučićete korišćenje različitih alata i tehnika za obradu drveta i kreiranje vaših projekata. Predavač je iskusan stručnjak sa dugogodišnjim iskustvom u drvoobradi.",
+  "owner": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "cordinates": {
+    "lat": 44.8161917,
+    "lng": 20.4590838
+  },
+  "likes": 4,
+  "status": "approved"
+},{
+  "_id": {
+    "$oid": "63ea6f22dc92e23714227e55"
+  },
+  "name": "Slikarska radionica: Tehnike ulja na platnu",
+  "location": "Zemun",
+  "description": "Saznajte kako da koristite uljane boje i stvorite umetničko delo na platnu",
+  "date": {
+    "$date": {
+      "$numberLong": "1671129600000"
+    }
+  },
+  "mainPicture": "slikarstvo_1.png",
+  "gallery": [
+    "slikarstvo_2.png",
+    "slikarstvo_3.png",
+    "slikarstvo_4.png"
+  ],
+  "availableSeats": 9,
+  "totalSeats": 15,
+  "descriptionLong": "U ovoj slikarskoj radionici naučićete različite tehnike ulja na platnu, uključujući korišćenje različitih četkica i boja. Radionica obuhvata praktične vežbe i stvaranje sopstvenog umetničkog dela na platnu. Predavač je iskusni umetnik sa dugogodišnjim iskustvom u slikarstvu.",
+  "owner": {
+    "$oid": "63e3dbff1566c8e5599a4e75"
+  },
+  "likes": 2,
+  "status": "approved",
+  "cordinates": {
+    "lat": 44.851027,
+    "lng": 20.408369
+  }
+},{
+  "_id": {
+    "$oid": "63ea6f5cdc92e23714227e57"
+  },
+  "name": "Keramička radionica: Pravljenje keramičkih posuda",
+  "location": "Niš",
+  "description": "Naučite da oblikujete i glazirate keramičke posude",
+  "date": {
+    "$date": {
+      "$numberLong": "1683648000000"
+    }
+  },
+  "mainPicture": "keramika_1.png",
+  "gallery": [
+    "keramika_2.png",
+    "keramika_3.png",
+    "keramika_4.png"
+  ],
+  "availableSeats": 7,
+  "totalSeats": 12,
+  "descriptionLong": "U ovoj keramičkoj radionici naučićete kako da oblikujete i glazirate keramičke posude. Radionica obuhvata praktične vežbe i stvaranje sopstvenih keramičkih posuda. Predavač je iskusni keramičar sa dugogodišnjim iskustvom u oblikovanju keramike.",
+  "owner": {
+    "$oid": "63e3dbff1566c8e5599a4e75"
+  },
+  "likes": 1,
+  "status": "approved",
+  "cordinates": {
+    "lat": 43.320902,
+    "lng": 21.895758
+  }
+},{
+  "_id": {
+    "$oid": "63ea6f93dc92e23714227e59"
+  },
+  "name": "Pletenje za početnike",
+  "location": "Subotica",
+  "description": "Naučite kako da pletete i napravite nešto unikatno",
+  "date": {
+    "$date": {
+      "$numberLong": "1677859200000"
+    }
+  },
+  "mainPicture": "pletenje_1.png",
+  "gallery": [
+    "pletenje_2.png",
+    "pletenje_3.png",
+    "pletenje_4.png"
+  ],
+  "availableSeats": 1,
+  "totalSeats": 8,
+  "descriptionLong": "U ovoj radionici pletenja za početnike naučićete osnove pletenja, odabir materijala i kako napraviti nešto unikatno. Radionica obuhvata praktične vežbe i stvaranje sopstvenih ručno pletenih predmeta. Predavačica je iskusna pletačica i dizajnerka sa dugogodišnjim iskustvom u pletenju.",
+  "owner": {
+    "$oid": "63e3dbff1566c8e5599a4e75"
+  },
+  "likes": 1,
+  "status": "approved",
+  "cordinates": {
+    "lat": 46.100376,
+    "lng": 19.665059
+  }
+},{
+  "_id": {
+    "$oid": "64d056b45f3f7e47c3e8d657"
+  },
+  "name": "Akvarel za početnike",
+  "location": "Novi Sad",
+  "description": "Naučite tehniku akvarela i stvorite svoja umetnička dela",
+  "date": {
+    "$date": {
+      "$numberLong": "1689577600000"
+    }
+  },
+  "mainPicture": "watercolor_1.png",
+  "gallery": [
+    "watercolor_2.png",
+    "watercolor_3.png",
+    "watercolor_4.png"
+  ],
+  "availableSeats": 15,
+  "totalSeats": 15,
+  "descriptionLong": "U ovoj radionici ćete naučiti kako da stvorite lepa dela umetnosti koristeći akvarel. Naučićete o osnovnim tehnikama i bojama, pravilima kompozicije i pripremi papira.",
+  "owner": {
+    "$oid": "64d05a6e0f0dbbc4746c34a9"
+  },
+  "cordinates": {
+    "lat": 45.253078,
+    "lng": 19.83749
+  },
+  "likes": 5,
+  "status": "approved"
+},{
+  "_id": {
+    "$oid": "63f255de9627a4b4e91ec2d4"
+  },
+  "name": "Kreativno pisanje - osnove",
+  "location": "Džordža Vašingtona 13, Beograd 11080, Serbia",
+  "description": "Radionica koja će polaznicima pružiti osnovna znanja i veštine za pisanje kreativnih tekstova, kao što su kratke priče, eseji, pesme i scenariji.",
+  "date": {
+    "$date": {
+      "$numberLong": "1677171600000"
+    }
+  },
+  "mainPicture": "1676826078764_70sjxas5m3c.png",
+  "gallery": [
+    "1676826044655_thn6ofkqai.png",
+    "1676826044668_h76t6o7t8g9.png",
+    "1676826044678_0crt7aaxbf1.png"
+  ],
+  "availableSeats": 12,
+  "totalSeats": 12,
+  "descriptionLong": "U ovoj radionici polaznici će imati priliku da nauče osnovne tehnike kreativnog pisanja i steknu veštine koje su im neophodne za pisanje kvalitetnih tekstova. Kroz različite vežbe, diskusije i analize tekstova, učesnici će naučiti kako da stvore uverljive likove, dinamične zaplete i efektan stil pisanja. Takođe, radionica će obuhvatiti i praktične savete za uređivanje i objavljivanje radova.",
+  "cordinates": {
+    "lat": 44.8372384,
+    "lng": 20.405214
+  },
+  "owner": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "likes": 1,
+  "__v": 0,
+  "status": "approved"
+},{
+  "_id": {
+    "$oid": "63f2b0628e4cec033b827ae1"
+  },
+  "name": "Uvod u drvoobradu",
+  "location": "Autobuska stanica, Novi Sad, Serbia",
+  "description": "Naučite osnove drvoobrade i kreirajte svoje projekte",
+  "date": {
+    "$date": {
+      "$numberLong": "1654034400000"
+    }
+  },
+  "mainPicture": "woodworking_4.png",
+  "gallery": [
+    "woodworking_1.png",
+    "woodworking_2.png",
+    "1676849263804_7rz3oxijwbq.png"
+  ],
+  "availableSeats": 20,
+  "totalSeats": 20,
+  "descriptionLong": "U ovom radionicama ćete naučiti osnove drvoobrade kroz praktične primere i vežbe. Naučićete korišćenje različitih alata i tehnika za obradu drveta i kreiranje vaših projekata. Predavač je iskusan stručnjak sa dugogodišnjim iskustvom u drvoobradi.",
+  "cordinates": {
+    "lat": 45.264797,
+    "lng": 19.8290688
+  },
+  "owner": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "likes": 3,
+  "__v": 0,
+  "status": "approved"
+},{
+  "_id": {
+    "$oid": "63f2ce51847f5bf5042269de"
+  },
+  "name": "Slikarska radionica: Tehnike ulja na platnu",
+  "location": "Zemun",
+  "description": "Saznajte kako da koristite uljane boje i stvorite umetničko delo na platnu",
+  "date": {
+    "$date": {
+      "$numberLong": "1664908800000"
+    }
+  },
+  "mainPicture": "slikarstvo_1.png",
+  "gallery": [
+    "slikarstvo_2.png",
+    "slikarstvo_3.png",
+    "slikarstvo_4.png"
+  ],
+  "availableSeats": 9,
+  "totalSeats": 15,
+  "descriptionLong": "U ovoj slikarskoj radionici naučićete različite tehnike ulja na platnu, uključujući korišćenje različitih četkica i boja. Radionica obuhvata praktične vežbe i stvaranje sopstvenog umetničkog dela na platnu. Predavač je iskusni umetnik sa dugogodišnjim iskustvom u slikarstvu.",
+  "owner": {
+    "$oid": "63e3dbff1566c8e5599a4e75"
+  },
+  "likes": 2,
+  "status": "approved",
+  "cordinates": {
+    "lat": 44.851027,
+    "lng": 20.408369
+  }
+},{
+  "_id": {
+    "$oid": "63f2d065847f5bf5042269ef"
+  },
+  "name": "Keramička radionica: Pravljenje keramičkih posuda",
+  "location": "Niš",
+  "description": "Naučite da oblikujete i glazirate keramičke posude",
+  "date": {
+    "$date": {
+      "$numberLong": "1652112000000"
+    }
+  },
+  "mainPicture": "keramika_1.png",
+  "gallery": [
+    "keramika_2.png",
+    "keramika_3.png",
+    "keramika_4.png"
+  ],
+  "availableSeats": 7,
+  "totalSeats": 12,
+  "descriptionLong": "U ovoj keramičkoj radionici naučićete kako da oblikujete i glazirate keramičke posude. Radionica obuhvata praktične vežbe i stvaranje sopstvenih keramičkih posuda. Predavač je iskusni keramičar sa dugogodišnjim iskustvom u oblikovanju keramike.",
+  "owner": {
+    "$oid": "63e3dbff1566c8e5599a4e75"
+  },
+  "likes": 0,
+  "status": "approved",
+  "cordinates": {
+    "lat": 43.320902,
+    "lng": 21.895758
+  }
+},{
+  "_id": {
+    "$oid": "63f30e425386fa4b1471f47f"
+  },
+  "name": "Uvod u drvoobradu",
+  "location": "Beograd",
+  "description": "Naučite osnove drvoobrade i kreirajte svoje projekte",
+  "date": {
+    "$date": {
+      "$numberLong": "1685570400000"
+    }
+  },
+  "mainPicture": "woodworking_4.png",
+  "gallery": [
+    "woodworking_1.png",
+    "woodworking_2.png",
+    "woodworking_3.png"
+  ],
+  "availableSeats": 20,
+  "totalSeats": 20,
+  "descriptionLong": "U ovom radionicama ćete naučiti osnove drvoobrade kroz praktične primere i vežbe. Naučićete korišćenje različitih alata i tehnika za obradu drveta i kreiranje vaših projekata. Predavač je iskusan stručnjak sa dugogodišnjim iskustvom u drvoobradi.",
+  "cordinates": {
+    "lat": 44.811856004392546,
+    "lng": 20.46599126356892
+  },
+  "owner": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "likes": 3,
+  "status": "waiting",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f365d384e817407f21d76f"
+  },
+  "name": "Tradicionalna turska umetnost",
+  "location": "Milentija Popovića 9, Beograd 11070, Serbia",
+  "description": "Ova radionica namijenjena je svima koji žele naučiti nešto o tradicionalnoj turskoj umjetnosti.",
+  "date": {
+    "$date": {
+      "$numberLong": "1678201200000"
+    }
+  },
+  "mainPicture": "1676895699584_6omb82eytwx.png",
+  "gallery": [
+    "1676895671758_vdb4ieerc7.png",
+    "1676895671774_ghx7j6boq8n.png",
+    "1676895671800_wj00y0zu4ce.png"
+  ],
+  "availableSeats": 30,
+  "totalSeats": 30,
+  "descriptionLong": "Tijekom radionice, upoznat ćemo se s različitim oblicima turske umjetnosti, uključujući kaligrafiju, keramiku, tekstil i minijaturu. Kaligrafija je umjetnost pisanja koja se razvila u islamskom svijetu, a turska kaligrafija smatra se jednom od najvažnijih vrsta kaligrafije u svijetu. ",
+  "cordinates": {
+    "lat": 44.8085099,
+    "lng": 20.431998
+  },
+  "owner": {
+    "$oid": "63c4161a333ec27cdb11915f"
+  },
+  "likes": 0,
+  "status": "waiting",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f3669984e817407f21d84b"
+  },
+  "name": "ss",
+  "location": "Seattle, WA, USA",
+  "description": "asas",
+  "date": {
+    "$date": {
+      "$numberLong": "1676982240000"
+    }
+  },
+  "mainPicture": "1676895897398_nl8odbcnbul.jpeg",
+  "gallery": [],
+  "availableSeats": 5,
+  "totalSeats": 5,
+  "descriptionLong": "ss",
+  "cordinates": {
+    "lat": 47.6062095,
+    "lng": -122.3320708
+  },
+  "owner": {
+    "$oid": "63c4161a333ec27cdb119160"
+  },
+  "likes": 0,
+  "status": "waiting",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63f3720d84e817407f21da46"
+  },
+  "name": "Proucavanje Vlade",
+  "location": "Nemanjina 11, Beograd 11000, Serbia",
+  "description": "Vlada kraci opis",
+  "date": {
+    "$date": {
+      "$numberLong": "1677157920000"
+    }
+  },
+  "mainPicture": "1676898829177_flus4gtp9q8.jpeg",
+  "gallery": [
+    "1676898815168_cv0p2rcp7p.png"
+  ],
+  "availableSeats": 300,
+  "totalSeats": 300,
+  "descriptionLong": "Vlada duzi opis",
+  "cordinates": {
+    "lat": 44.8060714,
+    "lng": 20.4602615
+  },
+  "owner": {
+    "$oid": "63e584979eb9789a5cad9828"
+  },
+  "likes": 0,
+  "status": "waiting",
+  "__v": 0
+}]

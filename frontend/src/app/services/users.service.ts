@@ -92,8 +92,17 @@ export class UsersService {
         }
         formData.set('org', JSON.stringify(org));
       } else {
+        let org = {
+          city:"",
+          country:"",
+          name:"",
+          postNumber:"",
+          regNumber:"",
+          street:"",
+          streetNumber:"",
+        }
         formData.set('type', 'user');
-        formData.set('org', JSON.stringify({}));
+        formData.set('org', JSON.stringify(org));
       }
       if(profilePicture != null) 
         formData.append('file', profilePicture, profilePicture.name);
