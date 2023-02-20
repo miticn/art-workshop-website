@@ -205,5 +205,12 @@ export class WorkshopsService {
     }
     return this.http.post(`${this.uri}/createWorkshopJSON`, body,{withCredentials: true});
   }
+
+  getApplications(workshopId){
+    let body = {
+      id: workshopId
+    }
+    return this.http.post(`${this.uri}/getApplications`, body,{withCredentials: true});
+  }
   
 }

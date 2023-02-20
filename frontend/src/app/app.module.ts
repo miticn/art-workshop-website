@@ -37,6 +37,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { EditWorkshopComponent } from './edit-workshop/edit-workshop.component';
 import { WorkshopChatsComponent } from './workshop-chats/workshop-chats.component';
+import { WorkshopAppliedComponent } from './workshop-applied/workshop-applied.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { WorkshopChatsComponent } from './workshop-chats/workshop-chats.componen
     CreateWorkshopComponent,
     EditWorkshopComponent,
     WorkshopChatsComponent,
+    WorkshopAppliedComponent,
   ],
   imports: [
     BrowserAnimationsModule,

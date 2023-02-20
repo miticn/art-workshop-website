@@ -381,5 +381,15 @@ export class WorkshopController {
         });
 
     }
+
+    getApplications = (req, res: express.Response) => {
+        let workshopId = req.body.id;
+        attendance.find({workshop: workshopId, status:"reserved"}, (err, applications) => {
+            if (err) console.log(err);
+            else {
+                res.json(applications);
+            }
+        });
+    }
     
 }

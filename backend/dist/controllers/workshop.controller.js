@@ -394,6 +394,16 @@ class WorkshopController {
                 }
             });
         };
+        this.getApplications = (req, res) => {
+            let workshopId = req.body.id;
+            attendance_1.default.find({ workshop: workshopId, status: "reserved" }, (err, applications) => {
+                if (err)
+                    console.log(err);
+                else {
+                    res.json(applications);
+                }
+            });
+        };
     }
 }
 exports.WorkshopController = WorkshopController;

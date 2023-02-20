@@ -20,6 +20,7 @@ import { AntiAuth } from './anti-auth.guard';
 import { CreateWorkshopComponent } from './create-workshop/create-workshop.component';
 import { EditWorkshopComponent } from './edit-workshop/edit-workshop.component';
 import { WorkshopChatsComponent } from './workshop-chats/workshop-chats.component';
+import { WorkshopAppliedComponent } from './workshop-applied/workshop-applied.component';
 
 const routes: Routes = [
   { path: "", canActivate: [AntiAuth], component: IndexComponent },
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: "createWorkshop", canActivate: [AuthGuard], component: CreateWorkshopComponent},
   { path: "workshop/:id/edit", canActivate: [AuthGuard], component: EditWorkshopComponent},
   { path: "workshop/:id/chat", canActivate: [AuthGuard], component: WorkshopChatsComponent},
+  { path: "workshop/:id/applied", canActivate: [AuthGuard], component: WorkshopAppliedComponent},
   /*
   {
     path: 'protected',
