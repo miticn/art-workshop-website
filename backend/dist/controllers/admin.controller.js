@@ -80,6 +80,40 @@ class AdminController {
                 res.send(workshops);
             });
         };
+        this.getWorkshopRequestsOrg = (req, res) => {
+            workshop_1.default.find({ status: 'waiting' })
+                .populate({
+                path: 'owner',
+                match: { type: 'org' }
+            })
+                .exec((err, workshops) => {
+                if (err) {
+                    res.send({ message: err });
+                    return;
+                }
+                else {
+                    const filteredWorkshops = workshops.filter(workshop => workshop.owner !== null);
+                    res.send(filteredWorkshops);
+                }
+            });
+        };
+        this.getWorkshopRequestsUser = (req, res) => {
+            workshop_1.default.find({ status: 'waiting' })
+                .populate({
+                path: 'owner',
+                match: { type: 'user' }
+            })
+                .exec((err, workshops) => {
+                if (err) {
+                    res.send({ message: err });
+                    return;
+                }
+                else {
+                    const filteredWorkshops = workshops.filter(workshop => workshop.owner !== null);
+                    res.send(filteredWorkshops);
+                }
+            });
+        };
     }
 }
 exports.AdminController = AdminController;

@@ -23,6 +23,7 @@ import { WorkshopChatsComponent } from './workshop-chats/workshop-chats.componen
 import { WorkshopAppliedComponent } from './workshop-applied/workshop-applied.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component';
+import { AdminWorkshopWaitingListComponent } from './admin-workshop-waiting-list/admin-workshop-waiting-list.component';
 
 const routes: Routes = [
   { path: "", canActivate: [AntiAuth], component: IndexComponent },
@@ -44,7 +45,8 @@ const routes: Routes = [
   { path: "workshop/:id/chat", canActivate: [AuthGuard], component: WorkshopChatsComponent},
   { path: "workshop/:id/applied", canActivate: [AuthGuard], component: WorkshopAppliedComponent},
   { path: "adminPanel", canActivate: [AuthGuard], component: AdminPanelComponent },
-  { path: "adminAddUser", canActivate: [AuthGuard], component: AdminAddUserComponent }
+  { path: "adminAddUser", canActivate: [AuthGuard], component: AdminAddUserComponent },
+  { path: "adminWorkshopWaitingList", canActivate: [AuthGuard], component: AdminWorkshopWaitingListComponent}
   /*
   {
     path: 'protected',

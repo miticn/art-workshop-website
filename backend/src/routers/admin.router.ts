@@ -30,6 +30,15 @@ adminRouter.route('/getAllWorkshops').post(
     (req, res) => new AdminController().getAllWorkshops(req, res)
 )
 
+adminRouter.route('/getWorkshopRequestsOrg').post(
+    PassportMiddleware.checkAdmin,
+    (req, res) => new AdminController().getWorkshopRequestsOrg(req, res)
+)
+
+adminRouter.route('/getWorkshopRequestsUser').post(
+    PassportMiddleware.checkAdmin,
+    (req, res) => new AdminController().getWorkshopRequestsUser(req, res)
+)
 
 
 export default adminRouter;

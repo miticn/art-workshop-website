@@ -81,4 +81,38 @@ export class AdminController {
             res.send(workshops);
         });
     }
+
+    getWorkshopRequestsOrg = (req, res) => {
+        workshop.find({status: 'waiting'})
+            .populate({
+                path: 'owner',
+                match: { type: 'org' }
+            })
+            .exec((err, workshops) => {
+                if (err) {
+                    res.send({ message: err });
+                    return;
+                } else {
+                    const filteredWorkshops = workshops.filter(workshop => workshop.owner !== null);
+                    res.send(filteredWorkshops);
+                }
+            });
+    }
+
+    getWorkshopRequestsUser = (req, res) => {
+        workshop.find({status: 'waiting'})
+            .populate({
+                path: 'owner',
+                match: { type: 'user' }
+            })
+            .exec((err, workshops) => {
+                if (err) {
+                    res.send({ message: err });
+                    return;
+                } else {
+                    const filteredWorkshops = workshops.filter(workshop => workshop.owner !== null);
+                    res.send(filteredWorkshops);
+                }
+            });
+    }
 };

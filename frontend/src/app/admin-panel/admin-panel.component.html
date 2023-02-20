@@ -43,7 +43,7 @@
 
   <h1 class="text-center">Rad sa radionicama</h1>
   <a [routerLink]="['/createWorkshop']"><button class="btn btn-dark">Napravi radionicu</button></a>
-
+  <a [routerLink]="['/adminWorkshopWaitingList']"><button class="btn btn-dark">Vidi predloge za novu radionicu</button></a>
   <table *ngIf="allWorkshops.length>0" class="table table-striped">
     <thead>
       <tr>

@@ -34,4 +34,12 @@ export class AdminService {
   getAllWorkshops() {
     return this.http.post(`${this.uri}/getAllWorkshops`, {}, { withCredentials: true });
   }
+
+  getWorkshopRequestsOrg() {
+    return this.http.post(`${this.uri}/getWorkshopRequestsOrg`, {}, { withCredentials: true });
+  }
+
+  getWorkshopRequestsUser() {
+    return this.http.post(`${this.uri}/getWorkshopRequestsUser`, {}, { withCredentials: true });
+  }
 }
