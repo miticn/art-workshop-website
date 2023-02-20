@@ -100,4 +100,9 @@
       </div>
     </div>
   </div>
+  <div *ngIf="user.type=='user'" class="container row">
+    <div *ngFor="let workshop of chatWorkshops" class="col-md-6 me-0">
+      <app-chat [workshopId]="workshop._id" [userId]="workshop.owner"></app-chat>
+    </div>
+  </div>
 </div>

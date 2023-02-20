@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Message } from '../models/message';
 import { User } from '../models/user';
@@ -15,8 +15,8 @@ export class ChatComponent implements OnInit {
 
   constructor(private workshopService: WorkshopsService, private activatedRoute : ActivatedRoute,
     private userService: UsersService) { }
-  workshopId: string;
-  userId: string;
+  @Input() workshopId: string = '';
+  @Input() userId: string = '';
   msgs : Message[] = [];
   workshop: Workshop;
   users = {};
@@ -25,8 +25,10 @@ export class ChatComponent implements OnInit {
 
   intervalId: any;
   ngOnInit(): void {
-    this.workshopId = this.activatedRoute.snapshot.paramMap.get('workshopId');
-    this.userId = this.activatedRoute.snapshot.paramMap.get('userId');
+    if(this.workshopId=='')
+      this.workshopId = this.activatedRoute.snapshot.paramMap.get('workshopId');
+    if(this.userId=='')
+      this.userId = this.activatedRoute.snapshot.paramMap.get('userId');
     this.userService.getSessionUser().subscribe((res: any) => {
       this.me = res;
       console.log(this.me);

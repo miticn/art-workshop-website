@@ -29,6 +29,7 @@ export class UserComponent implements OnInit {
   userString: string;
 
   chatWorkshopIds: string[] = [];
+  chatWorkshops: Workshop[] = [];
   
   attendedWorkshops: Workshop[] = [];
   myWorkshops: Workshop[] = [];
@@ -50,8 +51,12 @@ export class UserComponent implements OnInit {
         });
         this.workshopService.getAllUsersChats(this.user._id).subscribe((data: any) => {
           this.chatWorkshopIds = data;
-          console.log("chatWorkshopIds")
-          console.log(this.chatWorkshopIds)
+          this.chatWorkshopIds.forEach((id) => {
+            this.workshopService.getById(id).subscribe((data: any) => {
+              this.chatWorkshops.push(data);
+            });
+          });
+
         });
       }
       if(this.user.type == "org")
