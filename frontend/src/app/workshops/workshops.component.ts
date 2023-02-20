@@ -22,6 +22,8 @@ export class WorkshopsComponent implements OnInit {
       this.workshopsAll = data;
       //remove waiting for approval workshops
       this.workshopsAll = this.workshopsAll.filter(w => w.status == "approved");
+      //remove ended workshops
+      this.workshopsAll = this.workshopsAll.filter(w => new Date(w.date).getTime() > new Date().getTime());
 
       this.workshops = this.workshopsAll;
       console.log(this.workshops);

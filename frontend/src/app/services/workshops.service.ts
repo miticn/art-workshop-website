@@ -227,6 +227,12 @@ export class WorkshopsService {
     }
     return this.http.post(`${this.uri}/cancelWorkshop`, body,{withCredentials: true});
   }
-  
+
+  getWorkshopsUserAttended(userId){
+    let body = {
+      id: userId
+    }
+    return this.http.post(`${this.uri}/getWorkshopsUserAttended`, body,{withCredentials: true});
+  }
   
 }

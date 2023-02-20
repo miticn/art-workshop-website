@@ -32,6 +32,11 @@
       </div>
     </div>
   </div>
+  <div>
+    <h1 class="text-center">Prisustvo</h1>
+    <app-workshop-table [workshops]="attendedWorkshops"></app-workshop-table>
+  </div>
+
   <div class="row">
     <div class="col-md-4 text-center">
       <img src="{{helper.getProfilePhotoUrl(user.profilePicture)}}" alt="Profile Picture"

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Workshop } from '../models/workshop';
 import { WorkshopsService } from '../services/workshops.service';
 
@@ -8,13 +8,10 @@ import { WorkshopsService } from '../services/workshops.service';
   styleUrls: ['./workshop-table.component.css']
 })
 export class WorkshopTableComponent implements OnInit {
-  workshops : Workshop[] = [];
+  @Input() workshops : Workshop[] = [];
   constructor(private workshopsService : WorkshopsService) { }
 
   ngOnInit(): void {
-    this.workshopsService.getAll().subscribe((workshops:Workshop[]) => {
-      this.workshops = workshops;
-    });
   }
   sortOrder = 'asc';
   sortColumn = '';

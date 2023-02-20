@@ -140,4 +140,9 @@ workshopRouter.route('/cancelWorkshop').post(
     (req, res) => new WorkshopController().cancelWorkshop(req, res)
 )
 
+workshopRouter.route('/getWorkshopsUserAttended').post(
+    PassportMiddleware.checkAuthenticated,
+    (req, res) => new WorkshopController().getWorkshopsUserAttended(req, res)
+)
+
 export default workshopRouter;
