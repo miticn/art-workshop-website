@@ -62,7 +62,6 @@ export class AdminController {
     }
 
     getAllUsers = (req, res) => {
-        console.log("getAllUsers")
         User.find({}).select("-password").exec((err, users) => {
             if (err) {
                 res.status(500).send({ message: err });
