@@ -19,7 +19,11 @@ export class WorkshopsComponent implements OnInit {
   workshopsAll : Workshop[] = [];
   ngOnInit(): void {
     this.workshopService.getAll().subscribe((data:Workshop[]) => {
-      this.workshops = this.workshopsAll = data;
+      this.workshopsAll = data;
+      //remove waiting for approval workshops
+      this.workshopsAll = this.workshopsAll.filter(w => w.status == "approved");
+
+      this.workshops = this.workshopsAll;
       console.log(this.workshops);
     });
   }

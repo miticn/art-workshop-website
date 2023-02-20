@@ -405,6 +405,49 @@ export class WorkshopController {
         });
     }
 
-    
+    cancelWorkshop = (req, res: express.Response) => {
+        let workshopId = req.body.id;
+        console.log("Cancelling workshop: "+workshopId);
+        workshop.findByIdAndUpdate(workshopId, {status: "cancelled"}, (err, workshopOld) => {
+            let workshop_name = workshopOld.name;
+            if (err) console.log(err);
+            else {
+                //find all applications and set them to cancelled
+                attendance.updateMany({workshop: workshopId}, {status: "cancelled"}, (err, rs) => {
+                    if (err) console.log(err);
+                    else {
+
+                        //find all attendances
+                        attendance.find({workshop: workshopId}, (err, attendances) => {
+                            if (err) console.log(err);
+                            else {
+                                let userIds = [];
+                                for (let attendance of attendances) {
+                                    userIds.push(attendance.user);
+                                }
+
+                        
+                                //find all users and send them an email
+
+                                 user.find({_id: {$in: userIds}}, (err, users) => {
+                                    if (err) console.log(err);
+                                    else {
+                                        for (let user of users) {
+                                            new mailService().sendWorkshopCanceledEmail(user.email, user.firstname, workshop_name);
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                        
+                        res.json(workshop);
+                    }
+                });
+
+                
+            }
+        });
+
+    }
     
 }

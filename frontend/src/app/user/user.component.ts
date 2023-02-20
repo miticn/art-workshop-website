@@ -45,6 +45,8 @@ export class UserComponent implements OnInit {
       if(this.user.type == "org")
         this.workshopService.getWorkshopsByOwner(this.user._id).subscribe((data: Workshop[]) => {
           this.myWorkshops = data;
+          //remove cancelled workshops
+          this.myWorkshops = this.myWorkshops.filter(w => w.status != "cancelled");
         });
       
     });
@@ -129,5 +131,15 @@ export class UserComponent implements OnInit {
         });
       }
     }
+  }
+
+  cancelWorkshop(workshopId){
+    this.workshopService.cancelWorkshop(workshopId).subscribe((data: any) => {
+      this.workshopService.getWorkshopsByOwner(this.user._id).subscribe((data: Workshop[]) => {
+        this.myWorkshops = data;
+        
+        this.myWorkshops = this.myWorkshops.filter(w => w.status != "cancelled");
+      });
+    });
   }
 }

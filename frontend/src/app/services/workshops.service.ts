@@ -220,5 +220,13 @@ export class WorkshopsService {
     console.log(body)
     return this.http.post(`${this.uri}/approveApplication`, body,{withCredentials: true});
   }
+
+  cancelWorkshop(workshopId){
+    let body = {
+      id: workshopId
+    }
+    return this.http.post(`${this.uri}/cancelWorkshop`, body,{withCredentials: true});
+  }
+  
   
 }

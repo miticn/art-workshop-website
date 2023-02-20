@@ -118,6 +118,26 @@ class mailService {
             }
         });
     }
+    sendWorkshopCanceledEmail(email, name, workshop) {
+        let mailOptions = {
+            from: this.user,
+            to: email,
+            subject: 'Art Workshop - Radionica otkazana',
+            text: 'Poštovani ' + name + ',\n' +
+                'Želimo da Vas obavestimo da je radionica ' + workshop + ' otkazana.\n\n' +
+                'Ukoliko želite da se prijavite na drugu radionicu, molimo Vas da to uradite putem našeg sajta.\n\n' +
+                'S poštovanjem,\n' +
+                'Art Workshop Tim'
+        };
+        this.transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            }
+            else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+    }
 }
 exports.default = mailService;
 //# sourceMappingURL=mailService.js.map

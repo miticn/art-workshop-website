@@ -47,7 +47,10 @@ let Workshop = new Schema({
     },
     likes: {
         type: Number
-    }
+    },
+    status: {
+        type: String
+    },
 });
 exports.default = mongoose_1.default.model('Workshop', Workshop, 'workshops');
 //# sourceMappingURL=workshop.js.map

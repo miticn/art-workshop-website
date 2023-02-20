@@ -43,5 +43,6 @@ workshopRouter.route('/getUsersChatingWithWorkshop').post(passport_middleware_1.
 workshopRouter.route('/createWorkshopJSON').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new workshop_controller_1.WorkshopController().createWorkshopJSON(req, res));
 workshopRouter.route('/getApplications').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new workshop_controller_1.WorkshopController().getApplications(req, res));
 workshopRouter.route('/approveApplication').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new workshop_controller_1.WorkshopController().approveApplication(req, res));
+workshopRouter.route('/cancelWorkshop').post(passport_middleware_1.PassportMiddleware.checkAuthenticated, (req, res) => new workshop_controller_1.WorkshopController().cancelWorkshop(req, res));
 exports.default = workshopRouter;
 //# sourceMappingURL=workshop.router.js.map

@@ -135,4 +135,9 @@ workshopRouter.route('/approveApplication').post(
     (req, res) => new WorkshopController().approveApplication(req, res)   
 )
 
+workshopRouter.route('/cancelWorkshop').post(
+    PassportMiddleware.checkAuthenticated,
+    (req, res) => new WorkshopController().cancelWorkshop(req, res)
+)
+
 export default workshopRouter;

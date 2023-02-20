@@ -11,6 +11,7 @@
                   <th>Detalji</th>
                   <th>Uredi</th>
                   <th>Prijave</th>
+                  <th>Otkazi</th>
               </tr>
           </thead>
           <tbody>
@@ -20,6 +21,7 @@
                   <td><a [routerLink]="['/workshop/', myWorkshop._id]"><button class="btn btn-dark">Detalji</button></a></td>
                   <td><a [routerLink]="['/workshop/', myWorkshop._id, 'edit']"><button class="btn btn-dark">Uredi</button></a></td>
                   <td><a [routerLink]="['/workshop/', myWorkshop._id, 'applied']"><button class="btn btn-dark">Pijave</button></a></td>
+                  <td><button class="btn btn-dark" (click)="cancelWorkshop(myWorkshop._id)">Otkazi</button></td>
               </tr>
           </tbody>
       </table>

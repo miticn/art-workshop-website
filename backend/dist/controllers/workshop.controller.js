@@ -217,6 +217,7 @@ class WorkshopController {
                 },
                 owner: req.user._id,
                 likes: 0,
+                status: "waiting"
             });
             w.save((err, workshop) => {
                 if (err)
@@ -383,7 +384,8 @@ class WorkshopController {
                 owner: req.user._id,
                 likes: JSONObj.likes,
                 mainPicture: JSONObj.mainPicture,
-                gallery: JSONObj.gallery
+                gallery: JSONObj.gallery,
+                status: "waiting"
             });
             ws.save((err, workshop) => {
                 if (err)
@@ -412,6 +414,46 @@ class WorkshopController {
                     console.log(err);
                 else {
                     res.json(application);
+                }
+            });
+        };
+        this.cancelWorkshop = (req, res) => {
+            let workshopId = req.body.id;
+            console.log("Cancelling workshop: " + workshopId);
+            workshop_1.default.findByIdAndUpdate(workshopId, { status: "cancelled" }, (err, workshopOld) => {
+                let workshop_name = workshopOld.name;
+                if (err)
+                    console.log(err);
+                else {
+                    //find all applications and set them to cancelled
+                    attendance_1.default.updateMany({ workshop: workshopId }, { status: "cancelled" }, (err, rs) => {
+                        if (err)
+                            console.log(err);
+                        else {
+                            //find all attendances
+                            attendance_1.default.find({ workshop: workshopId }, (err, attendances) => {
+                                if (err)
+                                    console.log(err);
+                                else {
+                                    let userIds = [];
+                                    for (let attendance of attendances) {
+                                        userIds.push(attendance.user);
+                                    }
+                                    //find all users and send them an email
+                                    user_1.default.find({ _id: { $in: userIds } }, (err, users) => {
+                                        if (err)
+                                            console.log(err);
+                                        else {
+                                            for (let user of users) {
+                                                new mailService_1.default().sendWorkshopCanceledEmail(user.email, user.firstname, workshop_name);
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                            res.json(workshop_1.default);
+                        }
+                    });
                 }
             });
         };
