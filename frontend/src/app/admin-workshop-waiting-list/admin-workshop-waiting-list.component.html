@@ -1,1 +1,68 @@
-<p>admin-workshop-waiting-list works!</p>
+<h1 class="text-center">Zahtevi za radionice od organizatora.</h1>
+<table *ngIf="requestsFromOrgs.length>0" class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Slika</th>
+            <th scope="col">Ime</th>
+            <th scope="col">Lokacija</th>
+            <th scope="col">Ukupno mesta</th>
+            <th scope="col">Opis</th>
+            <th scope="col">Slika organizatora</th>
+            <th scope="col">Ime organizatora</th>
+            <th scope="col">Email organizatora</th>
+            <th scope="col">Odobri</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let workshop of requestsFromOrgs">
+            <td><img src={{helper.getWorkshopPhotoUrl(workshop.mainPicture)}} alt="user" width="50" height="50"></td>
+            <!--Slika-->
+            <td>{{workshop.name}}</td><!--Ime-->
+            <td>{{workshop.location}}</td>
+            <td>{{workshop.totalSeats}}</td>
+            <td>{{workshop.description}}</td>
+            <td><img src={{helper.getProfilePhotoUrl(workshop.owner.profilePicture)}} alt="user" width="50" height="50">
+            </td><!--Slika-->
+            <td>{{workshop.owner.firstname}} {{workshop.owner.lastname}}</td><!--Ime-->
+            <td>{{workshop.owner.email}}</td>
+            <td><button (click)="approveWorkshop(workshop._id)" class="btn btn-dark">Odobri</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<h4 class="text-center" *ngIf="requestsFromOrgs.length==0">Nema zahteva za radionce od strane organizatora</h4>
+
+
+<h1 class="text-center">Zahtevi za radionice od korisnika.</h1>
+<table *ngIf="requestsFromUsers.length>0" class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Slika</th>
+            <th scope="col">Ime</th>
+            <th scope="col">Lokacija</th>
+            <th scope="col">Ukupno mesta</th>
+            <th scope="col">Opis</th>
+            <th scope="col">Slika organizatora</th>
+            <th scope="col">Ime organizatora</th>
+            <th scope="col">Email organizatora</th>
+            <th scope="col">Odobri</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let workshop of requestsFromUsers">
+            <td><img src={{helper.getWorkshopPhotoUrl(workshop.mainPicture)}} alt="user" width="50" height="50"></td>
+            <!--Slika-->
+            <td>{{workshop.name}}</td><!--Ime-->
+            <td>{{workshop.location}}</td>
+            <td>{{workshop.totalSeats}}</td>
+            <td>{{workshop.description}}</td>
+            <td><img src={{helper.getProfilePhotoUrl(workshop.owner.profilePicture)}} alt="user" width="50" height="50">
+            </td><!--Slika-->
+            <td>{{workshop.owner.firstname}} {{workshop.owner.lastname}}</td><!--Ime-->
+            <td>{{workshop.owner.email}}</td>
+            <td><button class="btn btn-dark">Odobri</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<h4 class="text-center" *ngIf="requestsFromUsers.length==0">Nema zahteva za radionce od strane korisnika</h4>

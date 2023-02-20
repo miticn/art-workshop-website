@@ -114,6 +114,27 @@ class AdminController {
                 }
             });
         };
+        this.approveWorkshop = (req, res) => {
+            let workshopId = req.body.workshopId;
+            workshop_1.default.findOne({ _id: workshopId }, (err, workshop) => {
+                if (err) {
+                    res.status(500).send({ message: err });
+                    return;
+                }
+                if (!workshop) {
+                    res.status(404).send({ message: "Workshop Not found." });
+                    return;
+                }
+                workshop.status = "approved";
+                workshop.save((err) => {
+                    if (err) {
+                        res.status(500).send({ message: err });
+                        return;
+                    }
+                    res.send({ message: "Workshop was approved successfully!" });
+                });
+            });
+        };
     }
 }
 exports.AdminController = AdminController;

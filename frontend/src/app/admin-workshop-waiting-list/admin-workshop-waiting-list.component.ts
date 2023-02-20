@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Helper } from '../helper';
 import { Workshop } from '../models/workshop';
 import { AdminService } from '../services/admin.service';
 
@@ -9,19 +10,31 @@ import { AdminService } from '../services/admin.service';
 })
 export class AdminWorkshopWaitingListComponent implements OnInit {
 
-  constructor(private adminService:AdminService) { }
+  constructor(private adminService:AdminService, public helper:Helper) { }
 
-  requestsFromOrgs : Workshop[] = [];
-  requestsFromUsers : Workshop[] = [];
+  requestsFromOrgs : any[] = [];
+  requestsFromUsers : any[] = [];
   ngOnInit(): void {
     this.adminService.getWorkshopRequestsOrg().subscribe((data: any) => {
       this.requestsFromOrgs = data;
-      console.log(this.requestsFromOrgs);
     });
     this.adminService.getWorkshopRequestsUser().subscribe((data: any) => {
       this.requestsFromUsers = data;
       console.log(this.requestsFromUsers);
     });
   }
+
+  approveWorkshop(workshopId: string) {
+    this.adminService.approveWorkshop(workshopId).subscribe((data: any) => {
+      console.log(data);
+      this.adminService.getWorkshopRequestsOrg().subscribe((data: any) => {
+        this.requestsFromOrgs = data;
+      });
+
+    });
+  }
+
+  /*approveWorkshopUser(workshopId: string) {
+  }*/
 
 }

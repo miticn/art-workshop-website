@@ -42,4 +42,12 @@ export class AdminService {
   getWorkshopRequestsUser() {
     return this.http.post(`${this.uri}/getWorkshopRequestsUser`, {}, { withCredentials: true });
   }
+
+  approveWorkshop(workshopId) {
+    const data = {
+      workshopId: workshopId
+    }
+    return this.http.post(`${this.uri}/approveWorkshop`, data, { withCredentials: true });
+  }
+  
 }
