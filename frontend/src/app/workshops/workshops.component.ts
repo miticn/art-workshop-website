@@ -42,15 +42,34 @@ export class WorkshopsComponent implements OnInit {
     });
   }
 
+  //invert sort when called again
+  workshopsSortedByDate : boolean = false;
   sortWorkshopsByDate(){
-    this.workshops.sort((a,b) => {
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
-    });
+    if(this.workshopsSortedByDate){
+      this.workshops.sort((a,b) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      });
+    }
+    else{
+      this.workshops.sort((a,b) => {
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      });
+    }
+    this.workshopsSortedByDate = !this.workshopsSortedByDate;
   }
+  workshopsSortedByName : boolean = false;
   sortWorkshopsByName(){
-    this.workshops.sort((a,b) => {
-      return a.name.localeCompare(b.name);
-    });
+    if(this.workshopsSortedByName){
+      this.workshops.sort((a,b) => {
+        return a.name.localeCompare(b.name);
+      });
+    }
+    else{
+      this.workshops.sort((a,b) => {
+        return b.name.localeCompare(a.name);
+      });
+    }
+    this.workshopsSortedByName = !this.workshopsSortedByName;
   }
 
   searchLocation : string = "";
