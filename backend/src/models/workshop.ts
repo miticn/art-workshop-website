@@ -44,7 +44,10 @@ let Workshop = new Schema({
     },
     likes: {
         type: Number
-    }
+    },
+    status: {
+        type: String
+    },
 })
 
 export default mongoose.model('Workshop', Workshop, 'workshops');

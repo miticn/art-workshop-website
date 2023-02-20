@@ -15,4 +15,5 @@ export class Workshop{
     _id: string;
     likes: number;
     owner: string;
+    status: string;
 }

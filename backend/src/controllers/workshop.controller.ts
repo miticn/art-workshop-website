@@ -195,6 +195,7 @@ export class WorkshopController {
             },
             owner: req.user._id,
             likes: 0,
+            status: "waiting"
         });
         w.save((err, workshop) => {
             if (err) console.log(err);
@@ -370,7 +371,8 @@ export class WorkshopController {
             owner: req.user._id,
             likes: JSONObj.likes,
             mainPicture: JSONObj.mainPicture,
-            gallery: JSONObj.gallery
+            gallery: JSONObj.gallery,
+            status: "waiting"
         });
         ws.save((err, workshop) => {
             if (err) console.log(err);
@@ -402,5 +404,7 @@ export class WorkshopController {
             }
         });
     }
+
+    
     
 }
