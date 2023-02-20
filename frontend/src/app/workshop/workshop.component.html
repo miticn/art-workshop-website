@@ -61,9 +61,10 @@
 
     <!--Workshop likes and comments-->
     <div class="align-items-center topOfComments">
-      <fa-icon class="{{liked?'fill':''}}" (click)="like()" [icon]="faHeart" size="2x"></fa-icon>
-      <span class="text-light">{{workshop.likes}}</span>
-      <fa-icon (click)="scrollToElement(commentinput)" [icon]="faComment" size="2x" flip="horizontal"></fa-icon>
+      <fa-icon *ngIf="canLike" class="can-like {{liked?'fill':''}}" (click)="like()" [icon]="faHeart" size="2x"></fa-icon>
+      <span *ngIf="canLike" class="can-like text-light">{{workshop.likes}}</span>
+      <fa-icon *ngIf="!canLike" class="cant-like" [icon]="faHeart" size="2x"></fa-icon>
+      <fa-icon class="text-light" (click)="scrollToElement(commentinput)" [icon]="faComment" size="2x" flip="horizontal"></fa-icon>
       <span class="text-light">{{comments.length}}</span>
     </div>
     <div class="comment-box col-md-6">

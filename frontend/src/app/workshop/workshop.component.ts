@@ -28,6 +28,7 @@ export class WorkshopComponent implements OnInit {
 
   comments : Comment[] = [];
   users = {};
+  canLike: boolean = false;
   getUser(userId){
     if(this.users[userId]){
       return this.users[userId]
@@ -44,13 +45,16 @@ export class WorkshopComponent implements OnInit {
     public helper : Helper, private userService: UsersService) { }
 
   id: string;
-
+  workshopsUserAttended: Workshop[] = [];
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
 
     this.workshopService.attendingStatus(this.id).subscribe((data: any) => {
       this.attendingStatus = data.status;
     });
+
+    
+
     this.workshopService.isLiked(this.id).subscribe((data: any) => {
       this.liked = data.liked;
     });
@@ -58,6 +62,12 @@ export class WorkshopComponent implements OnInit {
       this.workshop = data;
       this.userService.getSessionUser().subscribe((data: any) => {
         this.myUser = data;
+        this.workshopService.getWorkshopsUserAttended(this.myUser._id).subscribe((data: any) => {
+          this.workshopsUserAttended = data;
+          if(this.workshopsUserAttended.find((workshop) => workshop.name == this.workshop.name)){
+            this.canLike = true;
+          }
+        });
       });
       this.images = [this.workshop.mainPicture, ...this.workshop.gallery];
       const location = new google.maps.LatLng(this.workshop.cordinates);
